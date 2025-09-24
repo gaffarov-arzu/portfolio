@@ -1,0 +1,118 @@
+Loki Kurulum ve Çalıştırma Dokümantasyonu
+1️⃣ Sistem Gereksinimleri
+
+Linux sunucu (Ubuntu 20.04+ önerilir)
+
+En az 2 GB RAM (tercihen 4 GB)
+
+Disk alanı log depolama için yeterli olmalı
+
+curl, wget veya git yüklü
+
+2️⃣ Loki İndir ve Kur
+
+Loki’nin en güncel sürümünü indir:
+
+wget https://github.com/grafana/loki/releases/download/v2.9.2/loki-linux-amd64.zip
+unzip loki-linux-amd64.zip
+chmod +x loki-linux-amd64
+sudo mv loki-linux-amd64 /usr/local/bin/loki
+
+
+Kurulum dizini oluştur:
+
+mkdir -p /home/admiral/loki
+
+3️⃣ Config Dosyası Oluştur
+
+/etc/loki/loki-config.yaml:
+
+server:
+  http_listen_port: 3100
+  grpc_listen_port: 0
+  http_listen_address: 0.0.0.0  # tüm IP’lerden erişim
+
+ingester:
+  wal:
+    enabled: true
+    dir: /home/admiral/loki/wal
+  lifecycler:
+    ring:
+      kvstore:
+        store: inmemory
+      replication_factor: 1
+    min_ready_duration: 0s
+    final_sleep: 0s
+    unregister_on_shutdown: true
+  chunk_idle_period: 5m
+  chunk_target_size: 1048576
+
+storage_config:
+  boltdb_shipper:
+    active_index_directory: /home/admiral/loki/index
+    shared_store: filesystem
+    cache_location: /home/admiral/loki/cache
+  filesystem:
+    directory: /home/admiral/loki/chunks
+
+schema_config:
+  configs:
+    - from: 2020-10-24
+      store: boltdb-shipper
+      object_store: filesystem
+      schema: v11
+      index:
+        prefix: index_
+        period: 24h
+
+compactor:
+  working_directory: /home/admiral/loki/compactor
+  shared_store: filesystem
+
+query_range:
+  cache_results: true
+  results_cache:
+    cache:
+      embedded_cache:
+        enabled: true
+        max_size_mb: 100
+
+4️⃣ Dizinleri ve İzinleri Ayarla
+mkdir -p /home/admiral/loki/{wal,index,chunks,cache,compactor}
+sudo chown -R admiral:admiral /home/admiral/loki
+
+5️⃣ Systemd Servisi Oluştur
+
+/etc/systemd/system/loki.service:
+
+[Unit]
+Description=Loki service
+After=network.target
+
+[Service]
+User=admiral
+Group=admiral
+Type=simple
+ExecStart=/usr/local/bin/loki -config.file=/etc/loki/loki-config.yaml
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+6️⃣ Servisi Başlat ve Kontrol Et
+sudo systemctl daemon-reload
+sudo systemctl enable loki
+sudo systemctl start loki
+sudo systemctl status loki
+
+
+Test:
+
+curl http://localhost:3100/ready
+# ready çıktısı gelmeli
+
+7️⃣ Dış Sunuculardan Erişim
+
+Config dosyasında http_listen_address: 0.0.0.0 olmalı.
+
+Firewall / Security Group’larda 3100 portu açık olmalı.
