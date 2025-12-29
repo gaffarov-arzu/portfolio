@@ -4,3 +4,6 @@ install aws-cli
 2)curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 3)unzip awscliv2.zip
 4)sudo ./aws/install
+5)aws configure
+6) instancelerin siyahisi seliqeli sekilde
+aws ec2 describe-instances   --query 'Reservations[*].Instances[*].[InstanceId,State.Name,PublicIpAddress]'   --output table
