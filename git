@@ -1,0 +1,2 @@
+gitde hemiselik logini save etmek
+git config --global credential.helper store
