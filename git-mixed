@@ -1,0 +1,3 @@
+git branch -a (hem localda hem de remoteda olan branchlar)
+git branch -r (remotedaki branchlar)
+git push origin --delete a.qafarov-main-patch-91526 (branch silmek)
