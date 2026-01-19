@@ -1,0 +1,2 @@
+1)1827 id si ve /var/www/javed home directorisi ile user yaratmaq
+useradd -u 1827 -d /var/www/javed javed
