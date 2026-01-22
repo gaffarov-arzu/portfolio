@@ -1,0 +1,12 @@
+terraform ile bucket yaratmaq
+1) vim main.tf
+provider "aws" {
+  region = "us-east-1"
+}
+
+resource "aws_s3_bucket" "example" {
+  bucket = "benim-ilk-bucket-12345"
+  acl    = "private"
+}
+2)terraform init
+3)terraform apply
