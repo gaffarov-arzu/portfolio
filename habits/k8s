@@ -1,5 +1,5 @@
 1)microk8s qurasdirilmasi
-snap install micro8s --classic
+snap install microk8s --classic
 
 2)sudo usermod -a -G microk8s $USER
 sudo chown -f -R $USER ~/.kube
