@@ -9,3 +9,5 @@ root@ip-172-31-15-217:/home/ubuntu# aws sts get-caller-identity
     "Account": "386972336168",
     "Arn": "arn:aws:iam::386972336168:user/arzu-admin"
 }
+
+2)aws de her imagin ozune aid amisi var, version, nvme, ve saire gore ferqlenir, 
