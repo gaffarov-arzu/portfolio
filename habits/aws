@@ -11,3 +11,7 @@ root@ip-172-31-15-217:/home/ubuntu# aws sts get-caller-identity
 }
 
 2)aws de her imagin ozune aid amisi var, version, nvme, ve saire gore ferqlenir, 
+
+3)awsde iam user insanlar ucundur aws key ve secret key alir, iam role ise servisler ucundur, ec2, github actions ve 2, 
+bir ec2-nun s3 buckete access almasi ucun, bir policy yaradilmali, ec2 ucun rol yaradilir, bu rol, policy-e attach edilir, ec2-nin rola ataach edilir, amma bu zaman profil
+yaranilir, cunki ec2 profili birbasa istifade ede bilmir.
