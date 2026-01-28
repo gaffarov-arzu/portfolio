@@ -1,0 +1,2 @@
+1)helm chartda neyise deyisenden sonra asagidaki komanda ile upgrade edilir
+  helm upgrade loki grafana/loki-stack -n monitoring -f loki-values.yaml
