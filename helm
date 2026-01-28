@@ -1,2 +1,7 @@
 1)helm chartda neyise deyisenden sonra asagidaki komanda ile upgrade edilir
   helm upgrade loki grafana/loki-stack -n monitoring -f loki-values.yaml
+
+2)helm chart silmek
+helm uninstall loki -n monitoring
+3)helm neyise install etmek
+helm install loki grafana/loki-stack -n monitoring -f loki-values.yaml
