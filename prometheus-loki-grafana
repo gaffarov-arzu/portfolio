@@ -1,29 +1,39 @@
 1)kubernetese helm ile persistant volume ile install edilmesi
-vim loki-values.yaml
 loki:
-  enabled: true
   persistence:
     enabled: true
     storageClassName: "huawei-sc"
     size: 50Gi
 
-  # Huawei CSI izin sorunu için root yetkisi
+  # Güvenlik ayarlarını Huawei ile tam uyumlu yapalım
   securityContext:
-    runAsUser: 0
-    runAsGroup: 0
     fsGroup: 0
+    runAsGroup: 0
+    runAsUser: 0
+    runAsNonRoot: false
 
-  # Veri saklama süresi (Retention) - Opsiyonel
+  # Config hatasını ve yetkiyi kökten çözen yapılandırma
   config:
-    table_manager:
-      retention_deletes_enabled: true
-      retention_period: 336h # 14 gün
+    common:
+      path_prefix: /data
+      storage:
+        filesystem:
+          chunks_directory: /data/chunks
+          rules_directory: /data/rules
+      replication_factor: 1
+      ring:
+        instance_addr: 127.0.0.1
+        kvstore:
+          store: inmemory
+    storage_config:
+      boltdb_shipper:
+        active_index_directory: /data/index
+        cache_location: /data/index_cache
+        resync_interval: 5s
 
 promtail:
   enabled: true
-  config:
-    clients:
-      - url: http://loki:3100/loki/api/v1/push
+
 2) helm install loki grafana/loki-stack -n monitoring -f loki-values.yaml
 1)vim prom-values.yaml
 prometheus:
