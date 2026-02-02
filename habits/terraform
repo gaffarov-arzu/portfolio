@@ -23,3 +23,5 @@ instance_type = "t2.micro"
 }
 2)terraform plan
 terraform apply
+
+terraformda state iki cur olur local ve remote, remote olani s3 de saxlayirirq
