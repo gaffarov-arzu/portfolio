@@ -11,3 +11,6 @@ redis install
 redis password baxmaq
 3)helm upgrade redis bitnami/redis -n megasec-face-dev --set auth.password=StrongPass123
 redis password deyismek
+
+4)rediste connection yoxlamaq
+redis-cli -u redis://healthcheck_f5:password@fdrs-redis.xxx.xxx.az:6379 ping
