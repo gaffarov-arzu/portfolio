@@ -1,0 +1,4 @@
+1) prosesi tam yolunu verir, nodejs dirse js pathi verir full 
+ps -fp 3095506
+2)process id ile systemd servisinin statusuna baxir
+systemctl status 3095506
