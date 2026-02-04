@@ -1,0 +1,174 @@
+---------------------Gun-1-9---------------------------
+AWS STS və IAM
+
+1. aws sts get-caller-identity
+
+Göstərir:
+
+UserId: AWS hesabındakı spesifik istifadəçi və ya rol
+
+Account: AWS hesabının nömrəsi (bütün istifadəçilərdə eyni)
+
+Arn: İstifadəçi və ya rolun tam identifikatoru
+
+Nümunə:
+
+{
+    "UserId": "AIDAVUGKZIAUBD4LPOS5W",
+    "Account": "386972336168",
+    "Arn": "arn:aws:iam::386972336168:user/arzu-admin"
+}
+
+
+IAM User → insanlar üçün, access key/secret key ilə giriş.
+
+IAM Role → xidmətlər üçün, EC2, Lambda, GitHub Actions kimi.
+
+EC2-nin S3 bucket-ə çıxışı üçün:
+
+Policy yaradılır (S3 read/write və s.)
+
+Role yaradılır və policy attach edilir
+
+EC2 instance bu role ilə əlaqələndirilir → EC2 “Instance Profile” istifadə edir
+
+2. EC2 və AMI
+
+Hər EC2 öz AMI-sindən yaradılır → fərqli version, nvme disk və s. ola bilər.
+
+AMI = “snapshot” + OS + configuration.
+
+CI/CD Konsepsiyaları
+
+Continuous Delivery vs Continuous Deployment
+
+Delivery → deploy manual, kod hazır vəziyyətə gətirilir
+
+Deployment → avtomatik deploy, yoxlama addımı olmadan
+
+Artifact
+
+CI/CD-də build nəticəsi (.jar, .war, .zip və s.)
+
+GitHub Actions
+
+Job → bir və ya bir neçə step-dən ibarət
+
+Step → build/test/deploy əməliyyatları
+
+Multi-job → jobs needs ilə sıralana bilər, əks halda parallel işləyir
+
+MicroK8s və Kubernetes
+
+1. MicroK8s quraşdırılması
+
+snap install microk8s --classic
+sudo usermod -a -G microk8s $USER
+sudo chown -f -R $USER ~/.kube
+newgrp microk8s
+microk8s status --wait-ready
+
+
+2. Pod YAML nümunəsi
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-demo
+spec:
+  containers:
+    - name: nginx
+      image: nginx:latest
+      ports:
+        - containerPort: 80
+
+
+3. Deployment YAML nümunəsi
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+
+Terraform
+
+1. S3 Bucket yaratmaq
+
+provider "aws" {
+  region = "us-east-1"
+}
+
+resource "aws_s3_bucket" "example" {
+  bucket = "benim-ilk-bucket-12345"
+  acl    = "private"
+}
+
+
+Komandalar:
+
+terraform init
+terraform apply
+
+
+2. EC2 yaratmaq
+
+provider "aws" {
+  region = "eu-central-1"
+}
+
+resource "aws_instance" "web" {
+  ami           = "ami-0699c78c4486e5f1e"
+  instance_type = "t2.micro"
+}
+
+
+Komandalar:
+
+terraform plan
+terraform apply
+
+
+3. Terraform State
+
+Local → kompüterdə saxlanılır
+
+Remote → S3 bucket və DynamoDB ilə lock, multi-user üçün 
+
+-------------Gun-10---------------
+
+Arn - amazon-resource-name
+1)aws user yaratmaq
+aws iam create-user --user-name test-user
+2)user ucun access key yaratmaq
+aws iam create-access-key --user-name test-user
+3)usere policy attach etmek
+aws iam attach-user-policy \
+    --user-name test-user \
+    --policy-arn arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+4) iam policy-ni simulasya etmek
+aws iam simulate-principal-policy \
+    --policy-source-arn arn:aws:iam::386972336168:user/test-user \
+    --action-names s3:ListBucket s3:PutObject \
+    --resource-arns arn:aws:s3:::benim-ilk-bucket-12345/*
+iam policy-ni simulasya etmek
+5)s3-un accesini tapmaq ucun ise
+aws iam simulate-principal-policy \
+    --policy-source-arn arn:aws:iam::386972336168:role/EC2-S3-Access \
+    --action-names s3:ListBucket s3:PutObject s3:GetObject \
+    --resource-arns arn:aws:s3:::benim-ilk-bucket-12345/*
+burada esas ferq roledur
