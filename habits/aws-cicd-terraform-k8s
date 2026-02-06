@@ -172,3 +172,21 @@ aws iam simulate-principal-policy \
     --action-names s3:ListBucket s3:PutObject s3:GetObject \
     --resource-arns arn:aws:s3:::benim-ilk-bucket-12345/*
 burada esas ferq roledur
+----------------Gun-11------------------
+1)kubernetese label elave etmek 
+microk8s kubectl label pod  nginx-demo app=web
+2)service yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-svc
+spec:
+  type: NodePort
+  selector:
+    app: web
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30080
+3)target port containerin portu, port ise servisin portu, servise gelen trafik containere yonlendirilir
+
