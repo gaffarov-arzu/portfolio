@@ -3,3 +3,4 @@ git config --global credential.helper store
 git fetch origin - remotedaki reponu getirir, amma apply etmir
 git reset --hard origin/main local reponu - remote reponun eynisi halina getirir
 git clean -fd izlenmeyen ve commit edilmemiseleri silir
+git pull origin main ( hem git fetch edir hem de git merge edir)
