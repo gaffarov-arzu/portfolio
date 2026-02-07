@@ -189,4 +189,34 @@ spec:
       targetPort: 80
       nodePort: 30080
 3)target port containerin portu, port ise servisin portu, servise gelen trafik containere yonlendirilir
+----------------------------Gun-12-----------------------------------------
+1)configmap yaml burada asagidaki variabellari podun icinde istifade ede bilerik, configmapin ve key hissesinin adini  yazaraq valuesini ise configmapdan goturecek
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  APP_ENV: "production"
+  LOG_LEVEL: "info"
+2)pod- config map istifadesi ucun
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-configmap-demo
+spec:
+  containers:
+    - name: nginx
+      image: nginx:latest
+      env:
+        - name: APP_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: APP_ENV
+        - name: LOG_LEVEL
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: LOG_LEVEL
+
 
