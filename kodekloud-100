@@ -1,3 +1,0 @@
-linuxda nologin olmayan user yaratmaq
-
-1)adduser mark -s /sbin/nologin
