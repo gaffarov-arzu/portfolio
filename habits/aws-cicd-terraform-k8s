@@ -218,5 +218,38 @@ spec:
             configMapKeyRef:
               name: app-config
               key: LOG_LEVEL
-
-
+-------------------------Gun-13-------------------------
+secret yaratmaq ve secreti poda vermek
+1)secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: db-secret
+type: Opaque
+data:
+  DB_USER: YWRtaW4=        # admin (base64 encode)
+  DB_PASSWORD: cGFzc3dvcmQ= # password (base64 encode)
+2)pod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: secret-demo
+spec:
+  containers:
+    - name: app
+      image: nginx:latest
+      env:
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: DB_USER
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: DB_PASSWORD
+vereceyimiz paswordu ise base64 formatina ceviririk
+echo -n "admin" | base64  ----> YWRtaW4=
+echo -n "password" | base64  -----> cGFzc3dvcmQ=
+ilə dəyərləri base64 formatına çevir.
