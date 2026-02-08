@@ -1,0 +1,54 @@
+MinIO qurmaq:
+
+docker run -d --name minio -p 9000:9000 -p 9001:9001 -e MINIO_ROOT_USER=admin -e MINIO_ROOT_PASSWORD=supersecretpassword -v /home/ubuntu/minio-data:/data minio/minio server /data --console-address ":9001"
+
+
+mc qurmaq:
+
+wget https://dl.min.io/client/mc/release/linux-amd64/mc
+chmod +x mc
+sudo mv mc /usr/local/bin/
+
+
+mc alias set etmək:
+
+mc alias set myminio http://127.0.0.1:9000 admin supersecretpassword --api S3v4
+
+
+Bucket yaratmaq:
+
+mc mb myminio/dev-bucket
+
+
+Bucketləri list etmək:
+
+mc ls myminio
+
+
+Policy yaratmaq (dev-policy.json):
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": ["s3:GetObject","s3:PutObject","s3:DeleteObject"],
+      "Resource": ["arn:aws:s3:::dev-bucket/*"]
+    }
+  ]
+}
+
+
+Policy MinIO’ya əlavə etmək:
+
+mc admin policy create myminio dev-policy dev-policy.json
+
+
+User yaratmaq:
+
+mc admin user add myminio dev-user secretpassword
+
+
+Policy’yi user-ə attach etmək:
+
+mc admin policy set myminio dev-policy user=dev-user
