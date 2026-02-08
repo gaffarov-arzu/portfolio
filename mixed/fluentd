@@ -1,0 +1,128 @@
+Tamam, işte Fluentd + Loki entegrasyonu için eksiksiz bir dokümantasyon. Kurulumdan yapılandırmaya, hata çözümüne kadar adım adım açıklamalar içeriyor.
+
+Fluentd + Loki Log Toplama Dokümantasyonu
+1. Kurulum
+1.1. Fluentd Kurulumu (td-agent)
+# Debian/Ubuntu için
+curl -L https://toolbelt.treasuredata.com/sh/install-ubuntu-bionic-td-agent4.sh | sh
+
+# CentOS/RHEL için
+curl -L https://toolbelt.treasuredata.com/sh/install-redhat-td-agent4.sh | sh
+
+# Fluentd sürüm kontrolü
+td-agent --version
+
+1.2. Fluentd Loki Plugin Kurulumu
+# td-agent ortamında gem kullanarak
+sudo td-agent-gem install fluent-plugin-loki
+
+
+Not: Plugin sürümü 0.3.0 veya daha güncel olmalıdır.
+
+2. Fluentd Konfigürasyonu
+
+Fluentd konfigürasyon dosyası genellikle /etc/td-agent/td-agent.conf yolunda bulunur.
+
+2.1. Syslog Kaynağı (source)
+<source>
+  @type tail
+  path "/var/log/syslog"
+  pos_file "/var/log/td-agent/syslog.pos"
+  tag "syslog"
+  <parse>
+    @type regexp
+    expression /^(?<time>[^ ]+ [^ ]+ [^ ]+) (?<host>[^ ]+) (?<ident>[^ ]+)(?:\[(?<pid>[0-9]+)\])?: (?<message>.*)$/
+    time_format %b %d %H:%M:%S
+  </parse>
+</source>
+
+
+path: Log dosyasının yolu.
+
+pos_file: Okunan log satırlarının konumu, Fluentd restart sonrası kaybolmaz.
+
+tag: Fluentd içinde logları yönlendirmek için kullanılan etiket.
+
+parse: Log formatını ayrıştırmak için regexp kullanılır.
+
+2.2. Record Transformer Filtre
+<filter syslog>
+  @type record_transformer
+  <record>
+    hostname "#{Socket.gethostname}"
+    job "server-logs"
+  </record>
+</filter>
+
+
+hostname ve job alanları loglara eklenir.
+
+Bu alanlar daha sonra Loki labels kısmında kullanılabilir.
+
+2.3. Loki Match (output)
+<match syslog>
+  @type loki
+  endpoint_url "http://10.13.12.83:3100/loki/api/v1/push"
+  labels { "host": "${hostname}", "job": "${job}" }
+  <buffer>
+    flush_interval 10s
+    buffer_memory_limit 10m
+    retry_wait 1s
+    retry_max_interval 30s
+  </buffer>
+</match>
+
+
+endpoint_url: Loki push API URL’si, zorunludur. Önceki hatanın nedeni bu alanın eksik olmasıydı.
+
+labels: Loki üzerinde logları etiketlemek için kullanılır. ${hostname} ve ${job} transformerde tanımlandı.
+
+<buffer>: Logların güvenli bir şekilde gönderilmesini sağlar.
+
+flush_interval: Her 10 saniyede bir Loki’ye gönderir.
+
+buffer_memory_limit: Bellek sınırı.
+
+retry_wait ve retry_max_interval: Hata durumunda yeniden deneme mekanizması.
+
+3. Hata ve Çözüm Örnekleri
+3.1. “undefined method `each' for nil:NilClass”
+
+Sebep: labels alanı nil olduğunda oluşur.
+
+Çözüm: Record transformer ile gerekli alanları ekle ve <match> içinde kullan.
+
+labels { "host": "${hostname}", "job": "${job}" }
+
+3.2. “'endpoint_url' parameter is required”
+
+Sebep: Loki output konfigürasyonunda endpoint_url tanımlı değil.
+
+Çözüm: URL’yi ekle:
+
+endpoint_url "http://<loki_host>:3100/loki/api/v1/push"
+
+4. Fluentd Servis Yönetimi
+# Servisi başlat
+sudo systemctl start td-agent
+
+# Servisi yeniden başlat
+sudo systemctl restart td-agent
+
+# Servis durumu
+sudo systemctl status td-agent
+
+# Logları kontrol et
+tail -f /var/log/td-agent/td-agent.log
+
+5. Best Practices
+
+Logları parse ederken regexp ile alanları net ayır.
+
+Loki labels için her zaman record transformer kullan.
+
+Buffer ayarlarını ortam büyüklüğüne göre optimize et.
+
+Endpoint_url mutlaka tanımlı olsun.
+
+Plugin sürümlerini güncel tut, Fluentd ve Loki uyumluluğu için kritik.
