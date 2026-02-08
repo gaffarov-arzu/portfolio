@@ -1,4 +1,4 @@
-1)minio qurmaq
+1)minio qurmaq 
 docker run -d --name minio \
   -p 9000:9000 \
   -p 9001:9001 \
