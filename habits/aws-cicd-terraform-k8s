@@ -253,3 +253,41 @@ vereceyimiz paswordu ise base64 formatina ceviririk
 echo -n "admin" | base64  ----> YWRtaW4=
 echo -n "password" | base64  -----> cGFzc3dvcmQ=
 ilə dəyərləri base64 formatına çevir.
+-------------------------------------Gun-14-----------------------------------
+1)aws accountu uce ec2 ile bagli demek olar butun icazeleri veren policy
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ssm:*",
+        "ec2:*",
+        "ec2-instance-connect:SendSSHPublicKey",
+        "iam:PassRole"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents",
+        "logs:DescribeLogGroups",
+        "logs:DescribeLogStreams",
+        "logs:GetLogEvents"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "kms:Decrypt",
+        "kms:GenerateDataKey"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
