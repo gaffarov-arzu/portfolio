@@ -257,7 +257,7 @@ echo -n "password" | base64  -----> cGFzc3dvcmQ=
 ilə dəyərləri base64 formatına çevir.
 # Gun-14
 1)aws accountu uce ec2 ile bagli demek olar butun icazeleri veren policy
-
+```json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -293,3 +293,4 @@ ilə dəyərləri base64 formatına çevir.
     }
   ]
 }
+```
