@@ -12,6 +12,7 @@ Account: AWS hesabının nömrəsi (bütün istifadəçilərdə eyni)
 Arn: İstifadəçi və ya rolun tam identifikatoru
 
 Nümunə:
+
 ```json
 {
     "UserId": "AIDAVUGKZIAUBD4LPOS5W",
