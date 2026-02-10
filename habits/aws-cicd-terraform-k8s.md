@@ -106,7 +106,7 @@ spec:
             - containerPort: 80
 ```
 ## Terraform
-``json
+```hcl
 1. S3 Bucket yaratmaq
 
 provider "aws" {
@@ -126,7 +126,7 @@ terraform apply
 ```
 
 ## 2. EC2 yaratmaq
-```json
+```hcl
 provider "aws" {
   region = "eu-central-1"
 }
