@@ -81,7 +81,7 @@ spec:
       image: nginx:latest
       ports:
         - containerPort: 80
-```yaml
+```
 
 ## 3. Deployment YAML nümunəsi
 ```yaml
@@ -105,7 +105,7 @@ spec:
           ports:
             - containerPort: 80
 ```
-##Terraform
+## Terraform
 ``json
 1. S3 Bucket yaratmaq
 
@@ -152,32 +152,43 @@ Remote → S3 bucket və DynamoDB ilə lock, multi-user üçün
 # Gun-10
 
 Arn - amazon-resource-name
-##1)aws user yaratmaq
+## 1)aws user yaratmaq
 ```bash
 aws iam create-user --user-name test-user
 ```
-2)user ucun access key yaratmaq
+## 2)user ucun access key yaratmaq
+```bash
 aws iam create-access-key --user-name test-user
-3)usere policy attach etmek
+```
+## 3)usere policy attach etmek
+```bash
 aws iam attach-user-policy \
     --user-name test-user \
     --policy-arn arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
-4) iam policy-ni simulasya etmek
+```
+## 4) iam policy-ni simulasya etmek
+```bash
 aws iam simulate-principal-policy \
     --policy-source-arn arn:aws:iam::386972336168:user/test-user \
     --action-names s3:ListBucket s3:PutObject \
     --resource-arns arn:aws:s3:::benim-ilk-bucket-12345/*
+```
 iam policy-ni simulasya etmek
-5)s3-un accesini tapmaq ucun ise
+### 5)s3-un accesini tapmaq ucun ise
+```bash
 aws iam simulate-principal-policy \
     --policy-source-arn arn:aws:iam::386972336168:role/EC2-S3-Access \
     --action-names s3:ListBucket s3:PutObject s3:GetObject \
     --resource-arns arn:aws:s3:::benim-ilk-bucket-12345/*
+```
 burada esas ferq roledur
-----------------Gun-11------------------
-1)kubernetese label elave etmek 
+# Gun-11
+## 1)kubernetese label elave etmek 
+```bash
 microk8s kubectl label pod  nginx-demo app=web
-2)service yaml
+```
+## 2)service yaml
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -190,9 +201,12 @@ spec:
     - port: 80
       targetPort: 80
       nodePort: 30080
-3)target port containerin portu, port ise servisin portu, servise gelen trafik containere yonlendirilir
-----------------------------Gun-12-----------------------------------------
-1)configmap yaml burada asagidaki variabellari podun icinde istifade ede bilerik, configmapin ve key hissesinin adini  yazaraq valuesini ise configmapdan goturecek
+```
+## 3)target port containerin portu, port ise servisin portu, servise gelen trafik containere yonlendirilir
+# Gun-12
+
+## 1)configmap yaml burada asagidaki variabellari podun icinde istifade ede bilerik, configmapin ve key hissesinin adini  yazaraq valuesini ise configmapdan goturecek
+```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -200,7 +214,9 @@ metadata:
 data:
   APP_ENV: "production"
   LOG_LEVEL: "info"
-2)pod- config map istifadesi ucun
+```
+## 2)pod- config map istifadesi ucun
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -220,9 +236,11 @@ spec:
             configMapKeyRef:
               name: app-config
               key: LOG_LEVEL
--------------------------Gun-13-------------------------
-secret yaratmaq ve secreti poda vermek
+```
+# Gun-13
+## secret yaratmaq ve secreti poda vermek
 1)secret.yaml
+```yaml
 apiVersion: v1
 kind: Secret
 metadata:
@@ -231,7 +249,9 @@ type: Opaque
 data:
   DB_USER: YWRtaW4=        # admin (base64 encode)
   DB_PASSWORD: cGFzc3dvcmQ= # password (base64 encode)
+```
 2)pod.yaml
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -251,12 +271,15 @@ spec:
             secretKeyRef:
               name: db-secret
               key: DB_PASSWORD
+```
 vereceyimiz paswordu ise base64 formatina ceviririk
+```bash
 echo -n "admin" | base64  ----> YWRtaW4=
 echo -n "password" | base64  -----> cGFzc3dvcmQ=
+```
 ilə dəyərləri base64 formatına çevir.
 # Gun-14
-1)aws accountu uce ec2 ile bagli demek olar butun icazeleri veren policy
+## 1)aws accountu uce ec2 ile bagli demek olar butun icazeleri veren policy
 ```json
 {
   "Version": "2012-10-17",
