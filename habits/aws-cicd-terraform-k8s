@@ -1,4 +1,4 @@
----------------------Gun-1-9---------------------------
+# Gun-1-9
 AWS STS və IAM
 
 1. aws sts get-caller-identity
@@ -12,13 +12,13 @@ Account: AWS hesabının nömrəsi (bütün istifadəçilərdə eyni)
 Arn: İstifadəçi və ya rolun tam identifikatoru
 
 Nümunə:
-
+```json
 {
     "UserId": "AIDAVUGKZIAUBD4LPOS5W",
     "Account": "386972336168",
     "Arn": "arn:aws:iam::386972336168:user/arzu-admin"
 }
-
+```
 
 IAM User → insanlar üçün, access key/secret key ilə giriş.
 
@@ -253,7 +253,7 @@ vereceyimiz paswordu ise base64 formatina ceviririk
 echo -n "admin" | base64  ----> YWRtaW4=
 echo -n "password" | base64  -----> cGFzc3dvcmQ=
 ilə dəyərləri base64 formatına çevir.
--------------------------------------Gun-14-----------------------------------
+# Gun-14
 1)aws accountu uce ec2 ile bagli demek olar butun icazeleri veren policy
 
 {
