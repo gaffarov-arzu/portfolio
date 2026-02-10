@@ -1,7 +1,6 @@
 # Gun-1-9
-AWS STS və IAM
 
-1. aws sts get-caller-identity
+## 1. aws sts get-caller-identity
 
 Göstərir:
 
@@ -33,7 +32,7 @@ Role yaradılır və policy attach edilir
 
 EC2 instance bu role ilə əlaqələndirilir → EC2 “Instance Profile” istifadə edir
 
-2. EC2 və AMI
+## 2. EC2 və AMI
 
 Hər EC2 öz AMI-sindən yaradılır → fərqli version, nvme disk və s. ola bilər.
 
@@ -61,17 +60,17 @@ Multi-job → jobs needs ilə sıralana bilər, əks halda parallel işləyir
 
 MicroK8s və Kubernetes
 
-1. MicroK8s quraşdırılması
-
+## 1. MicroK8s quraşdırılması
+```bash
 snap install microk8s --classic
 sudo usermod -a -G microk8s $USER
 sudo chown -f -R $USER ~/.kube
 newgrp microk8s
 microk8s status --wait-ready
+```
 
-
-2. Pod YAML nümunəsi
-
+## 2. Pod YAML nümunəsi
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -82,10 +81,10 @@ spec:
       image: nginx:latest
       ports:
         - containerPort: 80
+```yaml
 
-
-3. Deployment YAML nümunəsi
-
+## 3. Deployment YAML nümunəsi
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -105,9 +104,9 @@ spec:
           image: nginx:latest
           ports:
             - containerPort: 80
-
-Terraform
-
+```
+##Terraform
+``json
 1. S3 Bucket yaratmaq
 
 provider "aws" {
@@ -118,16 +117,16 @@ resource "aws_s3_bucket" "example" {
   bucket = "benim-ilk-bucket-12345"
   acl    = "private"
 }
-
+```
 
 Komandalar:
-
+```bash
 terraform init
 terraform apply
+```
 
-
-2. EC2 yaratmaq
-
+## 2. EC2 yaratmaq
+```json
 provider "aws" {
   region = "eu-central-1"
 }
@@ -136,7 +135,7 @@ resource "aws_instance" "web" {
   ami           = "ami-0699c78c4486e5f1e"
   instance_type = "t2.micro"
 }
-
+```
 
 Komandalar:
 
@@ -144,17 +143,19 @@ terraform plan
 terraform apply
 
 
-3. Terraform State
+## 3. Terraform State
 
 Local → kompüterdə saxlanılır
 
 Remote → S3 bucket və DynamoDB ilə lock, multi-user üçün 
 
--------------Gun-10---------------
+# Gun-10
 
 Arn - amazon-resource-name
-1)aws user yaratmaq
+##1)aws user yaratmaq
+```bash
 aws iam create-user --user-name test-user
+```
 2)user ucun access key yaratmaq
 aws iam create-access-key --user-name test-user
 3)usere policy attach etmek
