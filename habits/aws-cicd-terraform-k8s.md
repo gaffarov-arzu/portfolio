@@ -138,10 +138,10 @@ resource "aws_instance" "web" {
 ```
 
 Komandalar:
-
+```bash
 terraform plan
 terraform apply
-
+```
 
 ## 3. Terraform State
 
