@@ -1,0 +1,96 @@
+# fayl-uzantilari
+- ##  yaml fayli ucun 
+```yaml
+# CI/CD pipeline örneği
+name: CI
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm test
+```
+- ## bash ucun
+```bash
+# Node ve NPM versiyonlarını kontrol et
+node -v
+npm -
+```
+
+- ## json ucun
+```json
+{
+  "name": "my-project",
+  "version": "1.0.0"
+}
+```
+- ## javascript ucun
+```js
+#function hello () {
+consile.log("merhaba javaxript") ;
+}
+hello ();
+```
+- ## sql-ucun
+```sql
+CREATE TABLE users (
+id SERIAL PRIMARY KEY,
+name VARCHAR(50),
+email VARCHAR(100) UNIQUE
+);
+```
+
+- ## DOCKERFILE UCUN
+```dockerfile
+FROM node:18
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+CMD ["node", "app.js"]
+```
+- ## html ucun
+```
+<!DOCTYPE html>
+<html>
+ <body>
+   <h1>Merhaba Arzu</h1>
+ </body>
+</html>
+```
+- ## css ucun
+```css
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+h1{
+ color: #333;
+}
+```
+
+- ## python-ucun
+```py
+def hello();
+ print("hello arzu")
+hello()
+```
+- ## hashcorp ucun
+```hcl
+provider "aws" {
+  region = "eu-central-1"
+}
+
+resource "aws_instance" "web" {
+  ami           = "ami-0699c78c4486e5f1e"
+  instance_type = "t2.micro"
+}
+```
