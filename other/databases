@@ -5,3 +5,4 @@ tablolara baxmaq .tables
 tablodan SELECT * FROM history;
 sutunlarin listesine baxmaq ucun PRAGMA table_info(history);
 bir tableda birden cox sutun olur key kimi onun icinde ise setirler olur
+sqllite fayl ile qosulur
