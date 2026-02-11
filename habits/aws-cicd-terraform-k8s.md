@@ -106,9 +106,9 @@ spec:
             - containerPort: 80
 ```
 ## Terraform
-```hcl
-1. S3 Bucket yaratmaq
 
+1. S3 Bucket yaratmaq
+```hcl
 provider "aws" {
   region = "us-east-1"
 }
