@@ -317,3 +317,8 @@ ilə dəyərləri base64 formatına çevir.
   ]
 }
 ```
+# Gun-14
+## instance idlerin siyahisina baxmaq
+```bash
+aws ec2 describe-instances --query 'Reservations[*].Instances[*].InstanceId' --output text
+```
