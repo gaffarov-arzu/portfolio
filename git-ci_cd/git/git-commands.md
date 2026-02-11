@@ -1,6 +1,11 @@
-gitde hemiselik logini save etmek
+# Git commands
+## Gitde hemiselik logini save etmek
+```bash
 git config --global credential.helper store
-git fetch origin - remotedaki reponu getirir, amma apply etmir
+```
+
+## Remotedaki reponu getirib amma apply etmemek ucun
+git fetch origin - 
 git reset --hard origin/main local reponu - remote reponun eynisi halina getirir
 git clean -fd izlenmeyen ve commit edilmemiseleri silir
 git pull origin main ( hem git fetch edir hem de git merge edir)
