@@ -1,4 +1,5 @@
-# Gun-1-9
+
+# Sifirdan ci/cd terraform aws k8s Gun-1-9
 
 ## 1. aws sts get-caller-identity
 
@@ -321,4 +322,29 @@ ilə dəyərləri base64 formatına çevir.
 ## instance idlerin siyahisina baxmaq
 ```bash
 aws ec2 describe-instances --query 'Reservations[*].Instances[*].InstanceId' --output text
+```
+# Gun-15 
+## microk8s ve kubectl aliasi
+```bash
+echo "alias kubectl='microk8s kubectl" >> ~/.bashrc
+source ~/.bashrc
+```
+## ingress.yaml
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: web-ingress
+spec:
+  rules:
+    - host: myapp.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web-svc
+                port:
+                  number: 80
 ```
