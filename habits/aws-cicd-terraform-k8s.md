@@ -350,7 +350,7 @@ spec:
 ```
 # Gun-16 
 ## liveness ve readiness
-```bash
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
