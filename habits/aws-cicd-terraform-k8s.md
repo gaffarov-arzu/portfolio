@@ -348,3 +348,29 @@ spec:
                 port:
                   number: 80
 ```
+# Gun-16 
+## liveness ve readiness
+```bash
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-probe-demo
+spec:
+  containers:
+    - name: nginx
+      image: nginx:latest
+      ports:
+        - containerPort: 80
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 80
+        initialDelaySeconds: 5
+        periodSeconds: 10
+      readinessProbe:
+        httpGet:
+          path: /
+          port: 80
+        initialDelaySeconds:
+        periodSeconds: 5
+```
