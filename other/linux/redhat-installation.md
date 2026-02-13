@@ -101,8 +101,4 @@ EOF
 #baseurl=http://192.168.0.87/RHEL83/AppStream/
 #gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 #YUMEOF
-
-%end
-``` 
-reboot
-#poweroff
+```
