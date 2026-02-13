@@ -3,9 +3,9 @@
 auth --enableshadow --passalgo=sha512
 
 #### password algoritmasini check etmek
-```bash grep ENCRYPT_METHOD /etc/login.defs
+```bash
+ grep ENCRYPT_METHOD /etc/login.defs
 ```
------------password algoritmasini check etmek-----------
 ### paswword deyisenden sonra pamin o metodu istifade etmesi ucun
 ```bash
 authselect apply-changes
