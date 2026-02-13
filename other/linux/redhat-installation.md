@@ -1,7 +1,5 @@
 # version=RHEL8 installation 
 ## System authorization information
-auth --enableshadow --passalgo=sha512
-
 #### password algoritmasini check etmek
 ```bash
  grep ENCRYPT_METHOD /etc/login.defs
