@@ -374,3 +374,18 @@ spec:
         initialDelaySeconds:
         periodSeconds: 5
 ```
+# Gun-17 
+```yaml
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: dev-quota
+  namespace: dev-environment
+spec:
+  hard:
+    pods: "10"
+    requests.cpu: "4"
+    requests.memory: 8Gi
+    limits.cpu: "8"
+    limits.memory: 16Gi
+```
