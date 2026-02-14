@@ -375,6 +375,7 @@ spec:
         periodSeconds: 5
 ```
 # Gun-17 
+## namespace ucun limit qoymaq
 ```yaml
 apiVersion: v1
 kind: ResourceQuota
