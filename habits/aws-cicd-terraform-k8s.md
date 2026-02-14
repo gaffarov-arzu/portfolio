@@ -1,5 +1,6 @@
 
-# Sifirdan ci/cd terraform aws k8s Gun-1-9
+# Github ci/cd + Terraform + AWS + Kubernetes öyrənirəm 
+# Gun-1-9
 
 ## 1. aws sts get-caller-identity
 
