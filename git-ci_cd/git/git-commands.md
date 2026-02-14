@@ -12,6 +12,7 @@ git pull origin main ( hem git fetch edir hem de git merge edir)
 
   git branch -a (hem localda hem de remoteda olan branchlar)
 git branch -r (remotedaki branchlar)
+git checkout -
 git push origin --delete a.qafarov-main-patch-91526 (branch silmek)
 
 
@@ -27,3 +28,4 @@ daha sonra ise
 git commit -m "Initial commit"
 git branch -M main       # GitHub default branch main ise
 git push -u origin main
+
