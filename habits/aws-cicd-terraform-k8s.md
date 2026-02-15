@@ -376,6 +376,13 @@ spec:
         periodSeconds: 5
 ```
 # Gun-17 
+## namespace yaratmaq
+```yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dev-environment
+```
 ## namespace ucun limit qoymaq
 ```yaml
 apiVersion: v1
