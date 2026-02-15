@@ -10,7 +10,7 @@ git fetch origin
 ```
 ## asagidaki komanda remote reponu getirir localin userine yazir 
 ```bash
-git reset --hard origin/main local reponu - remote reponun eynisi halina getirir
+git reset --hard origin/main
 ```
 ## asagidaki komanda izlenmeyen ve commit edilmemeisleri silir
 ```bash
@@ -29,12 +29,29 @@ git branch -a
 git branch -r (remotedaki branchlar)
 ```
 
-git checkout -
-git push origin --delete a.qafarov-main-patch-91526 (branch silmek)
+## remote branch silmek 
+```bash
+git push origin --delete a.qafarov-main-patch-91526 
+```
+## localda branchi silmek ucun merge edilibse -d yeni normal silme edilmeyibse -D yeni force, merge edilmemeyi deyisikliyin yadda saxlanmayib demekdir ona gore -d islemir
+```bash
+git branch -d
+git branch -D
+```bash
+## branch deyismek
+```bash
+git branch feature-1
+```
+## yeni branch yaratmaq
+```bash
+git checkout -b feature-1
+```
 
+## git proyektini remote push etmek
+```bash
+git init
+```
 
-git proyektini remote push etmek
-1)git init
 2)remotedaki adla elave edirik
   git remote add origin https://github.com/gaffarov-arzu/life-all-asspects.git
 amma evvelce eger baska origin varsa bize lazim olmayan silirik git remote remove origin
