@@ -16,10 +16,11 @@ git reset --hard origin/main
 ```bash
 git clean -fd izlenmeyen ve commit edilmemiseleri silir
 ```
-## asagidaki komanda pull edib amma konflikt yoxdursa eger ise yarayir, fetchden ferqi locala deyisiklik edir
+## asagidaki komanda pull edib amma konflikt yoxdursa eger ise yarayir, fetchden ferqi locala deyisiklik edir yeni asagidaki commit hem fetch edir hem merge edir
 ```bash
 git pull origin main
 ```
+
 ## hem localda hem de remoteda olan branchlar
 ```bash
 git branch -a 
@@ -96,4 +97,7 @@ git log origin/main..main --oneline
 ```bash
 git log main..origin/main --oneline
 ```
- 
+## remote ve local arasinda ferqleri vizual gosterir
+```bash
+git log --oneline --graph --decorate --all
+```
