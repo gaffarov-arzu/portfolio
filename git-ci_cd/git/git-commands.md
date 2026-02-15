@@ -30,3 +30,8 @@ git branch -M main       # GitHub default branch main ise
 git push -u origin main
 
 ## gitde git add * shellde gorunenleri edir git add . herseyi gizli olanlari da edir
+ ## git reponun icinde basqa gir repo qoymaq ve githubda webde baxmaq
+ git rm --cached -r immigrate-bucket
+ git commit -m 'a'
+ git submodule add https://github.com/gaffarov-arzu/immigrate-bucket.git
+ 
