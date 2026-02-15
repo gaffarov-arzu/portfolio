@@ -4,14 +4,31 @@
 git config --global credential.helper store
 ```
 
-## Remotedaki reponu getirib amma apply etmemek ucun
-git fetch origin - 
+## Asagidaki komanda reponu getirir amma apply etmir
+```bash 
+git fetch origin
+```
+## asagidaki komanda remote reponu getirir localin userine yazir 
+```bash
 git reset --hard origin/main local reponu - remote reponun eynisi halina getirir
+```
+## asagidaki komanda izlenmeyen ve commit edilmemeisleri silir
+```bash
 git clean -fd izlenmeyen ve commit edilmemiseleri silir
-git pull origin main ( hem git fetch edir hem de git merge edir)
-
-  git branch -a (hem localda hem de remoteda olan branchlar)
+```
+## asagidaki komanda pull edib amma konflikt yoxdursa eger ise yarayir, fetchden ferqi locala deyisiklik edir
+```bash
+git pull origin main
+```
+## hem localda hem de remoteda olan branchlar
+```bash
+git branch -a 
+```
+## remotedaki branchlar
+```bash
 git branch -r (remotedaki branchlar)
+```
+
 git checkout -
 git push origin --delete a.qafarov-main-patch-91526 (branch silmek)
 
@@ -34,4 +51,7 @@ git push -u origin main
  git rm --cached -r immigrate-bucket
  git commit -m 'a'
  git submodule add https://github.com/gaffarov-arzu/immigrate-bucket.git
+local ve remote arasindaki ferqleri gormek ucun
+ git log --oneline --graph --decorate --all
+
  
