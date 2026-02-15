@@ -398,3 +398,26 @@ spec:
     limits.cpu: "8"
     limits.memory: 16Gi
 ```
+# Gun-18 
+## autoscaling -- asagidaki meselde pod 50 faizden cox cpu istifade etse pod sayi artir, cpu istifadesi azalsa yeniden pod sayi azalir
+```yaml
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: web-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: web-app
+  minReplicas: 2
+  maxReplicas: 5
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 50
+```
+
