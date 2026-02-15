@@ -46,29 +46,54 @@ git branch feature-1
 ```bash
 git checkout -b feature-1
 ```
-
+## gitde branch deyismek
+```bash
+git checkout dev
+```
+## asagidaki kommanda ise elece branch yaradir checkout kimi hansisa branchdan yaratmir
+```bash
+git branch yeni-branch
+```
 ## git proyektini remote push etmek
+### evvelce asagidaki kommandani yaziriq tarixce kimi birseydir
 ```bash
 git init
 ```
-
-2)remotedaki adla elave edirik
-  git remote add origin https://github.com/gaffarov-arzu/life-all-asspects.git
-amma evvelce eger baska origin varsa bize lazim olmayan silirik git remote remove origin
-amma biz origini saxlayib basqa adla da yaza bilerik origin connection demekdir
-git remote add backup https://github.com/gaffarov-arzu/life-all-asspects.git
-daha sonra ise 
-  git add .
+### daha sonra remotedaki adla elave edirik
+```bash
+git remote add origin https://github.com/gaffarov-arzu/life-all-asspects.git
+```
+### amma evvelce eger basqa origin varsa bize lazim olmayan silirik
+```bash
+git remote remove origin
+```
+### amma biz origini saxlayib basqa adla da yaza bilerik origin connection demekdir
+```bash git remote add backup https://github.com/gaffarov-arzu/life-all-asspects.git
+```
+### sonra ise 
+```bash
+git add .
 git commit -m "Initial commit"
 git branch -M main       # GitHub default branch main ise
 git push -u origin main
-
-## gitde git add * shellde gorunenleri edir git add . herseyi gizli olanlari da edir
- ## git reponun icinde basqa gir repo qoymaq ve githubda webde baxmaq
+```
+## gitde add * shellde gorunenleri edir git add . herseyi gizli olanlari da edir
+## git reponun icinde basqa git repo qoymaq ve githubda webde baxmaq
+```bash
  git rm --cached -r immigrate-bucket
  git commit -m 'a'
  git submodule add https://github.com/gaffarov-arzu/immigrate-bucket.git
-local ve remote arasindaki ferqleri gormek ucun
+```
+## local ve remote arasindaki ferqleri gormek ucun
+ ```bash
  git log --oneline --graph --decorate --all
-
+```
+## localda olan remoteda olmayan commitleri gormek
+```bash
+git log origin/main..main --oneline
+```
+## remoteda olan localda olmayanlari gormek
+```bash
+git log main..origin/main --oneline
+```
  
