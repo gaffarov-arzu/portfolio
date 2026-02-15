@@ -29,3 +29,4 @@ git commit -m "Initial commit"
 git branch -M main       # GitHub default branch main ise
 git push -u origin main
 
+## gitde git add * shellde gorunenleri edir git add . herseyi gizli olanlari da edir
