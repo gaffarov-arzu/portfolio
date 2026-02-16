@@ -1,4 +1,4 @@
-
+RENEW IT
 sudo apt update 
 sudo apt install openjdk-17-jdk -y
 sudo wget https://dlcdn.apache.org/kafka/4.0.0/kafka_2.13-4.0.0.tgz
