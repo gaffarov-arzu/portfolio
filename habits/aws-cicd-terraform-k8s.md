@@ -421,5 +421,22 @@ spec:
           averageUtilization: 50
 ```
 # Gun-19
-## 
+## aws-de ec2 yaradip ip sine baxmaq
+```tf
+provider "aws" {
+  region = "eu-central-1"
+}
 
+resource "aws_instance" "web" {
+  ami           = "ami-0699c78c4486e5f1e"  # Regionuna uyğun AMI seç
+  instance_type = "t2.micro"
+
+  tags = {
+    Name = "my-web-instance"
+  }
+}
+
+output "ec2_public_ip" {
+  value = aws_instance.web.public_ip
+}
+```
