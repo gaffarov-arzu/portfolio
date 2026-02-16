@@ -1,3 +1,5 @@
+# docker-compose yamli
+```yaml
 version: "3.9"
 
 services:
@@ -30,3 +32,4 @@ services:
 networks:
   kafka-net:
     driver: bridge
+```
