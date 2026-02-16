@@ -20,3 +20,7 @@ LimitNOFILE=100000
 [Install]
 WantedBy=multi-user.target
 ```
+# process id ile servisin statusuna baxmaq
+```bash
+systemctl status 4101283
+```
