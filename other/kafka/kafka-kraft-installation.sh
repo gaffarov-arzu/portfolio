@@ -66,3 +66,10 @@ sudo systemctl daemon-reload
 sudo systemctl enable kafka 
 sudo systemctl start kafka 
 sudo systemctl status kafka
+
+
+
+# topic listi
+/opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --list
+# cluster veziyyeti
+/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server localhost:9092
