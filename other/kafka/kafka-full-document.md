@@ -1,7 +1,7 @@
 # Kafka Full dokumentasya
-## kafka installizasyasi
+## Kafka installizasyasi
 
-## kafka komandalar
+## Kafka komandalar
 ### kafkada topiclerin siyahisi
 ```bash
 /opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --list
