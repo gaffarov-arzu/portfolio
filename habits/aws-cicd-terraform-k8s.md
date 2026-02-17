@@ -488,3 +488,26 @@ spec:
            persistentVolumeClaim:
              claimName: learn-pvc-also
 ```
+## poda girib pathda testler aparmaq
+```bash
+kubectl exec -it learn-pvc-with-pod -- bash
+cd /usr/share/nginx/html
+echo "bu mountu yoxlamaq ucun testdir" >  test.txt
+ls
+cat test.txt
+```
+## poddan icinden cixib geri qayidib podu silek
+```bash
+kubectl delete pod learn-pvc-with-pod
+```
+## podu yeniden yaradaq
+```bash
+kubectl apply -f pod.yaml
+```
+## yeniden podun icine girib yoxlasaq orada oldugunu goreceyik
+```bash
+kubectl exec -it learn-pvc-with-pod -- bash
+cd /usr/share/nginx/html
+ls
+cat test.txt
+```
