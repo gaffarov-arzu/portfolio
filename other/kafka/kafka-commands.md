@@ -46,3 +46,12 @@
   ```bash
  /opt/kafka/bin/kafka-configs.sh --bootstrap-server localhost:9092 --entity-type brokers --entity-name 1 --describe
 ```
+# kafkada terminalda mesaj yazib topice gondermek
+ ```bash
+ /opt/kafka/bin/kafka-console-producer.sh --bootstrap-server localhost:9092 --topic my-topic
+ ```
+# kafkada topicdeki mesajlari gormek 
+```bash
+/opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic my-topic --from-beginning
+```
+# kafkada partition mesajin nece yere bolunmesidir replica ise o partitionun kopasidir
