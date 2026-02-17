@@ -116,3 +116,10 @@ sudo systemctl restart kafka
 ```bash
 rm -rf /var/log/kafka/*
 ```
+
+# kafkanin log yazacagi yerleri yarat
+```bash
+sudo mkdir -p /var/log/kafka
+sudo chown -R root:root /var/log/kafka
+sudo chmod -R 755 /var/log/kafka
+```
