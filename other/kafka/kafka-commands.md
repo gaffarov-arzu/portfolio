@@ -214,3 +214,11 @@ echo "test bob" | /opt/kafka/bin/kafka-console-producer.sh --bootstrap-server lo
 --consumer-property sasl.mechanism=PLAIN \
 --consumer-property sasl.jaas.config='org.apache.kafka.common.security.plain.PlainLoginModule required username="bob" password="bob-password";'
 ```
+
+# developere vermek ucun lazim olanlar
+- ip ve port
+- username
+- password
+- mechanism(PLAIN)
+- security protocol (SASL_PLAINTEXT)
+- topic adi
