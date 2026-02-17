@@ -55,4 +55,50 @@
 /opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic my-topic --from-beginning
 ```
 # kafkada partition topicin nece yere bolunmesidir, her partitionda coxlu mesaj ola biler,  replica ise o partitionun kopasidir
-# kafkada acl elave edilmesi
+# kafkada acl elave edilmesi ucun evvelce adagidaki fayldaki setrler kommente alinir diger sasl setrler elave
+```bash
+/opt/kafka/config/kraft/server.properties
+#listeners=PLAINTEXT://0.0.0.0:9092
+#inter.broker.listener.name=PLAINTEXT
+
+listeners=SASL_PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
+advertised.listeners=SASL_PLAINTEXT://localhost:9092
+inter.broker.listener.name=SASL_PLAINTEXT
+listener.security.protocol.map=CONTROLLER:PLAINTEXT,SASL_PLAINTEXT:SASL_PLAINTEXT
+security.inter.broker.protocol=SASL_PLAINTEXT
+sasl.mechanism.inter.broker.protocol=PLAIN
+sasl.enabled.mechanisms=PLAIN
+```
+# daha sonra adagidaki fayla diger setrler de elave edilir
+```bash
+/opt/kafka/config/kraft/server.properties
+authorizer.class.name=org.apache.kafka.metadata.authorizer.StandardAuthorizer
+super.users=User:admin
+```
+# daha sonra hansi userler var onlari asagidaki fayla elave edirik
+```bash
+/opt/kafka/config/kafka_server_jaas.conf
+
+KafkaServer {
+ org.apache.kafka.common.security.plain.PlainLoginModule required
+ username="admin"
+ password="admin-pass"
+ user_admin="admin-pass"
+ user_alice="alice-pass";
+};
+```
+
+# kafka servisinde deyisiklik edilir
+```bash
+/etc/systemd/system/kafka.service
+Environment="KAFKA_OPTS=-Djava.security.auth.login.config=/opt/kafka/config/kafka_server_jaas.conf"
+```
+
+# kafkada hanzi user acl elave edib sile biler
+/opt/kafka/config/client.properties
+security.protocol=SASL_PLAINTEXT
+sasl.mechanism=PLAIN
+sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required \
+ username="admin" \
+ password="admin-pass";
+
