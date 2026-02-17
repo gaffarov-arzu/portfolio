@@ -114,6 +114,10 @@ export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 /usr/bin/git commit -m "Auto commit: $(date '+%Y-%m-%d %H:%M:%S')" || exit
 /usr/bin/git push origin main
 ```
+## crontabda yes sorusa bilmir amma ssh la qosulanda ilk defe dogrulama sorusur onun ucun userin known host faylina elave edirik
+```bash
+ssh-keyscan github.com >> /root/.ssh/known_hosts
+```
 ## crontaba yazilmasi
 ```bash
 0 2 * * * /usr/local/bin/git_auto_push.sh
