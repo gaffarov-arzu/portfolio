@@ -171,3 +171,28 @@ sudo chmod -R 755 /var/log/kafka
 ```bash
 /opt/kafka/bin/kafka-acls.sh --bootstrap-server localhost:9092 --command-config /opt/kafka/config/admin-client.conf --list
 ```
+
+# yeni bir user ucun server.prpertiesde user_bob="bob-password" yaradiriq diger userin altina
+```bash
+/opt/kafka/config/kraft/server.properties
+```
+# sonra o user ucun /opt/kafka/config/bob-client.conf fayli yaradiriq
+```bash
+security.protocol=SASL_PLAINTEXT
+sasl.mechanism=PLAIN
+sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="bob" password="bob-password";
+```
+# bu user ucun oz topicine full access ucun 
+```bash
+/opt/kafka/bin/kafka-acls.sh --bootstrap-server localhost:9092 \
+--command-config /opt/kafka/config/admin-client.conf \
+--add --allow-principal User:bob --operation All --topic bob-topic
+```
+# bu usere topice yazmaqdan elave asagidaki group useri veririk oxumasi ucun 
+```bash
+/opt/kafka/bin/kafka-acls.sh --bootstrap-server localhost:9092 \
+--command-config /opt/kafka/config/admin-client.conf \
+--add --allow-principal User:bob --operation Read --group "*"
+```
+# userin oz topicine yazmasini yoxlamaq ucun
+
