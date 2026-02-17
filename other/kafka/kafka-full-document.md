@@ -1,61 +1,63 @@
-# kafkada topiclerin siyahisi
+# Kafka installizasyasi 
+
+## kafkada topiclerin siyahisi
 ```bash
 /opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --list
 ```
-# kafkada clusterin statusu
+## kafkada clusterin statusu
 ```bash
 /opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server localhost:9092
 ```
-# kafkada topic yaratmaq
+## kafkada topic yaratmaq
 ```bash
 /opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --topic my-topic --partitions 1 --replications-factor 1
 ```
-# kafkada topicin contentini gormek 
+## kafkada topicin contentini gormek 
 ```bash
 /opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --describe --topic my-topic
 ```
-# kafkada topic silmek
+## kafkada topic silmek
 ```bash
 /opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --delete --topic my-topic
 ```
-# topicde partition sayini artirmaq
+## topicde partition sayini artirmaq
 ```bash
 /opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --alter --topic my-topic --partitions 3
 ```
-# kafkada topic configini deyismek 
+## kafkada topic configini deyismek 
 ```bash
 /opt/kafka/bin/kafka-configs.sh --bootstrap-server localhost:9092 --entity-type topics --entity-name my-topic --alter --add-config retention.ms=3600000
 ```
-# kafkada topic ucun edilen konfigleri(retention-policy) gormek
+## kafkada topic ucun edilen konfigleri(retention-policy) gormek
 ```bash
 /opt/kafka/bin/kafka-configs.sh --bootstrap-server localhost:9092 --entity-type topics --entity-name my-topic --describe
 ```
-# kafkada topic ucun config edilmis max message bytes gormek
+## kafkada topic ucun config edilmis max message bytes gormek
 ```bash
  /opt/kafka/bin/kafka-configs.sh --bootstrap-server localhost:9092 --entity-type topics --entity-name my-topic --describe
 ```
-# kafkada topicde mesajin olcusunu deyismek 
+## kafkada topicde mesajin olcusunu deyismek 
 ```bash
 /opt/kafka/bin/kafka-configs.sh  --bootstrap-server localhost:9092 --entity-type topics --entity-name my-topic --alter --add-config max.message.bytes=5242880
 ```
-# kafkada mesajin olcusun broker seviyesinde deyismek
+## kafkada mesajin olcusun broker seviyesinde deyismek
 ```bash
 /opt/kafka/bin/kafka-configs.sh --bootstrap-server localhost:9092 --entity-type brokers --entity-name 1 --alter --add-config message.max.bytes=5242880
 ```
-# kafkada broker seviyesinde add edilen configleri gormek
+## kafkada broker seviyesinde add edilen configleri gormek
   ```bash
  /opt/kafka/bin/kafka-configs.sh --bootstrap-server localhost:9092 --entity-type brokers --entity-name 1 --describe
 ```
-# kafkada terminalda mesaj yazib topice gondermek
+## kafkada terminalda mesaj yazib topice gondermek
  ```bash
  /opt/kafka/bin/kafka-console-producer.sh --bootstrap-server localhost:9092 --topic my-topic
  ```
-# kafkada topicdeki mesajlari gormek 
+## kafkada topicdeki mesajlari gormek 
 ```bash
 /opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic my-topic --from-beginning
 ```
-# kafkada partition topicin nece yere bolunmesidir, her partitionda coxlu mesaj ola biler,  replica ise o partitionun kopasidir
-# kafkada acl elave edilmesi ucun 
+## kafkada partition topicin nece yere bolunmesidir, her partitionda coxlu mesaj ola biler,  replica ise o partitionun kopasidir
+## kafkada acl elave edilmesi ucun 
 ```bash
 
 vim /opt/kafka/config/kraft/server.properties
@@ -105,7 +107,7 @@ group.initial.rebalance.delay.ms=0
 
 ```
 
-# kafka service fayli
+## kafka service fayli
 ```bash
 /etc/systemd/system/kafka.service
 [Unit]
@@ -125,7 +127,7 @@ User=root
 WantedBy=multi-user.target
 
 ```
-# admin accessler vermek ucun
+## admin accessler vermek ucun
 ```bash
 /opt/kafka/config/admin-client.conf
 # Full administrative access
@@ -133,7 +135,7 @@ security.protocol=SASL_PLAINTEXT
 sasl.mechanism=PLAIN
 sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="admin" password="admin-password";
 ```
-# diger elave user ucun
+## diger elave user ucun
 ```
 /opt/kafka/config/alice-client.conf
 
@@ -145,13 +147,13 @@ sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule require
 
 
 
-# kafka servisinde deyisiklik edilir
+## kafka servisinde deyisiklik edilir
 ```bash
 /etc/systemd/system/kafka.service
 Environment="KAFKA_OPTS=-Djava.security.auth.login.config=/opt/kafka/config/kafka_server_jaas.conf"
 ```
 
-# kafkada acl kimi configler deyisenler sonra asagidaki emeliyyatlari edirik *yeni id alib clusteri yeniden basladiriq
+## kafkada acl kimi configler deyisenler sonra asagidaki emeliyyatlari edirik *yeni id alib clusteri yeniden basladiriq
 ```bash
 rm -rf /var/log/kafka/*
 KAFKA_CLUSTER_ID=$(/opt/kafka/bin/kafka-storage.sh random-uuid)
@@ -161,52 +163,52 @@ sudo systemctl restart kafka
 ```
 
 
-# kafkanin log yazacagi yerleri yarat
+## kafkanin log yazacagi yerleri yarat
 ```bash
 sudo mkdir -p /var/log/kafka
 sudo chown -R root:root /var/log/kafka
 sudo chmod -R 755 /var/log/kafka
 ```
-# permission verdiyimiz userin icazelerine baxmaq ucun 
+## permission verdiyimiz userin icazelerine baxmaq ucun 
 ```bash
 /opt/kafka/bin/kafka-acls.sh --bootstrap-server localhost:9092 --command-config /opt/kafka/config/admin-client.conf --list
 ```
 
-# yeni bir user ucun server.prpertiesde user_bob="bob-password" yaradiriq diger userin altina
+## yeni bir user ucun server.prpertiesde user_bob="bob-password" yaradiriq diger userin altina
 ```bash
 /opt/kafka/config/kraft/server.properties
 ```
-# sonra o user ucun /opt/kafka/config/bob-client.conf fayli yaradiriq
+## sonra o user ucun /opt/kafka/config/bob-client.conf fayli yaradiriq
 ```bash
 security.protocol=SASL_PLAINTEXT
 sasl.mechanism=PLAIN
 sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="bob" password="bob-password";
 ```
-# bu user ucun oz topicine full access ucun 
+## bu user ucun oz topicine full access ucun 
 ```bash
 /opt/kafka/bin/kafka-acls.sh --bootstrap-server localhost:9092 \
 --command-config /opt/kafka/config/admin-client.conf \
 --add --allow-principal User:bob --operation All --topic bob-topic
 ```
-# bu usere topice yazmaqdan elave asagidaki group useri veririk oxumasi ucun 
+## bu usere topice yazmaqdan elave asagidaki group useri veririk oxumasi ucun 
 ```bash
 /opt/kafka/bin/kafka-acls.sh --bootstrap-server localhost:9092 \
 --command-config /opt/kafka/config/admin-client.conf \
 --add --allow-principal User:bob --operation Read --group "*"
 ```
-# userin oz topicine yazmasini yoxlamaq ucun
+## userin oz topicine yazmasini yoxlamaq ucun
 ```bash
 echo "test bob" | /opt/kafka/bin/kafka-console-producer.sh --bootstrap-server localhost:9092 \
 --topic bob-topic \
 --producer.config /opt/kafka/config/bob-client.conf
 ```
-# userin oxumagini test etmek
+## userin oxumagini test etmek
 ```bash
 /opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 \
 --topic bob-topic --from-beginning \
 --consumer.config /opt/kafka/config/bob-client.conf
 ```
-# userin mesaji oxumasi ucun
+## userin mesaji oxumasi ucun
 ```bash
 /opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 \
 --topic bob-topic --from-beginning \
@@ -215,7 +217,7 @@ echo "test bob" | /opt/kafka/bin/kafka-console-producer.sh --bootstrap-server lo
 --consumer-property sasl.jaas.config='org.apache.kafka.common.security.plain.PlainLoginModule required username="bob" password="bob-password";'
 ```
 
-# developere vermek ucun lazim olanlar
+## developere vermek ucun lazim olanlar
 - ip ve port
 - username
 - password
