@@ -19,7 +19,7 @@ sudo cp /opt/kafka/config/server.properties /opt/kafka/config/kraft/server.prope
 
 ### Properties fayli-1ci nod ucun
 ```
-/opt/kafka/config/kraft/server.properties
+#/opt/kafka/config/kraft/server.properties
 
 # Role and Node Configuration
 process.roles=broker,controller
@@ -107,7 +107,7 @@ group.initial.rebalance.delay.ms=0
 ### Kafka service fayli
 
 ```bash
-/etc/systemd/system/kafka.service
+#/etc/systemd/system/kafka.service
 [Unit]
 Description=Apache Kafka Server (KRaft mode)
 After=network.target
@@ -231,7 +231,7 @@ sudo systemctl status kafka
 ## Kafkada acl elave edilenden sonra umumi properties fayli-bir node ucun
 
 ```bash
-vim /opt/kafka/config/kraft/server.properties
+#vim /opt/kafka/config/kraft/server.properties
 # Role and Node Configuration
 process.roles=broker,controller
 node.id=1
@@ -281,7 +281,7 @@ group.initial.rebalance.delay.ms=0
 ### Admin accessler vermek ucun
 
 ```bash
-/opt/kafka/config/admin-client.conf
+#/opt/kafka/config/admin-client.conf
 # Full administrative access
 security.protocol=SASL_PLAINTEXT
 sasl.mechanism=PLAIN
@@ -291,7 +291,7 @@ sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule require
 ### Diger elave user ucun
 
 ```
-/opt/kafka/config/alice-client.conf
+#/opt/kafka/config/alice-client.conf
 
 # Restricted user access
 security.protocol=SASL_PLAINTEXT
