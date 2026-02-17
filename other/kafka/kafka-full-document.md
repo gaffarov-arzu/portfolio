@@ -129,6 +129,7 @@ WantedBy=multi-user.target
 ### Kafka cluster id yaradib ayaga qaldirmaq
 
 ```bash
+sudo rm -rf /var/lib/kafka/*  
 KAFKA_CLUSTER_ID=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 echo "Using cluster ID: $KAFKA_CLUSTER_ID"
 sudo /opt/kafka/bin/kafka-storage.sh format -t $KAFKA_CLUSTER_ID -c /opt/kafka/config/kraft/server.properties
@@ -304,6 +305,7 @@ sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule require
 ```bash
 rm -rf /var/log/kafka/*
 sudo rm -rf /opt/kafka/data/*
+sudo rm -rf /var/lib/kafka/*  
 KAFKA_CLUSTER_ID=$(/opt/kafka/bin/kafka-storage.sh random-uuid)
 /opt/kafka/bin/kafka-storage.sh format -t $KAFKA_CLUSTER_ID -c /opt/kafka/config/kraft/server.properties
 sudo systemctl daemon-reload
