@@ -327,6 +327,9 @@ echo "Using cluster ID: $KAFKA_CLUSTER_ID"
 /opt/kafka/bin/kafka-storage.sh format -t $KAFKA_CLUSTER_ID -c /opt/kafka/config/kraft/server.properties
 sudo systemctl daemon-reload
 sudo systemctl restart kafka
+sudo systemctl status kafka
+journalctl -u kafka
+
 ```
 ### node2 de ise birinci nodedan id ni alib istifade etmek lazimdir id ni asagidan almaq lazimdir
 ```bash
