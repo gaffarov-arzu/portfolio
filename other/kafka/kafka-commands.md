@@ -108,6 +108,8 @@ sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule require
 ```bash
 KAFKA_CLUSTER_ID=$(/opt/kafka/bin/kafka-storage.sh random-uuid)
 /opt/kafka/bin/kafka-storage.sh format -t $KAFKA_CLUSTER_ID -c /opt/kafka/config/kraft/server.properties
+sudo systemctl daemon-reload
+sudo systemctl restart kafka
 ```
 
 # loglar da silinmelidir
