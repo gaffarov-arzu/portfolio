@@ -421,7 +421,7 @@ spec:
           averageUtilization: 50
 ```
 # Gun-19
-## aws-de ec2 yaradip ip sine baxmaq
+## Terraform ile aws-de ec2 yaradip ip sine baxmaq
 ```tf
 provider "aws" {
   region = "eu-central-1"
@@ -439,4 +439,52 @@ resource "aws_instance" "web" {
 output "ec2_public_ip" {
   value = aws_instance.web.public_ip
 }
+```
+
+# Gun-20
+## pv, pvc, ve podu pvc-e baglamaq
+### pv yamli
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: learn-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/mypv"
+```
+### pvc yamli
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: learn-pvc-also
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+```
+### podun pvce-e baglanmasi
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: learn-pvc-with-pod
+spec:
+   containers:
+     - name: nginx
+       image: nginx:latest
+       volumeMounts:
+         - mountPath: "/usr/share/nginx/html"
+           name: istediyin-adda-ola-bilen-bag
+   volumes:
+         - name: istediyin-adda-ola-bilen-bag
+           persistentVolumeClaim:
+             claimName: learn-pvc-also
 ```
