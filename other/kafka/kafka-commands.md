@@ -195,4 +195,8 @@ sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule require
 --add --allow-principal User:bob --operation Read --group "*"
 ```
 # userin oz topicine yazmasini yoxlamaq ucun
-
+```bash
+echo "test bob" | /opt/kafka/bin/kafka-console-producer.sh --bootstrap-server localhost:9092 \
+--topic bob-topic \
+--producer.config /opt/kafka/config/bob-client.conf
+```
