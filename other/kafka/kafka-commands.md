@@ -95,10 +95,11 @@ Environment="KAFKA_OPTS=-Djava.security.auth.login.config=/opt/kafka/config/kafk
 ```
 
 # kafkada hanzi user acl elave edib sile biler
+```bash
 /opt/kafka/config/client.properties
 security.protocol=SASL_PLAINTEXT
 sasl.mechanism=PLAIN
 sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required \
  username="admin" \
  password="admin-pass";
-
+```
