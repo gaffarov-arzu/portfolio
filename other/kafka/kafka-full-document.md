@@ -129,7 +129,9 @@ WantedBy=multi-user.target
 ### Kafka cluster id yaradib ayaga qaldirmaq
 
 ```bash
-sudo rm -rf /var/lib/kafka/*  
+sudo rm -rf /var/lib/kafka/*
+sudo rm -rf /var/log/kafka/*  
+
 KAFKA_CLUSTER_ID=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 echo "Using cluster ID: $KAFKA_CLUSTER_ID"
 sudo /opt/kafka/bin/kafka-storage.sh format -t $KAFKA_CLUSTER_ID -c /opt/kafka/config/kraft/server.properties
