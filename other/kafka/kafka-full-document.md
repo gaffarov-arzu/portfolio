@@ -309,8 +309,10 @@ KAFKA_CLUSTER_ID=$(/opt/kafka/bin/kafka-storage.sh random-uuid)
 sudo systemctl daemon-reload
 sudo systemctl restart kafka
 ```
-
-
+### node2 de ise birinci nodedan id ni alib istifade etmek lazimdir id ni asagidan almaq lazimdir
+```bash
+ echo "Using cluster ID: $KAFKA_CLUSTER_ID
+```
 ### Kafkanin log yazacagi yerleri yarat
 
 ```bash
