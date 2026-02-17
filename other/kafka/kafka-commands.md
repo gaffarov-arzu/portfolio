@@ -200,3 +200,9 @@ echo "test bob" | /opt/kafka/bin/kafka-console-producer.sh --bootstrap-server lo
 --topic bob-topic \
 --producer.config /opt/kafka/config/bob-client.conf
 ```
+# userin oxumagini test etmek
+```bash
+/opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 \
+--topic bob-topic --from-beginning \
+--consumer.config /opt/kafka/config/bob-client.conf
+```
