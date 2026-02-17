@@ -55,38 +55,95 @@
 /opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic my-topic --from-beginning
 ```
 # kafkada partition topicin nece yere bolunmesidir, her partitionda coxlu mesaj ola biler,  replica ise o partitionun kopasidir
-# kafkada acl elave edilmesi ucun evvelce adagidaki fayldaki setrler kommente alinir diger sasl setrler elave
+# kafkada acl elave edilmesi ucun 
 ```bash
-/opt/kafka/config/kraft/server.properties
-#listeners=PLAINTEXT://0.0.0.0:9092
-#inter.broker.listener.name=PLAINTEXT
 
+vim /opt/kafka/config/kraft/server.properties
+# Role and Node Configuration
+process.roles=broker,controller
+node.id=1
+controller.quorum.voters=1@127.0.0.1:9093
+
+# Listeners and Network Configuration
 listeners=SASL_PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
-advertised.listeners=SASL_PLAINTEXT://localhost:9092
-inter.broker.listener.name=SASL_PLAINTEXT
-listener.security.protocol.map=CONTROLLER:PLAINTEXT,SASL_PLAINTEXT:SASL_PLAINTEXT
+advertised.listeners=SASL_PLAINTEXT://127.0.0.1:9092
+controller.listener.names=CONTROLLER
+
+# Security Mapping and Protocols
+listener.security.protocol.map=CONTROLLER:SASL_PLAINTEXT,SASL_PLAINTEXT:SASL_PLAINTEXT
+sasl.enabled.mechanisms=PLAIN
 security.inter.broker.protocol=SASL_PLAINTEXT
 sasl.mechanism.inter.broker.protocol=PLAIN
-sasl.enabled.mechanisms=PLAIN
-```
-# daha sonra adagidaki fayla diger setrler de elave edilir
-```bash
-/opt/kafka/config/kraft/server.properties
+sasl.mechanism.controller.protocol=PLAIN
+
+# JAAS Configuration - Inline Credentials
+# Using backslashes for multi-line readability
+listener.name.sasl_plaintext.plain.sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required \
+    username="admin" \
+    password="admin-password" \
+    user_admin="admin-password" \
+    user_alice="alice-password";
+
+listener.name.controller.plain.sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required \
+    username="admin" \
+    password="admin-password" \
+    user_admin="admin-password";
+
+# Authorization (ACLs)
 authorizer.class.name=org.apache.kafka.metadata.authorizer.StandardAuthorizer
 super.users=User:admin
-```
-# daha sonra hansi userler var onlari asagidaki fayla elave edirik
-```bash
-/opt/kafka/config/kafka_server_jaas.conf
 
-KafkaServer {
- org.apache.kafka.common.security.plain.PlainLoginModule required
- username="admin"
- password="admin-pass"
- user_admin="admin-pass"
- user_alice="alice-pass";
-};
+# Log and Storage Management
+log.dirs=/var/log/kafka
+num.partitions=1
+default.replication.factor=1
+offsets.topic.replication.factor=1
+transaction.state.log.replication.factor=1
+transaction.state.log.min.isr=1
+group.initial.rebalance.delay.ms=0
+
+
 ```
+
+# kafka service fayli
+```bash
+/etc/systemd/system/kafka.service
+[Unit]
+Description=Apache Kafka Server (KRaft mode)
+After=network.target
+
+[Service]
+Type=simple
+Environment="JAVA_HOME=/usr/lib/jvm/java-1.17.0-openjdk-amd64"
+# Directly starting with the properties file
+ExecStart=/opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/kraft/server.properties
+ExecStop=/opt/kafka/bin/kafka-server-stop.sh
+Restart=on-failure
+User=root
+
+[Install]
+WantedBy=multi-user.target
+
+```
+# admin accessler vermek ucun
+```bash
+/opt/kafka/config/admin-client.conf
+# Full administrative access
+security.protocol=SASL_PLAINTEXT
+sasl.mechanism=PLAIN
+sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="admin" password="admin-password";
+```
+# diger elave user ucun
+```
+/opt/kafka/config/alice-client.conf
+
+# Restricted user access
+security.protocol=SASL_PLAINTEXT
+sasl.mechanism=PLAIN
+sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="alice" password="alice-password";
+```
+
+
 
 # kafka servisinde deyisiklik edilir
 ```bash
@@ -94,32 +151,23 @@ KafkaServer {
 Environment="KAFKA_OPTS=-Djava.security.auth.login.config=/opt/kafka/config/kafka_server_jaas.conf"
 ```
 
-# kafkada hanzi user acl elave edib sile biler
+# kafkada acl kimi configler deyisenler sonra asagidaki emeliyyatlari edirik *yeni id alib clusteri yeniden basladiriq
 ```bash
-/opt/kafka/config/client.properties
-security.protocol=SASL_PLAINTEXT
-sasl.mechanism=PLAIN
-sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required \
- username="admin" \
- password="admin-pass";
-```
-
-# kafkada acl kimi configler deyisenler sonra yeni id alib clusteri yeniden basladiriq
-```bash
+rm -rf /var/log/kafka/*
 KAFKA_CLUSTER_ID=$(/opt/kafka/bin/kafka-storage.sh random-uuid)
 /opt/kafka/bin/kafka-storage.sh format -t $KAFKA_CLUSTER_ID -c /opt/kafka/config/kraft/server.properties
 sudo systemctl daemon-reload
 sudo systemctl restart kafka
 ```
 
-# loglar da silinmelidir
-```bash
-rm -rf /var/log/kafka/*
-```
 
 # kafkanin log yazacagi yerleri yarat
 ```bash
 sudo mkdir -p /var/log/kafka
 sudo chown -R root:root /var/log/kafka
 sudo chmod -R 755 /var/log/kafka
+```
+# permission verdiyimiz userin icazelerine baxmaq ucun 
+```bash
+/opt/kafka/bin/kafka-acls.sh --bootstrap-server localhost:9092 --command-config /opt/kafka/config/admin-client.conf --list
 ```
