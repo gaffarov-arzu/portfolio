@@ -323,14 +323,14 @@ rm -rf /var/log/kafka/*
 sudo rm -rf /opt/kafka/data/*
 sudo rm -rf /var/lib/kafka/*  
 KAFKA_CLUSTER_ID=$(/opt/kafka/bin/kafka-storage.sh random-uuid)
-echo "Using cluster ID: $KAFKA_CLUSTER_ID
+echo "Using cluster ID: $KAFKA_CLUSTER_ID"
 /opt/kafka/bin/kafka-storage.sh format -t $KAFKA_CLUSTER_ID -c /opt/kafka/config/kraft/server.properties
 sudo systemctl daemon-reload
 sudo systemctl restart kafka
 ```
 ### node2 de ise birinci nodedan id ni alib istifade etmek lazimdir id ni asagidan almaq lazimdir
 ```bash
- echo "Using cluster ID: $KAFKA_CLUSTER_ID
+ echo "Using cluster ID: $KAFKA_CLUSTER_ID"
 ```
 ### Kafkanin log yazacagi yerleri yarat
 
