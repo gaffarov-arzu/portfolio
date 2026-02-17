@@ -101,3 +101,20 @@ git log main..origin/main --oneline
 ```bash
 git log --oneline --graph --decorate --all
 ```
+## gite automatic push etmek ucun evvelse ssh-public keyi githuba elave etmek lazimdir daha sonra https yox asagidaki kimi ssh ile set etmek lazimdir
+```bash
+git remote set-url origin git@github.com:gaffarov-arzu/life-pro.git
+```
+## linuxda crontab ile reponun automatic git remote push edilmesi scripti
+```bash
+#!/bin/bash
+cd /home/ubuntu/life-pro || exit
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+/usr/bin/git add .
+/usr/bin/git commit -m "Auto commit: $(date '+%Y-%m-%d %H:%M:%S')" || exit
+/usr/bin/git push origin main
+```
+## crontaba yazilmasi
+```bash
+0 2 * * * /usr/local/bin/git_auto_push.sh
+```
