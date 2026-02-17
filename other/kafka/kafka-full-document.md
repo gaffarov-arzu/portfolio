@@ -316,7 +316,7 @@ sasl.mechanism=PLAIN
 sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="alice" password="alice-password";
 ```
 
-### Kafkada acl kimi configler deyisenler sonra asagidaki emeliyyatlari edirik *yeni id alib clusteri yeniden basladiriq
+### Kafkada acl kimi configler deyisenler sonra asagidaki emeliyyatlari edirik *yeni id alib clusteri yeniden basladiriq idler /var/log/kafka da olur
 
 ```bash
 rm -rf /var/log/kafka/*
