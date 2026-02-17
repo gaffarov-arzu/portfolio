@@ -24,3 +24,8 @@ WantedBy=multi-user.target
 ```bash
 systemctl status 4101283
 ```
+
+# servislerin siyahisina baxmaq
+```bash
+systemctl list-units --type=service
+```
