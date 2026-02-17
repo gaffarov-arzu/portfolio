@@ -206,3 +206,11 @@ echo "test bob" | /opt/kafka/bin/kafka-console-producer.sh --bootstrap-server lo
 --topic bob-topic --from-beginning \
 --consumer.config /opt/kafka/config/bob-client.conf
 ```
+# userin mesaji oxumasi ucun
+```bash
+/opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 \
+--topic bob-topic --from-beginning \
+--consumer-property security.protocol=SASL_PLAINTEXT \
+--consumer-property sasl.mechanism=PLAIN \
+--consumer-property sasl.jaas.config='org.apache.kafka.common.security.plain.PlainLoginModule required username="bob" password="bob-password";'
+```
