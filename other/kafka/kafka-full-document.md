@@ -153,6 +153,15 @@ sudo systemctl enable kafka
 sudo systemctl start kafka 
 sudo systemctl status kafka
 ```
+### kafka clusterinde ikici node da node-1 den generasya olunan id ni alib asagidakilari edirik
+```bash
+sudo rm -rf /var/log/kafka* /opt/kafka/data/* /var/lib/kafka/* 
+sudo /opt/kafka/bin/kafka-storage.sh format -t NODE1-ID   -c /opt/kafka/config/kraft/server.properties
+sudo systemctl daemon-reload
+sudo systemctl enable kafka 
+sudo systemctl start kafka 
+sudo systemctl status kafka
+```
 
 ## Kafka komandalar
 
