@@ -18,79 +18,24 @@ sudo mkdir -p /var/log/kafka
 sudo chown -R kafka:kafka /var/log/kafka
 sudo chmod -R 755 /var/log/kafka
 sudo mkdir -p /opt/kafka/config/kraft
-sudo cp /opt/kafka/config/server.properties /opt/kafka/config/kraft/server.properties
+sudo cp /opt/kafka/config/server.properties /opt/kafka/config/kraft/server-1.properties
 ```
 
-### Properties fayli-1ci nod ucun
+### Properties fayli-1ci nod ucun server-properties
 ```
 process.roles=broker,controller
 node.id=1
-controller.quorum.voters=1@x.x.x.x:9093,2@y.y.y.y:9093
+controller.quorum.voters=1@10.13.13.92:9093, 2@10.13.13.93:9093
 
+inter.broker.listener.name=SASL_PLAINTEXT
+controller.listener.names=CONTROLLER
 # Listeners and Network Configuration
 listeners=SASL_PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
-
-advertised.listeners=SASL_PLAINTEXT://x.x.x.x:9092
-controller.listener.names=CONTROLLER
-
-
-controller.listener.names=CONTROLLER
+advertised.listeners=SASL_PLAINTEXT://10.13.13.92:9092
 
 # Security Mapping and Protocols
 listener.security.protocol.map=CONTROLLER:SASL_PLAINTEXT,SASL_PLAINTEXT:SASL_PLAINTEXT
 sasl.enabled.mechanisms=PLAIN
-security.inter.broker.protocol=SASL_PLAINTEXT
-sasl.mechanism.inter.broker.protocol=PLAIN
-sasl.mechanism.controller.protocol=PLAIN
-
-# JAAS Configuration - Inline Credentials
-# Using backslashes for multi-line readability
-listener.name.sasl_plaintext.plain.sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required \
-    username="admin" \
-    password="admin-password" \
-    user_admin="admin-password" \
-    user_alice="alice-password" \
-    user_bob="bob-password" ;
-
-listener.name.controller.plain.sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required \
-    username="admin" \
-    password="admin-password" \
-    user_admin="admin-password";
-
-# Authorization (ACLs)
-authorizer.class.name=org.apache.kafka.metadata.authorizer.StandardAuthorizer
-super.users=User:admin
-
-# Log and Storage Management
-log.dirs=/var/lib/kafka
-num.partitions=1
-default.replication.factor=2
-offsets.topic.replication.factor=2
-transaction.state.log.replication.factor=2
-transaction.state.log.min.isr=1
-group.initial.rebalance.delay.ms=0
-
-```
-
-### Properties fayli-2ci nod ucun
-
-```bash
-process.roles=broker,controller
-node.id=2
-controller.quorum.voters=1@x.x.x.x:9093,2@y.y.y.y:9093
-
-# Listeners and Network Configuration
-listeners=SASL_PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
-
-advertised.listeners=SASL_PLAINTEXT://10.13.13.93:9092
-controller.listener.names=CONTROLLER
-
-
-
-# Security Mapping and Protocols
-listener.security.protocol.map=CONTROLLER:SASL_PLAINTEXT,SASL_PLAINTEXT:SASL_PLAINTEXT
-sasl.enabled.mechanisms=PLAIN
-security.inter.broker.protocol=SASL_PLAINTEXT
 sasl.mechanism.inter.broker.protocol=PLAIN
 sasl.mechanism.controller.protocol=PLAIN
 
@@ -118,7 +63,55 @@ num.partitions=1
 default.replication.factor=2
 offsets.topic.replication.factor=2
 transaction.state.log.replication.factor=2
-transaction.state.log.min.isr=1
+transaction.state.log.min.isr=2
+group.initial.rebalance.delay.ms=0
+
+```
+
+### Properties fayli-2ci nod ucun server-2.properties
+
+```bash
+process.roles=broker,controller
+node.id=2
+controller.quorum.voters=1@10.13.13.92:9093, 2@10.13.13.93:9093
+
+inter.broker.listener.name=SASL_PLAINTEXT
+controller.listener.names=CONTROLLER
+# Listeners and Network Configuration
+listeners=SASL_PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
+advertised.listeners=SASL_PLAINTEXT://10.13.13.92:9092
+
+# Security Mapping and Protocols
+listener.security.protocol.map=CONTROLLER:SASL_PLAINTEXT,SASL_PLAINTEXT:SASL_PLAINTEXT
+sasl.enabled.mechanisms=PLAIN
+sasl.mechanism.inter.broker.protocol=PLAIN
+sasl.mechanism.controller.protocol=PLAIN
+
+# JAAS Configuration - Inline Credentials
+# Using backslashes for multi-line readability
+listener.name.sasl_plaintext.plain.sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required \
+    username="admin" \
+    password="admin-password" \
+    user_admin="admin-password" \
+    user_alice="alice-password" \
+    user_bob="bob-password" ;
+
+listener.name.controller.plain.sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required \
+    username="admin" \
+    password="admin-password" \
+    user_admin="admin-password";
+
+# Authorization (ACLs)
+authorizer.class.name=org.apache.kafka.metadata.authorizer.StandardAuthorizer
+super.users=User:admin
+
+# Log and Storage Management
+log.dirs=/var/log/kafka
+num.partitions=1
+default.replication.factor=2
+offsets.topic.replication.factor=2
+transaction.state.log.replication.factor=2
+transaction.state.log.min.isr=2
 group.initial.rebalance.delay.ms=0
 ```
 
