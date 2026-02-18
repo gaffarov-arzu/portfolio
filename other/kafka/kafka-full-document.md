@@ -169,6 +169,9 @@ sudo systemctl daemon-reload
 sudo systemctl enable kafka 
 sudo systemctl start kafka 
 sudo systemctl status kafka
+sudo mkdir -p /var/log/kafka
+sudo chown -R root:root /var/log/kafka
+sudo chmod -R 755 /var/log/kafka
 ```
 ### kafka clusterinde ikici node da node-1 den generasya olunan id ni alib asagidakilari edirik
 ```bash
@@ -178,6 +181,9 @@ sudo systemctl daemon-reload
 sudo systemctl enable kafka 
 sudo systemctl restart kafka 
 sudo systemctl status kafka
+sudo mkdir -p /var/log/kafka
+sudo chown -R root:root /var/log/kafka
+sudo chmod -R 755 /var/log/kafka
 ```
 
 ## Kafka komandalar
@@ -305,13 +311,7 @@ sudo systemctl enable kafka
 sudo systemctl start kafka 
 sudo systemctl status kafka
 ```
-### Kafkanin log yazacagi yerleri yarat
 
-```bash
-sudo mkdir -p /var/log/kafka
-sudo chown -R root:root /var/log/kafka
-sudo chmod -R 755 /var/log/kafka
-```
 
 ### Permission verdiyimiz userin icazelerine baxmaq ucun 
 
