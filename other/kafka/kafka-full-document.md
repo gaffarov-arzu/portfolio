@@ -1,5 +1,5 @@
 # Kafka Full dokumentasya
-## Kafka yuklenmesi ver qurasdirilmasi
+## Kafka yuklenmesi ve qurasdirilmasi
 ## Service faylinda asagidaki hisseni node bir ucun server-1 node iki ucun server-2 etmek lazimdir
 ```bash
 ExecStart=/opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/kraft/server-1.properties
