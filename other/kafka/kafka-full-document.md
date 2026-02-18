@@ -163,7 +163,7 @@ sudo rm -rf /var/log/kafka* /opt/kafka/data/* /var/lib/kafka*
 sudo /opt/kafka/bin/kafka-storage.sh format -t NODE1-ID   -c /opt/kafka/config/kraft/server-2.properties
 sudo systemctl daemon-reload
 sudo systemctl enable kafka 
-sudo systemctl start kafka 
+sudo systemctl restart kafka 
 sudo systemctl status kafka
 ```
 
