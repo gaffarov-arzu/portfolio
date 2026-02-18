@@ -229,6 +229,7 @@ sudo chmod -R 755 /var/log/kafka
 ```bash
 sudo rm -rf /var/log/kafka* /opt/kafka/data/* /var/lib/kafka* 
 sudo /opt/kafka/bin/kafka-storage.sh format -t NODE1-ID   -c /opt/kafka/config/kraft/server-2.properties
+#islemese asagidaki # islemese bunu edirik sudo /opt/kafka/bin/kafka-storage.sh format  --config /opt/kafka/config/kraft/server-2.properties --cluster-id ID -c
 sudo systemctl daemon-reload
 sudo systemctl enable kafka 
 sudo systemctl restart kafka 
