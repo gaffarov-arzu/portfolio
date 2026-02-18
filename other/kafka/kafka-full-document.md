@@ -318,9 +318,7 @@ sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule require
 ### Kafkada acl kimi configler deyisenler sonra asagidaki emeliyyatlari edirik *yeni id alib clusteri yeniden basladiriq idler /var/log/kafka da olur
 
 ```bash
-rm -rf /var/log/kafka/*
-sudo rm -rf /opt/kafka/data/*
-sudo rm -rf /var/lib/kafka/*  
+sudo rm -rf /var/log/kafka* /opt/kafka/data/* /var/lib/kafka/* 
 KAFKA_CLUSTER_ID=$(/opt/kafka/bin/kafka-storage.sh random-uuid)
 echo "Using cluster ID: $KAFKA_CLUSTER_ID"
 /opt/kafka/bin/kafka-storage.sh format -t $KAFKA_CLUSTER_ID -c /opt/kafka/config/kraft/server.properties
