@@ -41,6 +41,7 @@ sudo cp /opt/kafka/config/server.properties /opt/kafka/config/kraft/server-2.pro
 ```
 ### Properties fayli-1ci nod ucun server-properties
 ```bash
+#/opt/kafka/config/kraft/server-1.properties
 process.roles=broker,controller
 node.id=1
 controller.quorum.voters=1@x.x.x.x:9093, 2@y.y.y.y:9093
@@ -89,6 +90,7 @@ group.initial.rebalance.delay.ms=0
 ### Properties fayli-2ci nod ucun server-2.properties
 
 ```bash
+#/opt/kafka/config/kraft/server-2.properties
 process.roles=broker,controller
 node.id=2
 controller.quorum.voters=1@x.x.x.x:9093, 2@y.y.y.y:9093
@@ -173,6 +175,10 @@ sudo systemctl status kafka
 sudo mkdir -p /var/log/kafka
 sudo chown -R root:root /var/log/kafka
 sudo chmod -R 755 /var/log/kafka
+```
+### kafkada birince clusterde yaranan id-ni yeniden gormek ucun
+```bash
+/opt/kafka/bin/kafka-storage.sh info -c /opt/kafka/config/kraft/server-1.properties
 ```
 ### kafka clusterinde ikici node da node-1 den generasya olunan id ni alib asagidakilari edirik
 ```bash
@@ -303,15 +309,6 @@ sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule require
 ```
 
 
-### node2 de ise birinci nodedan id ni alib istifade etmek lazimdir id ni asagidan almaq lazimdir
-```bash
-sudo rm -rf /var/log/kafka* /opt/kafka/data/* /var/lib/kafka/* 
-sudo /opt/kafka/bin/kafka-storage.sh format -t NODE1-ID   -c /opt/kafka/config/kraft/server-2.properties
-sudo systemctl daemon-reload
-sudo systemctl enable kafka 
-sudo systemctl start kafka 
-sudo systemctl status kafka
-```
 
 
 ### Permission verdiyimiz userin icazelerine baxmaq ucun 
