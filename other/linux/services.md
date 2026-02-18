@@ -29,3 +29,7 @@ systemctl status 4101283
 ```bash
 systemctl list-units --type=service
 ```
+# prosesi tam yolunu verir, nodejs dirse js pathi verir full, hansi user basladib verir 
+```bash
+ps -fp 3095506
+```
