@@ -15,7 +15,7 @@ sudo mv kafka_2.13-4.0.0 /opt
 sudo ln -s /opt/kafka_2.13-4.0.0 /opt/kafka
 sudo echo 'export PATH=/opt/kafka/bin:$PATH' >> /root/.profile && source /root/.profile
 sudo mkdir -p /var/log/kafka
-sudo chown -R root:root /var/log/kafka
+sudo chown -R kafka:kafka /var/log/kafka
 sudo chmod -R 755 /var/log/kafka
 sudo mkdir -p /opt/kafka/config/kraft
 sudo cp /opt/kafka/config/server.properties /opt/kafka/config/kraft/server.properties
