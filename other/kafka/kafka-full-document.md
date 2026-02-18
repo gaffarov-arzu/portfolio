@@ -1,4 +1,4 @@
-# Kafka Full dokumentasya
+# Kafka Full dokumentasya 2 master + 1 broker 
 ## Kafka yuklenmesi ve qurasdirilmasi
 ## Service faylinda asagidaki hisseni node bir ucun server-1 node iki ucun server-2 etmek lazimdir
 ```bash
@@ -134,6 +134,51 @@ transaction.state.log.replication.factor=2
 transaction.state.log.min.isr=2
 group.initial.rebalance.delay.ms=0
 ```
+### Properties fayli node 3 sadece broker ucun 
+```bash
+process.roles=broker
+node.id=3
+controller.quorum.voters=1@x.x.x.x:9093, 2@y.y.y.y:9093
+
+inter.broker.listener.name=SASL_PLAINTEXT
+controller.listener.names=CONTROLLER
+# Listeners and Network Configuration
+listeners=SASL_PLAINTEXT://0.0.0.0:9092
+advertised.listeners=SASL_PLAINTEXT://z.z.z.z:9092
+
+# Security Mapping and Protocols
+listener.security.protocol.map=CONTROLLER:SASL_PLAINTEXT,SASL_PLAINTEXT:SASL_PLAINTEXT
+sasl.enabled.mechanisms=PLAIN
+sasl.mechanism.inter.broker.protocol=PLAIN
+sasl.mechanism.controller.protocol=PLAIN
+
+# JAAS Configuration - Inline Credentials
+# Using backslashes for multi-line readability
+listener.name.sasl_plaintext.plain.sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required \
+    username="admin" \
+    password="admin-password" \
+    user_admin="admin-password" \
+    user_alice="alice-password" \
+    user_bob="bob-password" ;
+
+listener.name.controller.plain.sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required \
+    username="admin" \
+    password="admin-password" \
+    user_admin="admin-password";
+
+# Authorization (ACLs)
+authorizer.class.name=org.apache.kafka.metadata.authorizer.StandardAuthorizer
+super.users=User:admin
+
+# Log and Storage Management
+log.dirs=/var/log/kafka
+num.partitions=3
+default.replication.factor=3
+offsets.topic.replication.factor=3
+transaction.state.log.replication.factor=3
+transaction.state.log.min.isr=3
+group.initial.rebalance.delay.ms=0
+```
 
 ### Kafka service fayli - Her iki server ucun
 
@@ -208,79 +253,79 @@ sudo chmod -R 755 /var/log/kafka
 ### Kafkada clusterin statusu
 
 ```bash
-/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server x.x.x.x:9092
+/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server x.x.x.x:9092 --command-config /opt/kafka/config/admin-client.conf
 ```
 
 ### Kafkada topic yaratmaq
 
 ```bash
-/opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --topic my-topic --partitions 1 --replications-factor 1
+/opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --topic my-topic --partitions 1 --replications-factor 1 --command-config /opt/kafka/config/admin-client.conf
 ```
 
 ### Kafkada topicin contentini gormek 
 
 ```bash
-/opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --describe --topic my-topic
-```
+/opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --describe --topic my-topic --command-config /opt/kafka/config/admin-client.conf
+``` 
 
 ### Kafkada topic silmek
 
 ```bash
-/opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --delete --topic my-topic
+/opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --delete --topic my-topic --command-config /opt/kafka/config/admin-client.conf
 ```
 
 ### Topicde partition sayini artirmaq
 
 ```bash
-/opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --alter --topic my-topic --partitions 3
+/opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --alter --topic my-topic --partitions 3 --command-config /opt/kafka/config/admin-client.conf
 ```
 
 ### Kafkada topic configini deyismek 
 
 ```bash
-/opt/kafka/bin/kafka-configs.sh --bootstrap-server localhost:9092 --entity-type topics --entity-name my-topic --alter --add-config retention.ms=3600000
+/opt/kafka/bin/kafka-configs.sh --bootstrap-server localhost:9092 --entity-type topics --entity-name my-topic --alter --add-config retention.ms=3600000 --command-config /opt/kafka/config/admin-client.conf
 ```
 
 ### Kafkada topic ucun edilen konfigleri(retention-policy) gormek
 
 ```bash
-/opt/kafka/bin/kafka-configs.sh --bootstrap-server localhost:9092 --entity-type topics --entity-name my-topic --describe
+/opt/kafka/bin/kafka-configs.sh --bootstrap-server localhost:9092 --entity-type topics --entity-name my-topic --describe --command-config /opt/kafka/config/admin-client.conf
 ```
 
 ### Kafkada topic ucun config edilmis max message bytes gormek
 
 ```bash
- /opt/kafka/bin/kafka-configs.sh --bootstrap-server localhost:9092 --entity-type topics --entity-name my-topic --describe
+ /opt/kafka/bin/kafka-configs.sh --bootstrap-server localhost:9092 --entity-type topics --entity-name my-topic --describe --command-config /opt/kafka/config/admin-client.conf
 ```
 
 ### Kafkada topicde mesajin olcusunu deyismek 
 
 ```bash
-/opt/kafka/bin/kafka-configs.sh  --bootstrap-server localhost:9092 --entity-type topics --entity-name my-topic --alter --add-config max.message.bytes=5242880
+/opt/kafka/bin/kafka-configs.sh  --bootstrap-server localhost:9092 --entity-type topics --entity-name my-topic --alter --add-config max.message.bytes=5242880 --command-config /opt/kafka/config/admin-client.conf
 ```
 
 ### Kafkada mesajin olcusun broker seviyesinde deyismek
 
 ```bash
-/opt/kafka/bin/kafka-configs.sh --bootstrap-server localhost:9092 --entity-type brokers --entity-name 1 --alter --add-config message.max.bytes=5242880
+/opt/kafka/bin/kafka-configs.sh --bootstrap-server localhost:9092 --entity-type brokers --entity-name 1 --alter --add-config message.max.bytes=5242880 --command-config /opt/kafka/config/admin-client.conf
 ```
 
 ### Kafkada broker seviyesinde add edilen configleri gormek
 
   ```bash
- /opt/kafka/bin/kafka-configs.sh --bootstrap-server localhost:9092 --entity-type brokers --entity-name 1 --describe
+ /opt/kafka/bin/kafka-configs.sh --bootstrap-server localhost:9092 --entity-type brokers --entity-name 1 --describe --command-config /opt/kafka/config/admin-client.conf
 ```
 
 ### Kafkada terminalda mesaj yazib topice gondermek
 
  ```bash
- /opt/kafka/bin/kafka-console-producer.sh --bootstrap-server localhost:9092 --topic my-topic
+ /opt/kafka/bin/kafka-console-producer.sh --bootstrap-server localhost:9092 --topic my-topic --command-config /opt/kafka/config/admin-client.conf
  ```
 
 ### Kafkada topicdeki mesajlari gormek 
 
 ```bash
-/opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic my-topic --from-beginning
+/opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic my-topic --from-beginning --command-config /opt/kafka/config/admin-client.conf
 ```
 
 ## Notelar
