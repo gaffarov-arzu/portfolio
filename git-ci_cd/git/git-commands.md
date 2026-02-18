@@ -122,7 +122,11 @@ ssh-keyscan github.com >> /root/.ssh/known_hosts
 ```bash
 0 2 * * * /usr/local/bin/git_auto_push.sh
 ```
-## script islemesinde problem ola biler folder permissionuna gore ona gore o folderi safe edirik asagidaki command ile
+## script islemesinde problem ola biler folder permissionuna gore ona gore o folderi safe edirik asagidaki command ilep
 ```bash
 git config --global --add safe.directory /home/ubuntu/life-pro
+```
+## gitde local ve remote branchlari bir birinden ferqli deyisikliklere sahibdirse 
+```bash
+git pull --no-rebase origin main
 ```
