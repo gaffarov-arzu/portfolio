@@ -145,7 +145,6 @@ WantedBy=multi-user.target
 ```bash
 sudo rm -rf /var/lib/kafka/*
 sudo rm -rf /var/log/kafka/*  
-
 KAFKA_CLUSTER_ID=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 echo "Using cluster ID: $KAFKA_CLUSTER_ID"
 sudo /opt/kafka/bin/kafka-storage.sh format -t $KAFKA_CLUSTER_ID -c /opt/kafka/config/kraft/server.properties
@@ -328,7 +327,7 @@ echo "Using cluster ID: $KAFKA_CLUSTER_ID"
 sudo systemctl daemon-reload
 sudo systemctl restart kafka
 sudo systemctl status kafka
-journalctl -u kafka
+
 
 ```
 ### node2 de ise birinci nodedan id ni alib istifade etmek lazimdir id ni asagidan almaq lazimdir
@@ -404,7 +403,15 @@ echo "test bob" | /opt/kafka/bin/kafka-console-producer.sh --bootstrap-server lo
 --consumer-property sasl.mechanism=PLAIN \
 --consumer-property sasl.jaas.config='org.apache.kafka.common.security.plain.PlainLoginModule required username="bob" password="bob-password";'
 ```
-
+### Kafkada sasl qurasdirandan sonra admin useri ile her hansi meselen topic yaratmaq konfiqurasyasi
+```bash
+/opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 \
+--command-config /opt/kafka/config/admin-client.conf \
+--create \
+--topic test-topic \
+--partitions 3 \
+--replication-factor 1
+```
 ### Developere vermek ucun lazim olanlar
 
 - ip ve port
