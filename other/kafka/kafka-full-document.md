@@ -39,7 +39,7 @@ sudo cp /opt/kafka/config/server.properties /opt/kafka/config/kraft/server-2.pro
 
 ```
 ### Properties fayli-1ci nod ucun server-properties
-```
+```bash
 process.roles=broker,controller
 node.id=1
 controller.quorum.voters=1@x.x.x.x:9093, 2@y.y.y.y:9093
