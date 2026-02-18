@@ -513,6 +513,7 @@ cat test.txt
 ```
 ## 
 # Gun 21
+## simple github ci cd
 ```yaml
 name: CI pipeline
 
@@ -539,3 +540,8 @@ jobs:
     - name: package json faylinda test scriptlerini ise salir
       run: npm run dev
 ```
+## pv ve storage classlarda recalim polycy ve access modes
+- reclaimpolicy - delete olsa pv/pvc silinse disk de avtomatik silinir nodun oz daxilindeki storage helline aiddir 
+- reclaimpolicy - retaindirse pv silinse de kenarda network tipli storagede qalir
+- read write once  odur ki disk nodun uzerindedirse basqa nodedaki pod bu pv-e qosual bilmez
+- read write many - odur ki disk nod yox network uzerindedirse basqa nodedaki podlar da bu pvlerden istifade ede biler
