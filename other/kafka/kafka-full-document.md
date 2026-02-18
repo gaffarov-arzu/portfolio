@@ -1,5 +1,9 @@
 # Kafka Full dokumentasya
 ## Kafka yuklenmesi ver qurasdirilmasi
+## Service faylinda asagidaki hisseni node bir ucun server-1 node iki ucun server-2 etmek lazimdir
+
+ExecStart=/opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/kraft/server-1.properties
+
 ### Yuklenmesi
 
 ```bash
@@ -130,7 +134,8 @@ After=network.target
 Type=simple
 Environment="JAVA_HOME=/usr/lib/jvm/java-1.17.0-openjdk-amd64"
 # Directly starting with the properties file
-ExecStart=/opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/kraft/server.properties
+
+ExecStart=/opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/kraft/server-1.properties
 ExecStop=/opt/kafka/bin/kafka-server-stop.sh
 Restart=on-failure
 User=root
@@ -147,7 +152,7 @@ sudo rm -rf /var/lib/kafka/*
 sudo rm -rf /var/log/kafka/*  
 KAFKA_CLUSTER_ID=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 echo "Using cluster ID: $KAFKA_CLUSTER_ID"
-sudo /opt/kafka/bin/kafka-storage.sh format -t $KAFKA_CLUSTER_ID -c /opt/kafka/config/kraft/server.properties
+sudo /opt/kafka/bin/kafka-storage.sh format -t $KAFKA_CLUSTER_ID -c /opt/kafka/config/kraft/server-1.properties
 sudo systemctl daemon-reload
 sudo systemctl enable kafka 
 sudo systemctl start kafka 
@@ -156,7 +161,7 @@ sudo systemctl status kafka
 ### kafka clusterinde ikici node da node-1 den generasya olunan id ni alib asagidakilari edirik
 ```bash
 sudo rm -rf /var/log/kafka* /opt/kafka/data/* /var/lib/kafka/* 
-sudo /opt/kafka/bin/kafka-storage.sh format -t NODE1-ID   -c /opt/kafka/config/kraft/server.properties
+sudo /opt/kafka/bin/kafka-storage.sh format -t NODE1-ID   -c /opt/kafka/config/kraft/server-2.properties
 sudo systemctl daemon-reload
 sudo systemctl enable kafka 
 sudo systemctl start kafka 
@@ -330,7 +335,7 @@ sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule require
 sudo rm -rf /var/log/kafka* /opt/kafka/data/* /var/lib/kafka/* 
 KAFKA_CLUSTER_ID=$(/opt/kafka/bin/kafka-storage.sh random-uuid)
 echo "Using cluster ID: $KAFKA_CLUSTER_ID"
-/opt/kafka/bin/kafka-storage.sh format -t $KAFKA_CLUSTER_ID -c /opt/kafka/config/kraft/server.properties
+/opt/kafka/bin/kafka-storage.sh format -t $KAFKA_CLUSTER_ID -c /opt/kafka/config/kraft/server-1.properties
 sudo systemctl daemon-reload
 sudo systemctl restart kafka
 sudo systemctl status kafka
@@ -340,7 +345,7 @@ sudo systemctl status kafka
 ### node2 de ise birinci nodedan id ni alib istifade etmek lazimdir id ni asagidan almaq lazimdir
 ```bash
 sudo rm -rf /var/log/kafka* /opt/kafka/data/* /var/lib/kafka/* 
-sudo /opt/kafka/bin/kafka-storage.sh format -t NODE1-ID   -c /opt/kafka/config/kraft/server.properties
+sudo /opt/kafka/bin/kafka-storage.sh format -t NODE1-ID   -c /opt/kafka/config/kraft/server-2.properties
 sudo systemctl daemon-reload
 sudo systemctl enable kafka 
 sudo systemctl start kafka 
