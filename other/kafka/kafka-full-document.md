@@ -25,13 +25,13 @@ sudo cp /opt/kafka/config/server.properties /opt/kafka/config/kraft/server-1.pro
 ```
 process.roles=broker,controller
 node.id=1
-controller.quorum.voters=1@10.13.13.92:9093, 2@10.13.13.93:9093
+controller.quorum.voters=1@x.x.x.x:9093, 2@y.y.y.y:9093
 
 inter.broker.listener.name=SASL_PLAINTEXT
 controller.listener.names=CONTROLLER
 # Listeners and Network Configuration
 listeners=SASL_PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
-advertised.listeners=SASL_PLAINTEXT://10.13.13.92:9092
+advertised.listeners=SASL_PLAINTEXT://x.x.x.x:9092
 
 # Security Mapping and Protocols
 listener.security.protocol.map=CONTROLLER:SASL_PLAINTEXT,SASL_PLAINTEXT:SASL_PLAINTEXT
@@ -73,13 +73,13 @@ group.initial.rebalance.delay.ms=0
 ```bash
 process.roles=broker,controller
 node.id=2
-controller.quorum.voters=1@10.13.13.92:9093, 2@10.13.13.93:9093
+controller.quorum.voters=1@x.x.x.x:9093, 2@y.y.y.y:9093
 
 inter.broker.listener.name=SASL_PLAINTEXT
 controller.listener.names=CONTROLLER
 # Listeners and Network Configuration
 listeners=SASL_PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
-advertised.listeners=SASL_PLAINTEXT://10.13.13.92:9092
+advertised.listeners=SASL_PLAINTEXT://y.y.y.y:9092
 
 # Security Mapping and Protocols
 listener.security.protocol.map=CONTROLLER:SASL_PLAINTEXT,SASL_PLAINTEXT:SASL_PLAINTEXT
