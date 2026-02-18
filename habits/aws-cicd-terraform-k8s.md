@@ -512,3 +512,30 @@ ls
 cat test.txt
 ```
 ## 
+# Gun 21
+```yaml
+name: CI pipeline
+
+on: 
+ push:
+   branches: [ "main" ]
+   
+jobs: 
+ build-test:
+  runs-on: ubuntu-latest
+
+  steps:
+    - name: repnu klonlayir runner masinina
+      uses: actions/checkout@v4
+
+    - name: Node.js qurasdirir runner masinina node ve npm komandalarinin istifadesi ucun
+      uses: actions/setup-node@v4
+      with:
+         node-version: 18
+         
+    - name: runner masinda clida asagidaki komandani isledir package.json faylini oxuyur lazimi dependencyleri yukleyir
+      run: npm install
+
+    - name: package json faylinda test scriptlerini ise salir
+      run: npm run dev
+```
