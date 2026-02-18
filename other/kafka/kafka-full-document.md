@@ -339,7 +339,12 @@ sudo systemctl status kafka
 ```
 ### node2 de ise birinci nodedan id ni alib istifade etmek lazimdir id ni asagidan almaq lazimdir
 ```bash
- echo "Using cluster ID: $KAFKA_CLUSTER_ID"
+sudo rm -rf /var/log/kafka* /opt/kafka/data/* /var/lib/kafka/* 
+sudo /opt/kafka/bin/kafka-storage.sh format -t NODE1-ID   -c /opt/kafka/config/kraft/server.properties
+sudo systemctl daemon-reload
+sudo systemctl enable kafka 
+sudo systemctl start kafka 
+sudo systemctl status kafka
 ```
 ### Kafkanin log yazacagi yerleri yarat
 
