@@ -4,7 +4,7 @@
 ```bash
 ExecStart=/opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/kraft/server-1.properties
 ```
-### Yuklenmesi
+### Birinci serverde yuklenmesi
 
 ```bash
 sudo apt update 
@@ -21,6 +21,23 @@ sudo mkdir -p /opt/kafka/config/kraft
 sudo cp /opt/kafka/config/server.properties /opt/kafka/config/kraft/server-1.properties
 ```
 
+### Ikinci serverde yuklenmesi
+
+```bash
+sudo apt update 
+sudo apt install openjdk-17-jdk -y
+sudo wget https://dlcdn.apache.org/kafka/4.0.0/kafka_2.13-4.0.0.tgz
+sudo tar -xvf kafka_2.13-4.0.0.tgz
+sudo mv kafka_2.13-4.0.0 /opt
+sudo ln -s /opt/kafka_2.13-4.0.0 /opt/kafka
+sudo echo 'export PATH=/opt/kafka/bin:$PATH' >> /root/.profile && source /root/.profile
+sudo mkdir -p /var/log/kafka
+sudo chown -R kafka:kafka /var/log/kafka
+sudo chmod -R 755 /var/log/kafka
+sudo mkdir -p /opt/kafka/config/kraft
+sudo cp /opt/kafka/config/server.properties /opt/kafka/config/kraft/server-2.properties
+
+```
 ### Properties fayli-1ci nod ucun server-properties
 ```
 process.roles=broker,controller
@@ -115,7 +132,7 @@ transaction.state.log.min.isr=2
 group.initial.rebalance.delay.ms=0
 ```
 
-### Kafka service fayli
+### Kafka service fayli - Her iki server ucun
 
 ```bash
 #/etc/systemd/system/kafka.service
@@ -127,6 +144,9 @@ After=network.target
 Type=simple
 Environment="JAVA_HOME=/usr/lib/jvm/java-1.17.0-openjdk-amd64"
 # Directly starting with the properties file
+
+#ikinci server ucun ExecStart=/opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/kraft/server-2.properties
+
 
 ExecStart=/opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/kraft/server-1.properties
 ExecStop=/opt/kafka/bin/kafka-server-stop.sh
@@ -162,16 +182,20 @@ sudo systemctl status kafka
 
 ## Kafka komandalar
 
-### Kafkada topiclerin siyahisi
+### Kafkada topiclerin siyahisi - Asagidaki komandalar acl qurasdirdigina gore her defe --command-config /opt/kafka/config/admin-client.conf optionu istifade edilmelidir 
 
 ```bash
-/opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --list
+/opt/kafka/bin/kafka-topics.sh \
+  --bootstrap-server x.x.x.x:9092 \
+  --command-config /opt/kafka/config/admin-client.conf \
+  --list
+
 ```
 
 ### Kafkada clusterin statusu
 
 ```bash
-/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server localhost:9092
+/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server x.x.x.x:9092
 ```
 
 ### Kafkada topic yaratmaq
@@ -250,56 +274,6 @@ sudo systemctl status kafka
 
 ### Kafkada partition topicin nece yere bolunmesidir, her partitionda coxlu mesaj ola biler,  replica ise o partitionun kopasidir
 
-## Kafkada acl elave edilenden sonra umumi properties fayli-bir node ucun
-
-```bash
-#vim /opt/kafka/config/kraft/server.properties
-# Role and Node Configuration
-process.roles=broker,controller
-node.id=1
-controller.quorum.voters=1@127.0.0.1:9093
-
-# Listeners and Network Configuration
-listeners=SASL_PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
-advertised.listeners=SASL_PLAINTEXT://127.0.0.1:9092
-controller.listener.names=CONTROLLER
-
-# Security Mapping and Protocols
-listener.security.protocol.map=CONTROLLER:SASL_PLAINTEXT,SASL_PLAINTEXT:SASL_PLAINTEXT
-sasl.enabled.mechanisms=PLAIN
-security.inter.broker.protocol=SASL_PLAINTEXT
-sasl.mechanism.inter.broker.protocol=PLAIN
-sasl.mechanism.controller.protocol=PLAIN
-
-# JAAS Configuration - Inline Credentials
-# Using backslashes for multi-line readability
-listener.name.sasl_plaintext.plain.sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required \
-    username="admin" \
-    password="admin-password" \
-    user_admin="admin-password" \
-    user_alice="alice-password";
-
-listener.name.controller.plain.sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required \
-    username="admin" \
-    password="admin-password" \
-    user_admin="admin-password";
-
-# Authorization (ACLs)
-authorizer.class.name=org.apache.kafka.metadata.authorizer.StandardAuthorizer
-super.users=User:admin
-
-# Log and Storage Management
-log.dirs=/var/log/kafka
-num.partitions=1
-default.replication.factor=1
-offsets.topic.replication.factor=1
-transaction.state.log.replication.factor=1
-transaction.state.log.min.isr=1
-group.initial.rebalance.delay.ms=0
-
-
-```
-
 ### Admin accessler vermek ucun
 
 ```bash
@@ -321,19 +295,7 @@ sasl.mechanism=PLAIN
 sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="alice" password="alice-password";
 ```
 
-### Kafkada acl kimi configler deyisenler sonra asagidaki emeliyyatlari edirik *yeni id alib clusteri yeniden basladiriq idler /var/log/kafka da olur
 
-```bash
-sudo rm -rf /var/log/kafka* /opt/kafka/data/* /var/lib/kafka/* 
-KAFKA_CLUSTER_ID=$(/opt/kafka/bin/kafka-storage.sh random-uuid)
-echo "Using cluster ID: $KAFKA_CLUSTER_ID"
-/opt/kafka/bin/kafka-storage.sh format -t $KAFKA_CLUSTER_ID -c /opt/kafka/config/kraft/server-1.properties
-sudo systemctl daemon-reload
-sudo systemctl restart kafka
-sudo systemctl status kafka
-
-
-```
 ### node2 de ise birinci nodedan id ni alib istifade etmek lazimdir id ni asagidan almaq lazimdir
 ```bash
 sudo rm -rf /var/log/kafka* /opt/kafka/data/* /var/lib/kafka/* 
@@ -354,7 +316,7 @@ sudo chmod -R 755 /var/log/kafka
 ### Permission verdiyimiz userin icazelerine baxmaq ucun 
 
 ```bash
-/opt/kafka/bin/kafka-acls.sh --bootstrap-server localhost:9092 --command-config /opt/kafka/config/admin-client.conf --list
+/opt/kafka/bin/kafka-acls.sh --bootstrap-server x.x.x.x:9092 --command-config /opt/kafka/config/admin-client.conf --list
 ```
 
 ### Yeni bir user ucun server.prpertiesde user_bob="bob-password" yaradiriq diger userin altina
