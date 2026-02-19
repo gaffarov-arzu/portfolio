@@ -540,7 +540,7 @@ jobs:
     - name: package json faylinda test scriptlerini ise salir
       run: npm run dev
 ```
-## pv ve storage classlarda recalim polycy ve access modes
+## pv ve storage classlarda recalim policy ve access modes
 - reclaimpolicy - delete olsa pv/pvc silinse disk de avtomatik silinir nodun oz daxilindeki storage helline aiddir 
 - reclaimpolicy - retaindirse pv silinse de kenarda network tipli storagede qalir
 - read write once  odur ki disk nodun uzerindedirse basqa nodedaki pod bu pv-e qosual bilmez
