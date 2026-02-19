@@ -1,4 +1,4 @@
-# awsde nat gatewaylari siyahilasdirir
+# awsde nat gatewaylari siyahilasdirir butun regionlar ucun
 ```bash
 for region in $(aws ec2 describe-regions --query "Regions[*].RegionName" --output text); do
     echo "Region: $region"
