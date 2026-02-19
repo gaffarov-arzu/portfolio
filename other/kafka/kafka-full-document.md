@@ -427,6 +427,35 @@ echo "test bob" | /opt/kafka/bin/kafka-console-producer.sh --bootstrap-server lo
 --partitions 3 \
 --replication-factor 1
 ```
+### consumer ile mesaj oxumaq - bunun neticesinde test-group ozu yarandi
+```bash
+bash /opt/kafka/bin/kafka-console-consumer.sh \
+--bootstrap-server kaftotal1.mia.gov.az:9092 \
+--topic test \
+--group test-group \
+--consumer.config /opt/kafka/config/admin-client.conf \
+--from-beginning
+```
+
+### consumer gruplarin siyahisi
+```bash
+bash /opt/kafka/bin/kafka-consumer-groups.sh \
+--bootstrap-server x.x.x.x:9092 \
+--list \
+--command-config /opt/kafka/config/admin-client.conf
+```
+
+### consumer group haqqinda melumat
+```bash
+bash /opt/kafka/bin/kafka-consumer-groups.sh \
+--bootstrap-server kaftotal1.mia.gov.az:9092 \
+--describe \
+--group test-group \
+--command-config /opt/kafka/config/admin-client.conf
+```
+
+
+
 ### Developere vermek ucun lazim olanlar
 
 - ip ve port
