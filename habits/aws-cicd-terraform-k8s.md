@@ -1,5 +1,5 @@
 
-# Github ci/cd + Terraform + AWS + Kubernetes öyrənirəm 
+# Finding Remote DevOps job 
 # Gun-1-9
 
 ## 1. aws sts get-caller-identity
