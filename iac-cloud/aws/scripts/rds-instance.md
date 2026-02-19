@@ -1,4 +1,4 @@
-# asagidaki script awsde rdslarin siyahisini tipini verir
+# asagidaki script awsde butun regionlarda rdslarin siyahisini tipini verir
 ```bash
 for db in $(aws rds describe-db-instances --query "DBInstances[*].DBInstanceIdentifier" --output text); do
     echo "RDS Instance: $db"
