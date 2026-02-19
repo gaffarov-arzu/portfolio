@@ -1,5 +1,5 @@
 
-# Working as Remote Devops
+# Learning Github-cicd, Kubernetes, AWS, Terraform
 # Gun-1-9
 
 ## 1. aws sts get-caller-identity
