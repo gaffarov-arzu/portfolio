@@ -1,8 +1,12 @@
 # awsde nat gatewaylari siyahilasdirir
 ```bash
-echo "NAT Gateways:"
-aws ec2 describe-nat-gateways \
-    --query "NatGateways[*].[NatGatewayId,VpcId,State,SubnetId,ConnectivityType]" \
-    --output table
-echo "--------------------------------------"
+for region in $(aws ec2 describe-regions --query "Regions[*].RegionName" --output text); do
+    echo "Region: $region"
+    aws ec2 describe-nat-gateways \
+        --region $region \
+        --query "NatGateways[*].[NatGatewayId,VpcId,State,SubnetId,ConnectivityType]" \
+        --output table
+    echo "--------------------------------------"
+done
+
 ```
