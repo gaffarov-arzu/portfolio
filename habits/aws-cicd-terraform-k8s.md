@@ -545,3 +545,97 @@ jobs:
 - reclaimpolicy - retaindirse pv silinse de kenarda network tipli storagede qalir
 - read write once  odur ki disk nodun uzerindedirse basqa nodedaki pod bu pv-e qosual bilmez
 - read write many - odur ki disk nod yox network uzerindedirse basqa nodedaki podlar da bu pvlerden istifade ede biler
+
+# Gun 22 
+## asagidaki script awsde elastic block storageleri verir
+```bash
+for region in $(aws ec2 describe-regions --query "Regions[*].RegionName" --output text); do
+    echo "Region: $region"
+    aws ec2 describe-volumes --region $region \
+        --query "Volumes[*].[VolumeId,Size,VolumeType,State,Attachments[0].InstanceId]" \
+        --output table
+    echo "--------------------------------------"
+done
+```
+## awsde her tip lb-ni regiona gore verir hem classic hem de diger loadbalancerleri
+```bash
+for region in $(aws ec2 describe-regions --query "Regions[*].RegionName" --output text); do
+    echo "Region: $region"
+    
+    # Classic Load Balancer (ELB v1)
+    clb_count=$(aws elb describe-load-balancers --region $region --query "length(LoadBalancerDescriptions)" --output text 2>/dev/null)
+    if [ "$clb_count" != "0" ] && [ "$clb_count" != "None" ]; then
+        echo "Classic Load Balancers ($clb_count):"
+        aws elb describe-load-balancers \
+            --region $region \
+            --query "LoadBalancerDescriptions[*].[LoadBalancerName,DNSName,VPCId,AvailabilityZones,Scheme]" \
+            --output table
+    else
+        echo "No Classic Load Balancers in this region or insufficient permissions."
+    fi
+    
+    # Application / Network / Gateway Load Balancers (ELB v2)
+    alb_count=$(aws elbv2 describe-load-balancers --region $region --query "length(LoadBalancers)" --output text 2>/dev/null)
+    if [ "$alb_count" != "0" ] && [ "$alb_count" != "None" ]; then
+        echo "ALB/NLB/Gateway Load Balancers ($alb_count):"
+        aws elbv2 describe-load-balancers \
+            --region $region \
+            --query "LoadBalancers[*].[LoadBalancerName,Scheme,Type,DNSName,State.Code,AvailabilityZones[*].ZoneName]" \
+            --output table
+    else
+        echo "No ALB/NLB/Gateway Load Balancers in this region or insufficient permissions."
+    fi
+    
+    echo "--------------------------------------"
+done
+```
+## awsde nat gatewaylari siyahilasdirir butun regionlar ucun
+```bash
+for region in $(aws ec2 describe-regions --query "Regions[*].RegionName" --output text); do
+    echo "Region: $region"
+    aws ec2 describe-nat-gateways \
+        --region $region \
+        --query "NatGateways[*].[NatGatewayId,VpcId,State,SubnetId,ConnectivityType]" \
+        --output table
+    echo "--------------------------------------"
+done
+
+```
+
+## asagidaki script awsde butun regionlarda rdslarin siyahisini tipini verir
+```bash
+regions=$(aws ec2 describe-regions --query "Regions[*].RegionName" --output text)
+for region in $regions; do
+    echo "Region: $region"
+    for db in $(aws rds describe-db-instances --region $region --query "DBInstances[*].DBInstanceIdentifier" --output text); do
+        echo "RDS Instance: $db"
+        aws rds describe-db-instances \
+            --region $region \
+            --db-instance-identifier $db \
+            --query "DBInstances[*].[DBInstanceIdentifier,DBInstanceClass,Engine,MultiAZ,AllocatedStorage,StorageType]" \
+            --output table
+        echo "--------------------------------------"
+    done
+done
+```
+
+## aws de butun regionlarda s3 bucketlerin siyahisi ve storage ucun script
+
+```bash
+for bucket in $(aws s3api list-buckets --query "Buckets[*].Name" --output text); do
+    region=$(aws s3api get-bucket-location --bucket $bucket --query "LocationConstraint" --output text)
+    [ "$region" == "None" ] && region="us-east-1"  # us-east-1 için özel durum
+    
+    echo "Bucket: $bucket (Region: $region)"
+    
+    if aws s3 ls s3://$bucket --region $region --recursive --summarize >/dev/null 2>&1; then
+        aws s3 ls s3://$bucket --region $region --recursive --human-readable --summarize \
+            | grep "Total Objects\|Total Size"
+    else
+        echo "Could not access bucket (check permissions or existence)"
+    fi
+
+    echo "--------------------------------------"
+done
+
+```
