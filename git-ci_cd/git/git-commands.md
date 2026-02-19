@@ -130,3 +130,7 @@ git config --global --add safe.directory /home/ubuntu/life-pro
 ```bash
 git pull --no-rebase origin main
 ```
+## gitde istenilen commite donmek
+```bash
+ git reset --hard a31c9241c1ae18d624c020211dddac0656c0463a
+```
