@@ -656,3 +656,13 @@ for bucket in $(aws s3api list-buckets --query "Buckets[*].Name" --output text);
 done
 
 ```
+# Gun 23
+## Kubernetes componentleri
+### master node
+- kube-apiserver - > kubectl emrinin getdiyi yer REST API -- tek kubectl yox butun komponenctlerin
+- etcd - clusterin databsesidir, yaddasdir
+- kube-controller ise kubernetesde pod sayini sabit saxlamaq ucun meselen replica 3 durse amma 1-pod dusubse qaldirir tezeden --- Qerar-vericidir
+- kubec-scheduler hemin podun harada olacagini controllere deyir yeni cpu ram afinity, tain bunlari nezere alim harada qalxacagini planlayir --- node secimi 
+### Worker node - pod burada isleyir 
+- kubelet - api serverden melumati alir containerleri yaradir ve ya podlari
+- kube-proxy servis ve networking meselelerini hell edir 
