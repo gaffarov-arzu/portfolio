@@ -1,4 +1,7 @@
 # databaselar
+## novleri
+- sql - table formatinda
+- nosql - dokument seklinde, key-value seklinde, json fromatinda
 ## sqllite
 ### db fayli ile girmek
 ```bash
@@ -9,9 +12,13 @@ sqlite3 life_balance.db
 quit
 .exit
 ```
+### tablolarin adina baxmaq siyahiya baxmaq
+```
+sqlite3 life_balance.db "SELECT name FROM sqlite_master WHERE type='table';"
+```
 ### tablolara baxmaq sutunlara baxmaq ve lazimi datani almaq
 ```sql
-tables
+.tables
 SELECT * FROM history;
 ```
 ### sutunlarin listesine baxmaq ucun bir tableda birden cox sutun olur key kimi onun icinde ise setirler olur sqllite fayl ile qosulur
@@ -41,7 +48,10 @@ CREATE USER muser WITH ENCRYPTED PASSWORD 'mypassword';
 ```sql
 GRANT ALL PRIVILEGES ON DATABASE musluckdb to muser;
 GRANT ALL PRIVILEGES ON SCHEMA public TO muser;
-
+```
+### permission islemese 
+```sql
+GRANT USAGE, CREATE ON SCHEMA public TO muser;
 ```
 ### sql dbs-inden postgresqle migrasya ucun pgloader istifade edilir
 ```bash
