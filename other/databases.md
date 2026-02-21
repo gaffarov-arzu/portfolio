@@ -11,8 +11,8 @@ quit
 ```
 ### tablolara baxmaq sutunlara baxmaq ve lazimi datani almaq
 ```sql
-tablolara baxmaq .tables
-tablodan SELECT * FROM history;
+tables
+SELECT * FROM history;
 ```
 ### sutunlarin listesine baxmaq ucun bir tableda birden cox sutun olur key kimi onun icinde ise setirler olur sqllite fayl ile qosulur
 ```sql
@@ -37,7 +37,7 @@ CREATE DATABASE musluckdb;
 ```sql
 CREATE USER muser WITH ENCRYPTED PASSWORD 'mypassword';
 ```
-### hansisa usere hansisa db ucun access vermek - tek dbe access bes etmir schemaya da access verilir
+### hansisa usere hansisa db ucun access vermek - tek dbe access bes etmir schemaya da access verilir schema ise databsesin altindadir
 ```sql
 GRANT ALL PRIVILEGES ON DATABASE musluckdb to muser;
 GRANT ALL PRIVILEGES ON SCHEMA public TO muser;
