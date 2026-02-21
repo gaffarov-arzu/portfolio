@@ -134,3 +134,4 @@ git pull --no-rebase origin main
 ```bash
  git reset --hard a31c9241c1ae18d624c020211dddac0656c0463a
 ```
+## git de localda deyisiklik varsa amma sen isteyirsen ki remotu getirib localin uzerine yazasan o zaman pull isletmek yox fetch elemek lazimdir sadece remotu getirsin apply etmesin
