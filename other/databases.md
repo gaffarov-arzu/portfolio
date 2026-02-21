@@ -1,3 +1,6 @@
+# databaselar
+## sqllite
+
 1)sqlite3 life_balance.db
 sqllite3 girmek
 sqlliteden cixmaq .quit ya da .exit
@@ -6,3 +9,13 @@ tablodan SELECT * FROM history;
 sutunlarin listesine baxmaq ucun PRAGMA table_info(history);
 bir tableda birden cox sutun olur key kimi onun icinde ise setirler olur
 sqllite fayl ile qosulur
+
+## postrgresql
+### qurulmasi 
+```bash
+sudo apt install postgresql postgresql-contrib
+```
+### qosulmaq
+```bash
+ sudo u postgresql psql
+```
