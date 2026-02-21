@@ -743,4 +743,5 @@ spec:
     - port: 80
       targetPort: 80
 ```
-
+## aws loadbalanceri istifade etmek ucun metallb ni silmek lazimdir
+aws loadbalancer da hem private hem de public ip vere bilir
