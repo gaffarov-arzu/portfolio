@@ -37,7 +37,14 @@ CREATE DATABASE musluckdb;
 ```sql
 CREATE USER muser WITH ENCRYPTED PASSWORD 'mypassword';
 ```
-### hansisa usere hansisa db ucun access vermek
+### hansisa usere hansisa db ucun access vermek - tek dbe access bes etmir schemaya da access verilir
 ```sql
 GRANT ALL PRIVILEGES ON DATABASE musluckdb to muser;
+GRANT ALL PRIVILEGES ON SCHEMA public TO muser;
+
 ```
+### sql dbs-inden postgresqle migrasya ucun pgloader istifade edilir
+```bash
+pgloader sqlite:///life-balance.db postgresql://muser:mypassword@localhost:5432/musluckdb
+```
+### 
