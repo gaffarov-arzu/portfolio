@@ -666,3 +666,62 @@ done
 ### Worker node - pod burada isleyir 
 - kubelet - api serverden melumati alir containerleri yaradir ve ya podlari
 - kube-proxy servis ve networking meselelerini hell edir 
+
+# Gun 24
+## Kubernetes servisler
+- podlarin ipleri sondukce deyisir ona gore servis istifade olunur
+- servisler - label- selector ederek podlari tapir onlara sabit ip ve dns verir, eyni labelde olanlari loadblance edir
+### cluster ip
+- yalniz cluster daxilinde istifade edilir meselen front backendle danismasi ucun
+### nodePort
+- nodun ipsi-ni istifade ederek acir- 3000-32767 araliginda port istifade edilir
+### loadbalancer
+- loadbalancer - in progress
+## flow beledir client servise muraciet edir servis kubeproxiye muraciet edir o da poda muraciet edir
+## dns ise bele olur - servis-adi.namespace.svc.cluster.local bunu etmek ucun deployment ve servis yaradib yoxlayaq
+### deployment yaml
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app
+  labels:
+    app: web
+spec:
+    replicas: 2
+    selector:
+      matchLabels:
+       app: web
+    template:
+      metadata:
+        labels:
+          app: web
+      spec:
+        containers:
+          - name: nginx
+            image: nginx:latest
+            ports:
+              - containerPort: 80
+```
+### servis yaml
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-svc
+  namespace: default
+spec:
+ selector:
+   app: web
+ ports:
+   - port: 80
+ type: ClusterIP
+```
+### servisin arxasindaki podlarin iplerini ver
+```bash
+ kubectl get endpoint web
+```
+### yaranan podlardan birinin icine girib asagidaki komandani isletsek gorerik ki servis arxadaki podlar arasinda loadbalance edir
+```bash
+kubectl exec -it web-app-6c79984869-5dwt7 -- curl http://web-svc.default.svc.cluster.local
+```
