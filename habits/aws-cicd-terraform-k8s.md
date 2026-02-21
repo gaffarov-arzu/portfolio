@@ -676,7 +676,7 @@ done
 ### nodePort
 - nodun ipsi-ni istifade ederek acir- 3000-32767 araliginda port istifade edilir
 ### loadbalancer
-- loadbalancer - in progress
+- loadbalancer - clouddan  ip alir, metallb da ise public ip almir, public ucun alb istifade etmek lazimdir
 ## flow beledir client servise muraciet edir servis kubeproxiye muraciet edir o da poda muraciet edir
 ## dns ise bele olur - servis-adi.namespace.svc.cluster.local bunu etmek ucun deployment ve servis yaradib yoxlayaq
 ### deployment yaml
@@ -725,3 +725,22 @@ spec:
 ```bash
 kubectl exec -it web-app-6c79984869-5dwt7 -- curl http://web-svc.default.svc.cluster.local
 ```
+## aws de loadbalancer ve metallb istifade etmek
+### metal lb ucun asagida ip araligi veririk sonra servis yaml apply edirik
+```bash
+ microk8s enable metallb 172.31.15.240-172.41.15.250
+```
+ ```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-lb
+spec:
+  type: LoadBalancer
+  selector:
+    app: web
+  ports:
+    - port: 80
+      targetPort: 80
+```
+
