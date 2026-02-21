@@ -744,4 +744,5 @@ spec:
       targetPort: 80
 ```
 ## aws loadbalanceri istifade etmek ucun metallb ni silmek lazimdir
-aws loadbalancer da hem private hem de public ip vere bilir
+- aws loadbalancer da hem private hem de public ip vere bilir, bunun ucun awsde subnet route table ve internet gateway duzgun qurasdirilmali ve attach edilmelidir
+
