@@ -34,7 +34,7 @@ sudo apt install postgresql postgresql-contrib
 ```
 ### qosulmaq
 ```bash
- sudo u postgresql psql
+ sudo -u postgresql psql
 ```
 ### db yaratmaq
 ```sql
