@@ -746,3 +746,35 @@ spec:
 ## aws loadbalanceri istifade etmek ucun metallb ni silmek lazimdir
 - aws loadbalancer da hem private hem de public ip vere bilir, bunun ucun awsde subnet route table ve internet gateway duzgun qurasdirilmali ve attach edilmelidir
 
+# Gun 25
+## VPS - aws hesabinda izolyasya olunmiv virtual sebekeidr onun icinde subnetler routetableler internet gatewaylar nat gatewayler security grouplar Nacl lar var
+### VPS yaradilmasi
+#### default 172.31.0.0/16 olur, ozumuz ize /16 (65536 ip)  ve /28 ( 16ip) araliginda vermeliyik
+#### 3 kategoriyada
+-  10.0.0.0/16 boyuk vpc
+-  172.16.0.0/12 orta vpc
+-  192.168.0.0/16 kicik vpc 
+#### vpc- in terraform ile yaradilmasi ve silinmesi 
+```tf
+provider "aws" {
+  region = "eu-central-1"
+}
+
+resource "aws_vpc" "my_portfolio" {
+  cidr_block = "10.0.0.0/16"
+  enable_dns_support   = true
+  enable_dns_hostnames = true
+
+  tags = {
+    Name = "my-portfolio-vpc"
+  }
+}
+```
+```bash
+terraform init
+#terraform init main.tf - daki providerleri yeni tercumecileri yukleyir aws kimi - aws api ile danismasi ucun lazimdir, state fayli hazirlayir
+terraform plan
+terraform apply
+```
+#### subnetting hesablanmasi (aws-de subnetin istifade edilib edilmediyini bilmek ucun avilable iplerin sayina gore bilirek)
+##### subnetting
