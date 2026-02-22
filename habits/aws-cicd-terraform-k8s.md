@@ -747,6 +747,19 @@ spec:
 - aws loadbalancer da hem private hem de public ip vere bilir, bunun ucun awsde subnet route table ve internet gateway duzgun qurasdirilmali ve attach edilmelidir
 
 # Gun 25
+## Subnetting
+### ipv4 unvanlari 4 ededden ibaretdir, x.y.z.d bu ededler oktet adlanir 8 bit olur  meselen 10.0.0.0 heresi 8 reqemli sekilde tesvir edile biliner
+### yəni 10.0.0.0 her biri decimal reqeblerdir onlari binarie cevirende 8 eded 0 ve 1 le ifade olunur
+### meselen 10 reqeminin binariye cevrilmei:
+bitler bele gedir |128|64|32|16|8|4|2|1|
+sira ile gedirik 10 ucun
+1) 128 <= 10 xeyr o zaman > 
+
+
+
+
+
+
 ## VPS - aws hesabinda izolyasya olunmiv virtual sebekeidr onun icinde subnetler routetableler internet gatewaylar nat gatewayler security grouplar Nacl lar var
 ### VPS yaradilmasi
 #### default 172.31.0.0/16 olur, ozumuz ize /16 (65536 ip)  ve /28 ( 16ip) araliginda vermeliyik
@@ -776,9 +789,3 @@ terraform init
 terraform plan
 terraform apply
 ```
-#### subnet yaradilmasi console ve terraformile
-- meselen biz vpc yaratdiq 10.0.0.0/16 ile butunipler 
-
-#### subnetting hesablanmasi: (aws-de subnetin istifade edilib edilmediyini bilmek ucun avilable iplerin sayina gore bilirek)
-##### 172.31.80.0/20 hesablanmasi
-/20 
