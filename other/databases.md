@@ -40,10 +40,12 @@ sudo apt install postgresql postgresql-contrib
 ```sql
 CREATE DATABASE musluckdb;
 ```
-### userle password yaratmaq
+### userle password yaratmaq ve ya deyismek
 ```sql
 CREATE USER muser WITH ENCRYPTED PASSWORD 'mypassword';
+ALTER USER postgres WITH PASSWORD 'postgres123';
 ```
+
 ### hansisa usere hansisa db ucun access vermek - tek dbe access bes etmir schemaya da access verilir schema ise databsesin altindadir
 ```sql
 GRANT ALL PRIVILEGES ON DATABASE musluckdb to muser;
