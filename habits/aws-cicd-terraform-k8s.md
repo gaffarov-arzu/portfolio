@@ -776,5 +776,9 @@ terraform init
 terraform plan
 terraform apply
 ```
-#### subnetting hesablanmasi (aws-de subnetin istifade edilib edilmediyini bilmek ucun avilable iplerin sayina gore bilirek)
-##### subnetting
+#### subnet yaradilmasi console ve terraformile
+- meselen biz vpc yaratdiq 10.0.0.0/16 ile butunipler 
+
+#### subnetting hesablanmasi: (aws-de subnetin istifade edilib edilmediyini bilmek ucun avilable iplerin sayina gore bilirek)
+##### 172.31.80.0/20 hesablanmasi
+/20 
