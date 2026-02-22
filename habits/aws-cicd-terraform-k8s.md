@@ -752,9 +752,37 @@ spec:
 ### yəni 10.0.0.0 her biri decimal reqeblerdir onlari binarie cevirende 8 eded 0 ve 1 le ifade olunur
 ### meselen 10 reqeminin binariye cevrilmei:
 bitler bele gedir |128|64|32|16|8|4|2|1|
-sira ile gedirik 10 ucun
-1) 128 <= 10 xeyr o zaman > 
+sira ile gedirik 10 ucun -- 10 bele verile biler 1 dene 2 birdene 2 
+         |128|64|32|16|8|4|2|1|
+1 bele olur 0  0  0  0 0 0 0 1
+2 bele olur 0  0  0  0 0 0 1 0
+3 bele olur 0  0  0  0 0 0 1 1
+4 bele olur 0  0  0  0 0 1 0 0
+.
+.
+.
+10 bele olur 0  0  0  0 1 0 1 0
+0 lar ise hamisi 0 olur 
 
+0  0  0  0 1 0 1 0. 00000000 . 00000000 . 00000000  -----> 32 bit olur umumi 
+cidr /16 dirsa ilk 16 sebekedir 32 den 16 cixiriq qalani hostdur 
+/16 ucun host sayi bele olur 2*(32-16)= 65336 ip verile biliner
+
+           |128|64|32|16|8|4|2|1|
+16 bele olur 11111111.11111111.00000000.0000000
+10.0.0.0/16 ---> o demekdir ki 10.0 sabit qalani deyise biler 10.0.255.255 ola biler
+/16 cidrini 16 dan boyuk istenilen subnete bolmek olar amma 15 ve kiciye olmaz /24 olar meselen
+
+/24 ucun 2^(24-16) = 256 256 network sayi var demekdir
+/24 o demekdir ki ilk 24 sebeke ucun son 8 bit ise host ucun
+host sayi 2^8= 256 ip var host ucun
+yeni /16 da 16 bit evvel host ucun idi indi ise /24 olduguna gore 8 biti qaldi hosta 8 biti subnete verildi
+/24 olandan sonra subnetler 
+10.0.0.0 /24
+10.0.1.0 /24
+10.0.2.0 /24
+10.0.255.0 /24
+yeni /24 cid ucun 256 sebekei yaranir 
 
 
 
@@ -789,3 +817,4 @@ terraform init
 terraform plan
 terraform apply
 ```
+
