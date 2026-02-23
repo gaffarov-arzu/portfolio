@@ -1,4 +1,10 @@
 # print
-```py
-"pring("Merhaba DevOps")
+```bash 
+vim test.py
 ```
+```py
+"print("Merhaba DevOps")
+```
+# isletme
+```bash
+python3 
