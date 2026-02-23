@@ -60,3 +60,9 @@ GRANT USAGE, CREATE ON SCHEMA public TO muser;
 pgloader sqlite:///life-balance.db postgresql://muser:mypassword@localhost:5432/musluckdb
 ```
 ### 
+### postgresql de heryerden acmaq ucun
+```bash
+vim /etc/postgresql/14/main/postgresql.conf
+listen_addresses = '*'          
+
+```
