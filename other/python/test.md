@@ -45,3 +45,4 @@ print(serverler[0])
 # ikinci valueni cixarmaq ucun
 print(serverler[1])
 ```
+# dictionary
