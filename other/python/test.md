@@ -12,4 +12,6 @@ python3 test.py
 # python modunda terminalda
 ```bash
 python3
+server = "web01"
+print(server)
 ```
