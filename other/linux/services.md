@@ -33,3 +33,7 @@ systemctl list-units --type=service
 ```bash
 ps -fp 3095506
 ```
+# systemd servisi failed dirse onu inactive veziyetine getirmek ucun
+```bash
+sudo systemctl reset-failed
+```
