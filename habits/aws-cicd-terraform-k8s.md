@@ -817,4 +817,9 @@ terraform init
 terraform plan
 terraform apply
 ```
-
+# Gun 26
+## VPC ler region uzre verilir her region ucun bir default vpc, 
+## Subnet ise her vpc ucun 3 eded ferqli zonalarda veriir high aviilability ucun
+- eu-central-1a
+- eu-central-1b
+- eu-central-1c
