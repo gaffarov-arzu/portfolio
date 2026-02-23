@@ -7,4 +7,9 @@ vim test.py
 ```
 # isletme
 ```bash
-python3 
+python3 test.py
+```
+# python modunda terminalda
+```bash
+python3
+```
