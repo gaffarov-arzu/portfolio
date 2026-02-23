@@ -34,3 +34,14 @@ islemir = False
 print(isleyir)
 print(islemir)
 ```
+# bir nece variable ucun
+```bash
+python3
+serverler = ["webserver", "dbserver"]
+# umumi valuelari cixaracaq
+print(serverler)
+#ilk valueni cixarmaq ucun
+print(serverler[0])
+# ikinci valueni cixarmaq ucun
+print(serverler[1])
+```
