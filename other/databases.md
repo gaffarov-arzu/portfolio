@@ -64,5 +64,7 @@ pgloader sqlite:///life-balance.db postgresql://muser:mypassword@localhost:5432/
 ```bash
 vim /etc/postgresql/14/main/postgresql.conf
 listen_addresses = '*'          
+vim /etc/postgresql/14/main/pg_hba.conf
+host all all 0.0.0.0/0 md5
 
 ```
