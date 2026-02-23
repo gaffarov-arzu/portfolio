@@ -819,7 +819,14 @@ terraform apply
 ```
 # Gun 26
 ## VPC ler region uzre verilir her region ucun bir default vpc, 
-## Subnet ise her vpc ucun 3 eded ferqli zonalarda veriir high aviilability ucun
-- eu-central-1a
-- eu-central-1b
-- eu-central-1c
+## Subnet ise her vpc ucun bir nece  eded ferqli zonalarda veriir high aviilability ucun, meselen us-east-1 ucun bir nece zone var
+- us-east-1a
+- us-east-1b
+- us-east-1c
+- us-east-1d
+- us-east-1e
+- us-east-1f
+## biz 10.0.0.1/16 daxilinde asagidaki subnetleri vere bilerik
+- 10.0.1.0/24
+- 10.0.2.0/24
+- 10.0.3.0/24 ve saire
