@@ -45,4 +45,12 @@ print(serverler[0])
 # ikinci valueni cixarmaq ucun
 print(serverler[1])
 ```
-# dictionary
+# dictionary (key value formatinda)
+```bash
+python3
+server_ips = {
+... "logserver" : "0.0.0.0",
+... "dbserver" : "1.1.1.1",
+... "webserver" : "2.2.2.2" }
+print (server_ips["logserver"])
+```
