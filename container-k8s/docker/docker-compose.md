@@ -1,0 +1,1 @@
+# docker compose bir nece containeri bir fayldan yaratmaq ucundur variablelar falan volumelar port oradan  ordan verilir fayl ise yaddasda qalir docker ile qaldirsaq o fayl olmur volume port variableler el ile yazilir container run olur yoxa cixir gedir yaddasda bir fayl qalmir nece hansi spesifikasyalarla run oldu
