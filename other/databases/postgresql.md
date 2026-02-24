@@ -5,3 +5,10 @@ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-
 sudo apt update
 sudo apt install postgresql-client-15
 ```
+# postgresqle schemalarin siyahisi ve icazesi
+```sql
+\dn
+\dn+ pi
+```
+
+# databaseda schemaya user ucun konkret set etmek olur ki user birbasa o schema ile baglansin
