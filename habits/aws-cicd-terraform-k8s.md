@@ -844,4 +844,11 @@ Name= "console-subnet-1"
 }
 ```
 # Gun 27
-#### vpc-de subnetler sebekeini bölür, route table trafik yonlendirir, internet gateway ise internete cixis verir, security group instance seviyesinde firewalldur, network acl ise subnet seviyesinde firewalldur, internet gateway budur ki public subnoutde hem inbound hem de outbound sorgulari qebul ede biler, amma nat gatewayde ise yalniz internete cixis ucundur
+## Vpc terminleri
+#### vpc-de subnetler sebekeini bölür, 
+#### route table trafik yonlendirir, 
+#### internet gateway ise internete cixis verir, 
+#### security group instance seviyesinde firewalldur, 
+#### network acl ise subnet seviyesinde firewalldur, 
+#### internet gateway budur ki public subnoutde hem inbound hem de outbound sorgulari qebul ede biler, 
+####amma nat gatewayde ise yalniz internete cixis ucundur
