@@ -851,4 +851,4 @@ Name= "console-subnet-1"
 #### security group instance seviyesinde firewalldur, 
 #### network acl ise subnet seviyesinde firewalldur, 
 #### internet gateway budur ki public subnoutde hem inbound hem de outbound sorgulari qebul ede biler, 
-####amma nat gatewayde ise yalniz internete cixis ucundur
+#### amma nat gatewayde ise yalniz internete cixis ucundur
