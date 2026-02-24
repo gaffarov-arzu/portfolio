@@ -9,3 +9,7 @@ sudo systemctl restart actions.runner.ieltsfly-ieltsfly-landing.ielts-front.serv
 ```bash
 docker search privacyidea
 ```
+# containerde deyisiklik edib image halina getirib sonra yene run ede bilerik yeni davamli qalsin deye
+```bash
+docker commit container-id yeni-image:modified
+```
