@@ -68,3 +68,7 @@ vim /etc/postgresql/14/main/pg_hba.conf
 host all all 0.0.0.0/0 md5
 
 ```
+## postgresql de config tablesinin sutun key value tiplerini ve s gosterir
+```sql
+\d config
+```
