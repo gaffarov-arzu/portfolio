@@ -860,6 +860,8 @@ Name= "console-subnet-1"
 ### deyek ki iki route table var biri eyni subnet vpc icinde danismaq ucun birde basqa route table var o ise localda olmayan ne varsa ona muraciet edir burada gateway istifade olunur.
 ### her vpc ucun virtual layer 3 ip si var vpc de olan ec2 lar bir biri ile danisanda route table baxir localdirsa eyni vpcnin virtual router ip sine baxir ve diger ec2 a gedir
 ### hazirladigimiz route table subnete attach edilir
-
-
-
+## Internet gateway
+### internet gateway private ip ile isledilerse nat lazim olur, amma public ipdedirsa yalniz internet gateway bes edir private ip public ipe ya da public ip private ip e cevrilme olmur
+- internet gateway ise bele isleyir - public destinationa muraciet edilir, paketimizde source var destination var. Paket igw e catande source adresimiz private ipden deyisilir olur public ip, destination eyni qalir, sonra o paket kenara cixandan sonra geri qayidanda, yeni hara muraciet 
+etmisdise ordan qayidanda paketin icinde source ip bizim public ip miz olur bu da igw de qeyd edilir, paket igw-e catande bu public ip deyisiir olur bizim private ip miz ve paket gedir ec2 a catir.
+- paket igw e catmamis natgatewayda public ip e cevrilir
