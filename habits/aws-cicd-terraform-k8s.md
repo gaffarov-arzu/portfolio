@@ -852,3 +852,7 @@ Name= "console-subnet-1"
 #### network acl ise subnet seviyesinde firewalldur, 
 #### internet gateway budur ki public subnoutde hem inbound hem de outbound sorgulari qebul ede biler, 
 #### amma nat gatewayde ise yalniz internete cixis ucundur
+
+# Gun 28
+## Route Table 
+### meselen subnetin icinde olan bir ec2 dan 8.8.8.8 e getmek isteyirse routetable deyecek nece getsin
