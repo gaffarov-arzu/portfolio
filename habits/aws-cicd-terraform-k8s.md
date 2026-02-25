@@ -856,3 +856,10 @@ Name= "console-subnet-1"
 # Gun 28
 ## Route Table 
 ### meselen subnetin icinde olan bir ec2 dan 8.8.8.8 e getmek isteyirse routetable deyecek nece getsin
+### route table budur ki eyni private subnetde eyni vpcde ec2 lar bir birini dansimaq ucun istifade edir, ferqli subnet eyni vpcda da bu kecerlidir, 
+### deyek ki iki route table var biri eyni subnet vpc icinde danismaq ucun birde basqa route table var o ise localda olmayan ne varsa ona muraciet edir burada gateway istifade olunur.
+### her vpc ucun virtual layer 3 ip si var vpc de olan ec2 lar bir biri ile danisanda route table baxir localdirsa eyni vpcnin virtual router ip sine baxir ve diger ec2 a gedir
+### hazirladigimiz route table subnete attach edilir
+
+
+
