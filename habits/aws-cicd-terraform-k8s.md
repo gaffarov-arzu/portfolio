@@ -839,7 +839,7 @@ cidr_block = "10.0.1.0/24"
 availability_zone = "us-east-1a"
 map_public_ip_on_launch= false
 tags = {
-Name= "console-subnet-1"
+Name= "subnet-created-by-tf"
 }
 }
 ```
@@ -865,3 +865,5 @@ Name= "console-subnet-1"
 - internet gateway ise bele isleyir - public destinationa muraciet edilir, paketimizde source var destination var. Paket igw e catande source adresimiz private ipden deyisilir olur public ip, destination eyni qalir, sonra o paket kenara cixandan sonra geri qayidanda, yeni hara muraciet 
 etmisdise ordan qayidanda paketin icinde source ip bizim public ip miz olur bu da igw de qeyd edilir, paket igw-e catande bu public ip deyisiir olur bizim private ip miz ve paket gedir ec2 a catir.
 - paket igw e catmamis natgatewayda public ip e cevrilir
+
+# Gun 29 
