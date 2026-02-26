@@ -843,6 +843,7 @@ Name= "subnet-created-by-tf"
 }
 }
 ```
+### map_public_ip_on_launch=false ec2 -in public ip almamasi ucundur
 # Gun 27
 ## Vpc terminleri
 #### vpc-de subnetler sebekeini bölür, 
@@ -867,3 +868,14 @@ etmisdise ordan qayidanda paketin icinde source ip bizim public ip miz olur bu d
 - paket igw e catmamis natgatewayda public ip e cevrilir
 
 # Gun 29 
+## bos bir route table yaratmaq
+```tf
+resource "aws_route_table" "route-via-terraform" {
+
+vpc_id= "vpc-065009c8986a3d477"
+
+tags = {
+Name= "route-table-created-by-terraform"
+}
+}
+```
