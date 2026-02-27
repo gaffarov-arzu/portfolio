@@ -932,3 +932,8 @@ resource "aws_route_table_association" "subnet_assoc" {
   route_table_id = "rtb-0e379009b8f1872a5" 
 }
 ```
+## associate oldugunu asagidaki komanda ile gorururk hem route table idsi hem de subnet id gorunurse associate olunub
+```bash
+terraform state show aws_route_table_association.subnet_assoc
+```
+##
