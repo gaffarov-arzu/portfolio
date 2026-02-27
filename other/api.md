@@ -27,3 +27,8 @@ bashab -n 1000 -c 100 -H "Authorization: Bearer TOKEN" \
 bashtail -f /var/log/nginx/musluck.access.log
 5. Backend loglarını izle:
 bashpm2 logs
+
+# pm2 isleyen backendlerin siyahisi
+```bash
+pm2 list
+```
