@@ -879,3 +879,56 @@ Name= "route-table-created-by-terraform"
 }
 }
 ```
+# Gun 30
+
+##
+## routein icine gateway qoymaq lazimdir amma evvelce gateway yaradaq
+```tf
+resource "aws_internet_gateway" "igw-terraform" {
+vpc_id = "vpc-065009c8986a3d477"
+tags = {
+Name = "igw-by-terraform"
+}
+}
+
+```
+##  terraformda yaradilmis resourslari ve o resourslara ne ad vermisik onu goruruk asagidaki command ile
+```bash
+terraform state list
+```
+## internetgateway resursunun melumatlarini esas da idsini gotururuk
+```bash
+ terraform state show aws_internet_gateway.igw-terraform
+```
+
+## goturduyumuz igw id -ni daha evvel yaratdigimiz route tablenin icine elave edirik
+
+```tf
+resource "aws_route_table" "route-via-terraform" {
+
+vpc_id= "vpc-065009c8986a3d477"
+
+route {
+cidr_block = "0.0.0.0/0"
+gateway_id = "igw-0b363e25736f685b9"
+}
+```
+## En sonda ise route table ile subneti elaqelendiririk amma bize subnet id lazimdir onu mueyyenlesdire
+```bash
+ terraform state show aws_subnet.subnet-via-tf
+```
+## sonra ise subnet id ni route id ni istifade edib bir birine baglayaq ----> bes tf faylinin icinde verdiyim adla da vere bilerik statik id yerine, bele olanda birbasa id yox yazdigimiz adi veririk id deyisse de problem olmur
+
+```tf
+resource "aws_route_table_association" "subnet_assoc" {
+  subnet_id      = aws_subnet.subnet-via-tf.id        # Terraform subnet resursundan avtomatik ID götürür
+  route_table_id = aws_route_table.route-via-terraform.id
+}
+```
+## static id istifade ederek
+```tf
+resource "aws_route_table_association" "subnet_assoc" {
+  subnet_id      = "subnet-06cbc5e0016c21e64"  
+  route_table_id = "rtb-0e379009b8f1872a5" 
+}
+```
