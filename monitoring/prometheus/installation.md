@@ -1,4 +1,4 @@
-# Prometheus-grafana-loki kubernetese helm ile install olunmasi 
+# Prometheus-grafana kubernetese helm ile install olunmasi 
 ## Prometheus stack install olunmasi ucun bu yaml istifade edirik
 ```yaml
 #prom-values.yaml
