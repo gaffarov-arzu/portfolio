@@ -1,18 +1,18 @@
-1)kubernetese helm ile persistant volume ile install edilmesi
+# Prometheus-grafana-loki kubernetese helm ile install olunmasi 
+## Prometheus stack install olunmasi ucun bu yaml istifade edirik
+```yaml
+#prom-values.yaml
 loki:
   persistence:
     enabled: true
     storageClassName: "huawei-sc"
     size: 50Gi
 
-  # Güvenlik ayarlarını Huawei ile tam uyumlu yapalım
   securityContext:
     fsGroup: 0
     runAsGroup: 0
     runAsUser: 0
     runAsNonRoot: false
-
-  # Config hatasını ve yetkiyi kökten çözen yapılandırma
   config:
     common:
       path_prefix: /data
@@ -30,22 +30,23 @@ loki:
         active_index_directory: /data/index
         cache_location: /data/index_cache
         resync_interval: 5s
-
 promtail:
   enabled: true
-
-2) helm install loki grafana/loki-stack -n monitoring -f loki-values.yaml
-1)vim prom-values.yaml
+```
+## Helm kommandasi 
+```bash
+helm install loki grafana/loki-stack -n monitoring -f loki-values.yaml
+```
+## Loki installizasyasi ucun yaml
+## vim prom-values.yaml
 prometheus:
   prometheusSpec:
-    # 1. Yöntem: Güvenlik ayarlarını Huawei uyumlu hale getir
     securityContext:
       runAsUser: 0
       runAsGroup: 0
       fsGroup: 0
       runAsNonRoot: false
 
-    # 2. Yöntem: Mevcut dizin yetkilerini zorla değiştir (Opsiyonel ama işe yarar)
     initContainers:
       - name: init-chown-data
         image: busybox:latest
@@ -62,4 +63,7 @@ prometheus:
           resources:
             requests:
               storage: 50Gi
-2)helm upgrade prometheus prometheus-community/kube-prometheus-stack -n monitoring -f prom-values.yaml
+## Helm komandasi
+```bash
+helm upgrade prometheus prometheus-community/kube-prometheus-stack -n monitoring -f prom-values.yaml
+```
