@@ -1,0 +1,2 @@
+- RAM ≤ 8 GB → swap ≈ RAM’in %50–100’ü
+- RAM ≥ 16 GB → swap ≈ RAM’in %10–25’i
