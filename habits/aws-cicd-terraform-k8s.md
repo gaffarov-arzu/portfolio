@@ -936,4 +936,6 @@ resource "aws_route_table_association" "subnet_assoc" {
 ```bash
 terraform state show aws_route_table_association.subnet_assoc
 ```
-##
+# Gun 31
+## aws security group virtual firewalldur inbound ve outbound qaydalarini subnet ve ya ec2 ucun teyin edir
+
