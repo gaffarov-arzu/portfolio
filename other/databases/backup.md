@@ -9,5 +9,5 @@ pg_dump -h localhost  -U muser -d musluckdb > musluckdb.dump
 ```
 - binary dump burada ise sixisdirilmis ve oxunmaz halda olur
 ```bash
-vim musluckdb.dump pg_dump -U muser -h localhost -F c -b -v -f backup.dump musluckdb
+ pg_dump -U muser -h localhost -F c -b -v -f backup.dump musluckdb
 ```
