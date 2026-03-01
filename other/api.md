@@ -44,3 +44,7 @@ pm2 save
 ```bash
 pm2 startup
 ```
+# pm2 cache silmek
+```bash
+pm2 flush
+```
