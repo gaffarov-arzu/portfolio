@@ -45,3 +45,7 @@ SELECT username  FROM users;
 ```sql
  DELETE FROM users WHERE username = 'test-user';
 ```
+# tablenin icine baxmaq 
+```sql
+\d users
+```
