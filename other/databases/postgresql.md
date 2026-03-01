@@ -12,3 +12,20 @@ sudo apt install postgresql-client-15
 ```
 
 # databaseda schemaya user ucun konkret set etmek olur ki user birbasa o schema ile baglansin
+# databasede komanda isledende dirnaqlara fikir vermek lazimdir
+# userlerin siyahisi
+```sql
+\du
+```
+# databaselerin siyahisi
+```sql
+\l
+```
+# databaseya baglanmaq ucun
+```sql
+\c musluckdb
+```
+# databaseda hansi tablelar var baxmaq ucun
+```sql
+\dp
+```
