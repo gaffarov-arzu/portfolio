@@ -29,3 +29,7 @@ sudo apt install postgresql-client-15
 ```sql
 \dp
 ```
+# schemalarin siyahisi ve privilegesi olanlari gormek ucun
+```sql
+\dn+
+```
