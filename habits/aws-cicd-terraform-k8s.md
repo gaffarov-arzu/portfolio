@@ -939,3 +939,18 @@ terraform state show aws_route_table_association.subnet_assoc
 # Gun 31
 ## aws security group virtual firewalldur inbound ve outbound qaydalarini subnet ve ya ec2 ucun teyin edir
 
+# Gun 32 
+## terraform ile private subnet yaratmaq
+```tf
+resource "aws_subnet" "private-sub-by-tf" {
+vpc_id = "vpc-065009c8986a3d477"
+cidr_block = "10.0.2.0/24"
+availability_zone = "us-east-1b"
+map_public_ip_on_launch = false
+tags = {
+
+Name = "private-subnet-tf"
+}
+}
+```
+
