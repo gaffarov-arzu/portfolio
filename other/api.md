@@ -36,3 +36,11 @@ npm install -g pm2
 ```bash
 pm2 list
 ```
+# pm2 ile isleyen applicationlari save edir(indi isleyen applicationlari xatirla)
+```bash
+pm2 save
+```
+# systemctl enable kimi olmasi ucun reboot olanda islemesi ucun
+```bash
+pm2 startup
+```
