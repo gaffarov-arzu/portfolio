@@ -28,6 +28,10 @@ bashtail -f /var/log/nginx/musluck.access.log
 5. Backend loglarını izle:
 bashpm2 logs
 
+# pm2 nodejs backendde isletmeye imkan verir
+```bash
+npm install -g pm2
+```
 # pm2 isleyen backendlerin siyahisi
 ```bash
 pm2 list
