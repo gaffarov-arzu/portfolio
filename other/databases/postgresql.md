@@ -37,3 +37,7 @@ sudo apt install postgresql-client-15
  ```sql
  SELECT * FROM users;
 ```
+# tableda sutundaki basliqi secib sutunu gostermek meselen users tablesinden username stunu
+```
+SELECT username  FROM users;
+```
