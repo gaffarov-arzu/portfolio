@@ -33,3 +33,7 @@ sudo apt install postgresql-client-15
 ```sql
 \dn+
 ```
+# table secib icinden sutunlari gormek
+ ```sql
+ SELECT * FROM users;
+```
