@@ -953,4 +953,14 @@ Name = "private-subnet-tf"
 }
 }
 ```
+# Gun 33
+## private subnetde olan ec2 kenara cixmaq ucun nat edilmek ucun elastic ip e ehtiyaci var. Yaradilmasi
+```tf
+resource "aws_eip" "nat_eip" {
+  domain = "vpc"
 
+  tags = {
+    Name = "my-nat-eip"
+  }
+}
+```
