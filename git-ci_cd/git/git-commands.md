@@ -135,3 +135,12 @@ git pull --no-rebase origin main
  git reset --hard a31c9241c1ae18d624c020211dddac0656c0463a
 ```
 ## git de localda deyisiklik varsa amma sen isteyirsen ki remotu getirib localin uzerine yazasan o zaman pull isletmek yox fetch elemek lazimdir sadece remotu getirsin apply etmesin
+
+## gitde bezi fayllari remote gondermeye ehtiyac yoxdur meselen node_modules ona gore de git ignore saliriq
+```bash
+cat > .gitignore << EOF
+node_modules/
+.env
+package-lock.json
+EOF
+```
