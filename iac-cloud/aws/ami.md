@@ -1,0 +1,9 @@
+# uygun ami tapmaq
+```bash
+aws ec2 describe-images \
+  --owners 099720109477 \
+  --filters "Name=name,Values=ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*" \
+  --query "Images[*].[ImageId,Name]" \
+  --region us-east-1 \
+  --output table
+```
