@@ -1006,5 +1006,5 @@ route_table_id = aws_route_table.private_rt_bytf.id
 
 ```
 ## demeli veziyyet beledir public ve private subnetin her birinde route table olur, kenara cixmaq ve localda danismaq ucun. Publicde olan ec2 lar oz public ipleri ile kenara cixa bilirler evvelce route tableya baxirlar sonra oradan da igw e gedirler orada private iplerin publice deyisib cixirlar.
-private subnetlerdeki ec2 lar ise kenara cixmaq ucun public ip-e ehtiyac duyurlar, public ip de ise natgateway yerlesir, nat gateway de iki ipe sahibdir hem private hem de public ip, private subnetdeki ec2 gedir publicdeki nat gatewaya nat gateway ise oz private ipsi ile muraciet edir igw-e orada
-private ipsi deyisilir public olur kenara cixir
+private subnetlerdeki ec2 lar ise kenara cixmaq ucun public ip-e ehtiyac duyurlar, public ip de ise natgateway yerlesir, nat gateway de iki ipe sahibdir hem private hem de public ip, private subnetdeki ec2 gedir publicdeki nat gatewaya nat gateway ise oz public  ipsi ile muraciet edir igw-e oradan kenara cixir, amma public subnetdeki ec2 ise igw de oz ec2 public ipsine nat olur, amma private subnetdeki ec2 nat-gateway private ipsine muraciet edirm nat olur zaten publice cevrilir, igw -e gedir igw ec2 da etdiyi kimi natin public ipsini nat etmir zaten publicdir, amma ec2-in public ipsi ise igw dadir orda nat olmalidir
+## 
