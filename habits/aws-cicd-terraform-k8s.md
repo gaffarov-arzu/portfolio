@@ -964,3 +964,47 @@ resource "aws_eip" "nat_eip" {
   }
 }
 ```
+# Gun 34
+
+## Nate gateway yaratmaq
+```tf 
+resource "aws_nat_gateway" "nat_gw-by-tf" {
+allocation_id = aws_eip.nat_elip_by-tf.id
+subnet_id = aws_subnet.subnet-via-tf.id
+
+tags = {
+Name = "nat-by-tf"
+}
+}
+```
+
+## private ucun route table yaratmaq
+ ```tf
+resource "aws_route_table" "private_rt_bytf" {
+
+vpc_id = aws_vpc.vpc-via-tf.id
+tags = {
+Name = "private-subnet-rd-tf"
+}
+}
+```
+
+## route table yaradim nat gatewaya yonlendirmek
+```tf
+resource "aws_route" "private_to_nat" {
+route_table_id = aws_route_table.private_rt_bytf.id
+destination_cidr_block = "0.0.0.0/0"
+nat_gateway_id = aws_nat_gateway.nat_gw-by-tf.id
+}
+```
+## private subneti route tableya baglamaq
+```tf
+resource "aws_route_table_association" "priv-asso-by-tf" {
+subnet_id = aws_subnet.private-sub-by-tf.id
+route_table_id = aws_route_table.private_rt_bytf.id
+}
+
+```
+## demeli veziyyet beledir public ve private subnetin her birinde route table olur, kenara cixmaq ve localda danismaq ucun. Publicde olan ec2 lar oz public ipleri ile kenara cixa bilirler evvelce route tableya baxirlar sonra oradan da igw e gedirler orada private iplerin publice deyisib cixirlar.
+private subnetlerdeki ec2 lar ise kenara cixmaq ucun public ip-e ehtiyac duyurlar, public ip de ise natgateway yerlesir, nat gateway de iki ipe sahibdir hem private hem de public ip, private subnetdeki ec2 gedir publicdeki nat gatewaya nat gateway ise oz private ipsi ile muraciet edir igw-e orada
+private ipsi deyisilir public olur kenara cixir
