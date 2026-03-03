@@ -2,3 +2,7 @@
 ```sql
 SHOW DATABASES;
 ```
+# tablelara baxmaq
+```sql
+ SHOW TABLES;
+```
