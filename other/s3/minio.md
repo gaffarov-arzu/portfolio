@@ -46,10 +46,10 @@ mc admin policy create myminio dev-policy dev-policy.json
 
 # User yaratmaq:
 ```bash 
-mc admin user add myminio dev-user secretpassword
+ mc admin user add myminio dev-user dev-password123
 
 ```
 # Policy’yi user-ə attach etmək:
 ```bash 
-mc admin policy set myminio dev-policy user=dev-user
+mc admin policy attach myminio dev-policy --user dev-user
 ```
