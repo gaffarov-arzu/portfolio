@@ -53,3 +53,7 @@ mc admin policy create myminio dev-policy dev-policy.json
 ```bash 
 mc admin policy attach myminio dev-policy --user dev-user
 ```
+# minio buckete public yazmaq
+```bash
+mc anonymous set download myminio/dev-bucket
+```
