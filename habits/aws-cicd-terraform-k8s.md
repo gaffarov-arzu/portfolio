@@ -1010,3 +1010,8 @@ private subnetlerdeki ec2 lar ise kenara cixmaq ucun public ip-e ehtiyac duyurla
 ## 
 # Gun 35
 ## aws consile uzerinden 4 yolla ec2 instanceya baglanmaq olar ec2 instance connect(private subnet ucun endpoint lazimdir), ssh session manager(sm ucun 3 3 policy attach olunmali daha sonra ssm paketi yuklenmelidir  ) ssh client ec2 serial console (serial consoleda ise user passwordu bilinmelidir amma teze qurasdirilmis ec2 da bu bilinmir
+# Gun 36
+## aws-de userlerin siyahisi
+```bash
+aws iam list-users
+```
