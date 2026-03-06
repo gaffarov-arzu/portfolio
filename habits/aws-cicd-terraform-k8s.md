@@ -1015,3 +1015,7 @@ private subnetlerdeki ec2 lar ise kenara cixmaq ucun public ip-e ehtiyac duyurla
 ```bash
 aws iam list-users
 ```
+# Gun 37
+## nacl (network acsess list) ve security group ferqi ondadir ki , 
+- security qrup ec2 seviyyesindedir, network acl ise subnet seviyyesindedir, 
+- security group default deny all dur nacl ise allow all
