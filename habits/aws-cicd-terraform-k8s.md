@@ -1019,3 +1019,17 @@ aws iam list-users
 ## nacl (network acsess list) ve security group ferqi ondadir ki , 
 - security qrup ec2 seviyyesindedir, network acl ise subnet seviyyesindedir, 
 - security group default deny all dur nacl ise allow all
+
+# Gun 38
+## serverde podu host ile yayinlamaq ucun meselen asagidaki komanda ile hosta gelen 8080 sorgulari podun 80 portuna gedir
+```bash
+kubectl port-forward pod/nginx 8080:80
+```
+## yuxaridaki misalda sorgular sadece localhost ile cavab verir her yerden gormek mumkun deyil onun ucun
+ ```bash
+ kubectl port-forward pod/nginx 8080:80 --address 0.0.0.0
+```
+## bunu servis ucun etmek ucun ise - qeyd servisin selectoru podun labeli ile uygun olmalidir
+```bash
+kubectl port-forward service/web-svc 8081:80 --address 0.0.0.0
+```
