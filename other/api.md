@@ -53,3 +53,7 @@ pm2 flush
 ```bash
 pm2 stop history-service
 ```
+# asagidaki butun prosesleri dayandirir
+```bash
+pm2 delete all
+```
