@@ -13,3 +13,7 @@ docker search privacyidea
 ```bash
 docker commit container-id yeni-image:modified
 ```
+# container server restart olsa yeniden baslasin, manuel stop olsa baslamayacaq
+```bash
+docker update --restart unless-stopped b850d902e515
+```
