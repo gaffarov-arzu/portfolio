@@ -57,3 +57,7 @@ pm2 stop history-service
 ```bash
 pm2 delete all
 ```
+# pm2 servisini restart etmek
+```bash
+pm2 restart areas-service
+```
