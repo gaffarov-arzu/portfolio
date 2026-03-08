@@ -1033,3 +1033,16 @@ kubectl port-forward pod/nginx 8080:80
 ```bash
 kubectl port-forward service/web-svc 8081:80 --address 0.0.0.0
 ```
+# Gun 39
+## deployment imagenin versiyasini deyismek
+```bash
+ kubectl set image deployment/web-app nginx=nginx:1.25
+```
+## statusuna baxmaq
+```bash
+kubectl rollout status deployment/web-app
+```
+## eger problem olarsa geri qayitmaq
+```bash
+kubectl rollout undo deployment/web-app
+```
