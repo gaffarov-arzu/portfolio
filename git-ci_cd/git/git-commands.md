@@ -144,3 +144,9 @@ node_modules/
 package-lock.json
 EOF
 ```
+## gitde conflict olanda <<<<<<< HEAD ve ==== localda olan deyisiklikler ==== ve >>>> b226  ise remote da olan deyisiklikler
+## gitde conflict faylda hell olunandan sonra 
+```bash
+git add README.md
+git rebase --continue
+```
