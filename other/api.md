@@ -48,3 +48,4 @@ pm2 startup
 ```bash
 pm2 flush
 ```
+# pm2 tek node.js yok diger diler ucun de isleyir
