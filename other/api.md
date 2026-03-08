@@ -49,3 +49,7 @@ pm2 startup
 pm2 flush
 ```
 # pm2 tek node.js yok diger diler ucun de isleyir
+# pm2 ile servisleri stop etmek
+```bash
+pm2 stop history-service
+```
