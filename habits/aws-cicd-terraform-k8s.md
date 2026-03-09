@@ -1047,4 +1047,20 @@ kubectl rollout status deployment/web-app
 kubectl rollout undo deployment/web-app
 ```
 # Gun 40
-## 
+## pod a request ve limit qoymaq meselen pod cpu 100 evvelce verilir o eger 500 kecse cpu throttle olur ram ise 256 mi kecse oomkilled olur
+apiVersion: v1
+kind: Pod
+metadata:
+  name: limited-pod
+spec:
+  containers:
+    - name: nginx
+      image: nginx:latest
+      resources:
+        requests:
+          cpu: "100m"
+          memory: "128Mi"
+        limits:
+          cpu: "500m"
+          memory: "256Mi"
+
