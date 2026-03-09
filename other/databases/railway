@@ -1,1 +1,1 @@
-$ PGPASSWORD="ZgFlKkyMBsFngkcOyJxQYBiFzTuHhizk" pg_restore -h caboose.proxy.rlwy.net -p 54460 -U postgres -d railway -v musluckdb_2026-03-09_02-00-01.sql
+
