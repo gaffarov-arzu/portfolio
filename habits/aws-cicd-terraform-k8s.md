@@ -1046,3 +1046,5 @@ kubectl rollout status deployment/web-app
 ```bash
 kubectl rollout undo deployment/web-app
 ```
+# Gun 40
+## 
