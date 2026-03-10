@@ -49,3 +49,44 @@ SELECT username  FROM users;
 ```sql
 \d users
 ```
+## postrgresql
+### qurulmasi 
+```bash
+sudo apt install postgresql postgresql-contrib
+```
+### qosulmaq
+```bash
+ sudo -u postgresql psql
+```
+### db yaratmaq
+```sql
+CREATE DATABASE musluckdb;
+```
+### userle password yaratmaq ve ya deyismek
+```sql
+CREATE USER muser WITH ENCRYPTED PASSWORD 'mypassword';
+ALTER USER postgres WITH PASSWORD 'postgres123';
+```
+
+### hansisa usere hansisa db ucun access vermek - tek dbe access bes etmir schemaya da access verilir schema ise databsesin altindadir
+```sql
+GRANT ALL PRIVILEGES ON DATABASE musluckdb to muser;
+GRANT ALL PRIVILEGES ON SCHEMA public TO muser;
+```
+### permission islemese 
+```sql
+GRANT USAGE, CREATE ON SCHEMA public TO muser;
+```
+### sql dbs-inden postgresqle migrasya ucun pgloader istifade edilir
+```bash
+pgloader sqlite:///life-balance.db postgresql://muser:mypassword@localhost:5432/musluckdb
+```
+### 
+### postgresql de heryerden acmaq ucun
+```bash
+vim /etc/postgresql/14/main/postgresql.conf
+listen_addresses = '*'          
+vim /etc/postgresql/14/main/pg_hba.conf
+host all all 0.0.0.0/0 md5
+
+```
