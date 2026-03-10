@@ -47,3 +47,46 @@ helm install redis bitnami/redis \
 ```bash
 REDISCLI_AUTH="Pe0Ya89(A%8" redis-cli -h 10.13.105.6 -p 32073 ping
 ```
+
+## redis-insight-deploymenti
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redisinsight
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redisinsight
+  template:
+    metadata:
+      labels:
+        app: redisinsight
+    spec:
+      containers:
+      - name: redisinsight
+        image: redislabs/redisinsight:latest
+        ports:
+        - containerPort: 8001
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+```
+## redis-insight servisi
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: redisinsight-service
+spec:
+  type: NodePort   
+  selector:
+    app: redisinsight
+  ports:
+    - protocol: TCP
+      port: 8001
+      targetPort: 8001
+      nodePort: 30001  
+```
