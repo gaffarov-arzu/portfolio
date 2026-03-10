@@ -1063,4 +1063,54 @@ spec:
         limits:
           cpu: "500m"
           memory: "256Mi"
+# Gun 41
+## tain ve toleration 
+### bezi podlar gpu lu serverlerde islensi, bezileri xususi nodelarda islensin bezileri database nodelarinda islensin deye istifade olunur
+## nodea taint vermek
+```bash
+kubectl taint nodes worker1 dedicated=backend:NoSchedule
+```
+## tainti silmek
+```bash
+kubectl taint nodes worker1 dedicated=backend:NoSchedule-
+```
+## poda toleration vermek
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: backend-pod
+spec:
+  tolerations:
+    - key: "pod"
+      operator: "Equal"
+      value: "node"
+      effect: "NoSchedule"
+  containers:
+    - name: nginx
+      image: nginx
+```
+## effectin 3 novu var 
+- NoSchedule - pod bu nodea schedule edile bilmez
+- PreferNoSchedule - mumkunse schedule edile bilmez
+- Noexecute - pod isleyirse bele nodedan atilir
+## Qisaca node taint qoyulur ve o toleration poda verilse o pod o nodeda isleye bilir
 
+## node selector & node affinity - ise podun hansi nodeda islemesini secmek ucundur
+### evvelce node label qoyursan
+```bash
+kubectl label nodes musluck role=gpu
+```
+### daha sonra ise o labeli poda veririk eger o label ve selector uygun gelse orada isleyecek uygun gelmese hecbir nodeda islemeyecek pending qalacaq
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: backend-pod
+spec:
+  nodeSelector:
+    role: backend
+  containers:
+    - name: nginx
+      image: nginx
+```
