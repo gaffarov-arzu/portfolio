@@ -53,7 +53,11 @@ REDISCLI_AUTH="Pe0Ya89(A%8" redis-cli -h x.x.x.x -p 30366
 ```
 ## redis user yaratmaq
 ```bash
-redis-cli -u redis://appuser:StrongPass123@x.x.x.x:30366 ping
+ACL SETUSER appuser on >StrongPass123 allcommands allkeys
+```
+## redisde userlere baxmaq
+```bash
+ACL LIST
 ```
 ## redis-insight-deploymenti
 ```yaml
