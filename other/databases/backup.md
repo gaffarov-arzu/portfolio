@@ -11,3 +11,11 @@ pg_dump -h localhost  -U muser -d musluckdb > musluckdb.dump
 ```bash
  pg_dump -U muser -h localhost -F c -b -v -f backup.dump musluckdb
 ```
+# restore edilmesi .sql formatinda
+```bash
+psql -U postgres -d testdb -f backup.sql
+```
+# eger dump ve ya .backup formatindadirsa
+```bash
+pg_restore -U postgres -d testdb backup.dump
+```
