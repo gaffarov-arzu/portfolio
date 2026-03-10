@@ -5,5 +5,7 @@ sudo usermod -a -G microk8s $USER
 sudo chown -f -R $USER ~/.kube
 newgrp microk8s 
 microk8s status --wait-ready
+echo "alias kubectl='microk8s kubectl'" >> ~/.bashrc
 ```
+
 
