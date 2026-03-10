@@ -1114,3 +1114,4 @@ spec:
     - name: nginx
       image: nginx
 ```
+### nodeaffinity ise nodeselectorla eyni funksiyaya malikdir amam orada nodeselector kimi sert deyil uygun gelmese pending qalmir basqa bir nodea vere bilir
