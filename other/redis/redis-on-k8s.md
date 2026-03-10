@@ -31,6 +31,18 @@ redis-cli -u redis://healthcheck_f5:password@fdrs-redis.xxx.xxx.az:6379 ping
 ```bash
 sudo apt install redis-tools -y
 ```
+## redisi nodeport la yazmaq
+```bash
+helm install redis bitnami/redis \
+  --namespace mm-dev \
+  --set auth.enabled=true \
+  --set auth.password='Pe0\Ya89(A%8' \
+  --set persistence.enabled=true \
+  --set persistence.size=8Gi \
+  --set persistence.storageClass=longhorn \
+  --set service.type=NodePort \
+  --set service.nodePort=32073
+```
 ## connection yoxlamaq
 ```bash
 REDISCLI_AUTH="Pe0Ya89(A%8" redis-cli -h 10.13.105.6 -p 32073 ping
