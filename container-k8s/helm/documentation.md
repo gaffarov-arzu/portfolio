@@ -49,3 +49,11 @@ helm upgrade my-nginx bitnami/nginx -f my-values.yaml
 ```bash
  helm rollback my-nginx 1
 ```
+# helmde values lari alib fayla yazmaq
+```bash
+ helm get values redis -n mm-dev > redis-values.yam
+```
+# values upgrade etmek
+```bash
+ helm upgrade redis bitnami/redis -n mm-dev -f redis-values.yaml
+```
