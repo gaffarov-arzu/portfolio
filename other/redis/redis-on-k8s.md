@@ -27,3 +27,7 @@ helm upgrade redis bitnami/redis -n megasec-face-dev --set auth.password=StrongP
 ```bash
 redis-cli -u redis://healthcheck_f5:password@fdrs-redis.xxx.xxx.az:6379 ping
 ```
+### redis-cli ile yoxlamaq
+```bash
+sudo apt install redis-tools -y
+```
