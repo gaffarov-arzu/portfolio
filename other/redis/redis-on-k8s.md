@@ -45,9 +45,12 @@ helm install redis bitnami/redis \
 ```
 ## connection yoxlamaq
 ```bash
-REDISCLI_AUTH="Pe0Ya89(A%8" redis-cli -h 10.13.105.6 -p 32073 ping
+REDISCLI_AUTH="Pe0Ya89(A%8" redis-cli -h x.x.x.x -p 32073 ping
 ```
-
+## redise qosulmaq
+```bash
+REDISCLI_AUTH="Pe0Ya89(A%8" redis-cli -h x.x.x.x -p 30366
+```
 ## redis-insight-deploymenti
 ```yaml
 apiVersion: apps/v1
