@@ -31,3 +31,7 @@ redis-cli -u redis://healthcheck_f5:password@fdrs-redis.xxx.xxx.az:6379 ping
 ```bash
 sudo apt install redis-tools -y
 ```
+## connection yoxlamaq
+```bash
+REDISCLI_AUTH="Pe0Ya89(A%8" redis-cli -h 10.13.105.6 -p 32073 ping
+```
