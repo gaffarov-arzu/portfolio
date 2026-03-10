@@ -51,6 +51,10 @@ REDISCLI_AUTH="Pe0Ya89(A%8" redis-cli -h x.x.x.x -p 32073 ping
 ```bash
 REDISCLI_AUTH="Pe0Ya89(A%8" redis-cli -h x.x.x.x -p 30366
 ```
+## redis user yaratmaq
+```bash
+redis-cli -u redis://appuser:StrongPass123@x.x.x.x:30366 ping
+```
 ## redis-insight-deploymenti
 ```yaml
 apiVersion: apps/v1
