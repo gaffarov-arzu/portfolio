@@ -19,3 +19,11 @@ psql -U postgres -d testdb -f backup.sql
 ```bash
 pg_restore -U postgres -d testdb backup.dump
 ```
+# database qosulmaq ucun ya postgres userine kecilir
+```bash
+sudo -u postgres psql -U muser -d musluckdb -f musluckdb_2026-03-09_02-00-01.sql
+```
+# ya da birbasa userin adi ve -h istifade edilir
+```bash
+psql -h localhost -U muser -d musluckdb -f musluckdb_2026-03-09_02-00-01.sql
+```
