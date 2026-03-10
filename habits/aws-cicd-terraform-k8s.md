@@ -1115,3 +1115,76 @@ spec:
       image: nginx
 ```
 ### nodeaffinity ise nodeselectorla eyni funksiyaya malikdir amam orada nodeselector kimi sert deyil uygun gelmese pending qalmir basqa bir nodea vere bilir
+
+# Hazirki veziyyet
+# 🎓 DevOps Öyrənmə İrəliləyiş Cədvəli
+> 1–41-ci günlər ərzində bütün mövzular analiz edilmişdir
+
+---
+
+## 📊 Ümumi Xülasə
+
+| Kateqoriya | Öyrənilən % | Qalan % | Təxmini Müddət | Səviyyə | Prioritet |
+|---|:---:|:---:|:---:|:---:|:---:|
+| ☸️ Kubernetes | ![55%](https://img.shields.io/badge/55%25-orange) | 45% | 3–4 həftə | Orta | 🔴 Yüksək |
+| 🏗️ Terraform | ![50%](https://img.shields.io/badge/50%25-orange) | 50% | 2–3 həftə | Orta | 🔴 Yüksək |
+| ☁️ AWS | ![45%](https://img.shields.io/badge/45%25-orange) | 55% | 4–5 həftə | Orta | 🔴 Yüksək |
+| ⚙️ GitHub CI/CD | ![30%](https://img.shields.io/badge/30%25-red) | 70% | 2–3 həftə | Başlanğıc | 🟡 Orta |
+| **📈 Ümumi Ortalama** | **~45%** | **~55%** | **11–15 həftə** | Orta | 🔴 Yüksək |
+
+> 💡 Müntəzəm çalışmaqla təxminən **3 ayda** tamamlana bilər.
+
+---
+
+## ☸️ Kubernetes
+
+| | Mövzular |
+|---|---|
+| ✅ **Öyrənilən** | Pod, Deployment, Service (ClusterIP / NodePort / LoadBalancer), ConfigMap, Secret, Namespace, ResourceQuota, HPA, Ingress, Liveness & Readiness Probe, PV / PVC, Taint & Toleration, NodeSelector, NodeAffinity, port-forward, rollout / undo, resurs limitləri (requests & limits) |
+| ❌ **Qalan** | StatefulSet, DaemonSet, Job / CronJob, RBAC, NetworkPolicy, StorageClass, Init Containers, Helm, Operators, ServiceMesh (Istio), Multi-cluster idarəetməsi, Custom Resources (CRD) |
+
+> 📝 Əsas mövzular möhkəmdir, production mövzuları çatışmır.
+
+---
+
+## 🏗️ Terraform
+
+| | Mövzular |
+|---|---|
+| ✅ **Öyrənilən** | Provider, aws_instance, aws_s3_bucket, aws_vpc, aws_subnet, aws_route_table, aws_internet_gateway, aws_nat_gateway, aws_eip, terraform init / plan / apply, state idarəetməsi (local & remote), output, resurs referansları |
+| ❌ **Qalan** | Modules, Variables / tfvars, Workspaces, Remote Backend (S3 + DynamoDB), Data Sources, Döngülər (for_each / count), Şərti ifadələr, Import, Terraform Cloud, Test etmə |
+
+> 📝 AWS resursları yaxşıdır, modulyar quruluş çatışmır.
+
+---
+
+## ☁️ AWS
+
+| | Mövzular |
+|---|---|
+| ✅ **Öyrənilən** | IAM (user / role / policy / simulate), EC2, AMI, S3, VPC, Subnet, Route Table, Internet Gateway, NAT Gateway, EIP, Security Group, NACL, ELB / ALB / NLB, RDS, SSM, EC2 Instance Connect, STS, EBS |
+| ❌ **Qalan** | EKS, ECS / Fargate, Lambda, API Gateway, CloudFront, Route53, CloudWatch / Logs, SNS / SQS, CodePipeline, WAF, Secrets Manager, Parameter Store, ECR, Auto Scaling Group, Xərc Optimallaşdırması |
+
+> 📝 Şəbəkə mövzuları çox yaxşıdır, serverless & idarə olunan xidmətlər çatışmır.
+
+---
+
+## ⚙️ GitHub CI/CD
+
+| | Mövzular |
+|---|---|
+| ✅ **Öyrənilən** | Workflow sintaksisi (on / push / branches), Jobs, Steps, Actions (checkout, setup-node), npm install / run, Artifact anlayışı, Continuous Delivery vs Deployment fərqi, Multi-job (needs / parallel) |
+| ❌ **Qalan** | Secrets / env dəyişənləri, Docker build & push, Kubernetes deploy addımı, Matrix strategy, Self-hosted runners, Cache, Təkrar istifadə edilə bilən workflowlar, Mühit mühafizəsi, OIDC / AWS inteqrasiyası, Bildiriş |
+
+> 📝 Əsas pipeline mövcuddur, deploy inteqrasiyası çatışmır.
+
+---
+
+## 🗺️ Tövsiyə Olunan Öyrənmə Ardıcıllığı
+
+```
+1. GitHub CI/CD  →  Docker build & push + AWS OIDC inteqrasiyası
+2. AWS           →  EKS, ECR, Lambda, CloudWatch
+3. Kubernetes    →  Helm, RBAC, NetworkPolicy, StatefulSet
+4. Terraform     →  Modules, Variables, Remote Backend
+```
