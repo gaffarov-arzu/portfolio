@@ -61,7 +61,7 @@ pm2 delete all
 ```bash
 pm2 restart areas-service
 ```
-# server restart getse pm2 dumpini geri yuklemek
+# server restart getse pm2 dumpini geri yuklemek(startap edilmeyibse)
 ```bash
 pm2 resurrect
 ```
