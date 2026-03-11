@@ -1146,3 +1146,30 @@ spec:
           ports:
             - containerPort: 80
 ```
+### asagidaki misalda ise 2 replica var ve unavailable ve surge deyeri de ikidir bu o demekdir ki birbasa ikisin de silir ikisin yaradir
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-dep
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 2
+      maxSurge: 2
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.24
+          ports:
+            - containerPort: 80
+```
