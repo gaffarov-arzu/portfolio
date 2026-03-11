@@ -1,1 +1,2 @@
 # Qarsilasilan errorlar
+## crashloopbackoff
