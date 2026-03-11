@@ -1115,3 +1115,34 @@ spec:
       image: nginx
 ```
 ### nodeaffinity ise nodeselectorla eyni funksiyaya malikdir amam orada nodeselector kimi sert deyil uygun gelmese pending qalmir basqa bir nodea vere bilir
+
+# Gun 42
+## rolling update rollback
+### asagidaki misalda bele olur 2 replica var ve eyni zamanda yalniz bir pod yarana bir pod siline biliner yani 2 replica varsa umumi pod sayi 3 olur teze pod yarananda kohne podun biri silinir diger kohne qalir, elave ikinci yeni pod yarananda 2 ci kohne podda silinir
+neticede 2 eded yeni pod qalmis olur
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-dep
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.24
+          ports:
+            - containerPort: 80
+```
