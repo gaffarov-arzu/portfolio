@@ -1173,3 +1173,23 @@ spec:
           ports:
             - containerPort: 80
 ```
+# Gun 43
+## daemonset log yigmaq ucun monitoring ucun istifade oluna bilir her nodeda birdene olur
+```yaml
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: log-collector
+spec:
+  selector:
+    matchLabels:
+      app: logger
+  template:
+    metadata:
+      labels:
+        app: logger
+    spec:
+      containers:
+        - name: fluentd
+          image: fluentd:latest
+```
