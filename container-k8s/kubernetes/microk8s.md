@@ -8,4 +8,7 @@ microk8s status --wait-ready
 echo "alias kubectl='microk8s kubectl'" >> ~/.bashrc
 ```
 
-
+# mirok8sde hostpath yaratmaq bu o demekdir ki pv avtomatik yaratsin el ile yaratmada
+```bash
+microk8s enable hostpath-storage
+```
