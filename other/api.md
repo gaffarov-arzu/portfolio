@@ -65,3 +65,7 @@ pm2 restart areas-service
 ```bash
 pm2 resurrect
 ```
+# pm2 systemd-sini silmek
+```bash
+pm2 unstartup
+```
