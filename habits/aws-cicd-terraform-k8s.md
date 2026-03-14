@@ -1193,3 +1193,39 @@ spec:
         - name: fluentd
           image: fluentd:latest
 ```
+# Gun 44
+## statefulset 
+### statefulsetlerde pod adlari sabit olur meselen database-0, bele bele gedir, her podun oz pvc si olur, pod silinib yarananda eyni storageye qosulur
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: database
+spec:
+  serviceName: "db-service"
+  replicas: 3
+  selector:
+    matchLabels:
+      svr: data
+  template:
+    metadata:
+      labels:
+        svr: data
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:15
+          env:
+            - name: POSTGRES_PASSWORD
+              value: "mypassword"
+          volumeMounts:
+            - name: database-storage
+              mountPath: /var/lib/postgresql/data
+  volumeClaimTemplates:
+     - metadata:
+         name: database-storage
+       spec:
+         accessModes: ["ReadWriteOnce"]
+         resources:
+           requests:
+             storage: 1Gi
+
