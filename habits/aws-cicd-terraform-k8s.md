@@ -1196,6 +1196,7 @@ spec:
 # Gun 44
 ## statefulset 
 ### statefulsetlerde pod adlari sabit olur meselen database-0, bele bele gedir, her podun oz pvc si olur, pod silinib yarananda eyni storageye qosulur
+```yaml
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -1229,3 +1230,4 @@ spec:
            requests:
              storage: 1Gi
 
+```
