@@ -1232,3 +1232,38 @@ spec:
 
 ```
 # Gun 45
+# Gun 46
+## job ve cronjob, job birdefe isleyib bitir cronjob ise tekrar isleyir
+### job
+```yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: just-job
+spec:
+  template:
+    spec:
+      containers:
+        - name: hello
+          image: busybox
+          command: ["echo", "birdefe salam!"]
+      restartPolicy: Never
+```
+### cronjobda cronjob job yaradir job pod yaradir sonra silir jobda ise pod yaradir pod isleyir bitir pod silinir, cronjobda ise joblar yaranir siyahi qalir amma podlar silinir joblarin siyahisi gorunur
+```yaml
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: my-cron
+spec:
+  schedule: "*/2 * * * * " # her 2 deqiqeden bir
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: cron-cont
+              image: busybox
+              command: ["echo", "cronjob 2 deqiqeden bir isleyir"]
+          restartPolicy: Never
+```
