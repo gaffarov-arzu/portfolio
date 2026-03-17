@@ -1267,3 +1267,8 @@ spec:
               command: ["echo", "cronjob 2 deqiqeden bir isleyir"]
           restartPolicy: Never
 ```
+# gun 47 - tekrar
+## awsde aws hesabindaki butun iam userlerinin siyahisini verir
+```bash
+aws iam list-users
+```
