@@ -1,3 +1,12 @@
+# terraform qurasdirilmasi
+## evvelce yoxlayaq
+```bash
+terraform --version
+```
+## sonra install edek
+```bash
+snap install terraform --classic
+```
 # terraform ile bucket yaratmaq
 ## .tf fayli yaradiriq
 ```bash
