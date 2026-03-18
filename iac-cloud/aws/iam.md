@@ -1,5 +1,5 @@
-bir aws accountuna ec2 ucun icaze vermek
-
+# bir aws accountuna ec2 ucun icaze vermek
+```json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -35,3 +35,4 @@ bir aws accountuna ec2 ucun icaze vermek
     }
   ]
 }
+```
