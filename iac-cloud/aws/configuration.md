@@ -7,6 +7,10 @@ unzip awscliv2.zip
 sudo ./aws/install
 aws configure
 ```
+# yoxlamaq
+```bash
+aws sts get-caller-identity
+```
 
 # instancelerin siyahisi seliqeli sekilde
 ```bash
