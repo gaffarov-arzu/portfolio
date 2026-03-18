@@ -1272,3 +1272,8 @@ spec:
 ```bash
 aws iam list-users
 ```
+# Gun 48 
+## asagidaki kamanda ile podun detallarini statusunu eventlerini xetalari gore bilersen
+```bash
+kubectl describe pod pod-adi
+```
