@@ -1,6 +1,8 @@
 # Git commands
 ## git init ne edir
-- icinde config fayli var(username remote repo falan) 
+- icinde config fayli var(username remote repo falan)
+- hazirda hansi branchda oldugumuzu gosterir
+- git commit edende fayllin snapshotun alir commit hash edir
 ## Gitde hemiselik logini save etmek
 ```bash
 git config --global credential.helper store
