@@ -25,6 +25,21 @@ resource "aws_s3_bucket" "example" {
 ```bash
 terraform init
 ```
+### terraform init ne edir
+- providerlerle danismaq ucun aws azure, google cloud la danismaq ucun lazimi seyleri endirir
+- backendin haradan oxuyacagini mueyyenlesdirir localdan yoxsa remotedan kodda ise remoteda olan s3 bucket gosterilir
+- 
+
+### terraformda backend asagidaki kimi verilir
+```hcl
+terraform {
+  backend "s3" {
+    bucket = "my-terraform-state"
+    key    = "prod/terraform.tfstate"
+    region = "us-east-1"
+  }
+}
+```
 ## asagidaki komanda ile ne deyiseceyine baxiriq
 ```bash
 terraform plan
