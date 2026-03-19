@@ -1,4 +1,6 @@
 # Git commands
+## git init ne edir
+- icinde config fayli var(username remote repo falan) 
 ## Gitde hemiselik logini save etmek
 ```bash
 git config --global credential.helper store
