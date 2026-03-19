@@ -1277,3 +1277,8 @@ aws iam list-users
 ```bash
 kubectl describe pod pod-adi
 ```
+# Gun 49
+## butun namespacelerdeki butun resurslari gormek ucun
+```bash
+kubectl get all -A
+```
