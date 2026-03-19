@@ -3,6 +3,8 @@
 - icinde config fayli var(username remote repo falan)
 - hazirda hansi branchda oldugumuzu gosterir
 - git commit edende fayllin snapshotun alir commit hash edir
+- objects/altinda blob(fayllarin snapshotu)
+- tree - directory structuru
 ## Gitde hemiselik logini save etmek
 ```bash
 git config --global credential.helper store
