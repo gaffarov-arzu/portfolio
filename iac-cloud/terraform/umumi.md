@@ -28,7 +28,8 @@ terraform init
 ### terraform init ne edir
 - providerlerle danismaq ucun aws azure, google cloud la danismaq ucun lazimi seyleri endirir
 - backendin haradan oxuyacagini mueyyenlesdirir localdan yoxsa remotedan kodda ise remoteda olan s3 bucket gosterilir
-- 
+- module endirir main.tf icinde olur hazir modullar olur
+- terraform.locl.hcl a baxim sabit versiya yukleyir meselen aws provider guncellense yenilemir o fayla baxir
 
 ### terraformda backend asagidaki kimi verilir
 ```hcl
