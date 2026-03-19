@@ -31,6 +31,7 @@ terraform init
 - backendin haradan oxuyacagini mueyyenlesdirir localdan yoxsa remotedan kodda ise remoteda olan s3 bucket gosterilir
 - module endirir main.tf icinde olur hazir modullar olur
 - terraform.locl.hcl a baxim sabit versiya yukleyir meselen aws provider guncellense yenilemir o fayla baxir
+- .terraform directorisini yaradir - icinde cloud providerlerle danismaq ucun binariler var, hazir yuklenen modullar var
 
 ### terraformda backend asagidaki kimi verilir
 ```hcl
