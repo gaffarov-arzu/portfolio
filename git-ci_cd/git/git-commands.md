@@ -1,8 +1,8 @@
 # Git commands
 ## git init ne edir
 - icinde config fayli var(username remote repo falan)
-- hazirda hansi branchda oldugumuzu gosterir
-- git commit edende fayllin snapshotun alir commit hash edir
+- hazirda hansi branchda oldugumuzu gosterir(HEAD fayli)
+- git commit edende fayllin snapshotun alir commit hash edir(refs/heads fayli)
 - objects/altinda blob(fayllarin snapshotu)
 - tree - directory structuru
 ## Gitde hemiselik logini save etmek
