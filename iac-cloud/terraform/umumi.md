@@ -1,3 +1,4 @@
+
 # terraform qurasdirilmasi
 ## evvelce yoxlayaq
 ```bash
