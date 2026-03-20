@@ -1295,4 +1295,37 @@ kubectl describe pod init-demo | grep -A5 "Containers:"
 ```bash
 kubectl logs init-demo -c faylin-icine-mesaj
 ```
-## init container - podun icindeki esas container baslamadan yarananan containerdir
+## init container - podun icindeki esas container baslamadan yarananan containerdir, isini gorur dayanir amma container icinde yazsam restart gederdi, asagida /shared adinda podun bir folderi var kubernetes podun islediyi nodunm raminda bir qovluq yaradir pod silinse o da silinir init container /shared altindaki mesaj.txt a text yazir ve dayanir
+### hemin folderi tapmaq ucun
+```bash
+ find /var/lib/kubelet/pods -name "mesaj.txt"
+```
+### o ise burada yerlesir /var/lib/kubelet/pods/355347d6-25f9-43cc-b4b3-467e965fb9d8/volumes/kubernetes.io~empty-dir/shared/mesaj.txt
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: init-demo
+spec:
+  initContainers:
+    - name: faylin-icine-mesaj
+      image: busybox
+      command: ['sh', '-c', 'echo "init basladi" && echo "salam init container" > /shared/mesaj.txt && echo "init bitti"']
+
+      volumeMounts:
+        - name: shared
+          mountPath: /shared
+  containers:
+    - name: app
+      image: busybox
+      command: ['sh', '-c', 'cat /shared/mesaj.txt && sleep 3600']
+      volumeMounts:
+        - name: shared
+          mountPath: /shared
+  volumes:
+    - name: shared
+      emptyDir: {}
+```
+## dockerde volumelar /var/lib/docker/volumes da yerlesir
+## containerde bele birsey var meselen esas imageden formalasir dockerfiledan o read onlydir os base falan binary falan amma onun ustune yazila bilen tebeqede de olur meselen fayl yaratmaq falan, bu ise qalici deyil ona gore docker volume istifade olunur
