@@ -1287,4 +1287,8 @@ kubectl get all -A
 ```bash
 kubectl delete pod init-demo --force
 ```
+## podun icindeki containerin loguna baxmaq
+```bash
+kubectl logs init-demo -c faylin-icine-mesaj
+```
 ## init container - podun icindeki esas container baslamadan yarananan containerdir
