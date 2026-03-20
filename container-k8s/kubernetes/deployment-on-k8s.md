@@ -80,3 +80,11 @@ spec:
 ```bash
  kubectl get pods -n ingress
 ```
+# asagidaki komandada addressde ip gorulmelidir
+```bash
+kubectl get ingress -n musluck
+```
+# ip gormek
+```bash
+curl -s ifconfig.me
+```
