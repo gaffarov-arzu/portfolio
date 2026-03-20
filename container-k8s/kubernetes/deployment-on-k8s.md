@@ -39,3 +39,4 @@ kubectl describe pod -n musluck nextjs-app-54474c7986-hzlbc
 ```bash
 kubectl set image deployment/nextjs-app nextjs-app=ghcr.io/musluck-com/nextjs-app:latest -n musluck
 ```
+# imagepullbackoff diger iki sebebdende ola biler auth xetasi ya da registrye ile elaqe qura bilmemekden
