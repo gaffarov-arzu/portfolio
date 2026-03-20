@@ -55,3 +55,23 @@ spec:
     - port: 3002
       targetPort: 3002
 ```
+# sonra ingress yaziriq
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nextjs-app
+  namespace: musluck
+spec:
+  rules:
+    - host: dev.musluck.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nextjs-app
+                port:
+                  number: 3002
+```
