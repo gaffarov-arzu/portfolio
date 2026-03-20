@@ -75,3 +75,7 @@ spec:
                 port:
                   number: 3002
 ```
+# ingressde problem olsa ingress podlarina baxilir
+```bash
+ kubectl get pods -n ingress
+```
