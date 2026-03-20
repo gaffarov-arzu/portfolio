@@ -31,3 +31,11 @@ spec:
           ports:
             - containerPort: 3002
 ```
+# image pullbackoff xetasi cixsa (image tapa bilmeye biler)
+```bash
+kubectl describe pod -n musluck nextjs-app-54474c7986-hzlbc
+```
+# sonra ya yamlda deyisirik ya da set ile
+```bash
+kubectl set image deployment/nextjs-app nextjs-app=ghcr.io/musluck-com/nextjs-app:latest -n musluck
+```
