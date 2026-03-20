@@ -63,6 +63,7 @@ metadata:
   name: nextjs-app
   namespace: musluck
 spec:
+  ingressClassName: public
   rules:
     - host: dev.musluck.com
       http:
