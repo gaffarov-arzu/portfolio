@@ -40,3 +40,18 @@ kubectl describe pod -n musluck nextjs-app-54474c7986-hzlbc
 kubectl set image deployment/nextjs-app nextjs-app=ghcr.io/musluck-com/nextjs-app:latest -n musluck
 ```
 # imagepullbackoff diger iki sebebdende ola biler auth xetasi ya da registrye ile elaqe qura bilmemekden
+
+# sonra servisini yaradiriq
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nextjs-app
+  namespace: musluck
+spec:
+  selector:
+    app: nextjs-app
+  ports:
+    - port: 3002
+      targetPort: 3002
+```
