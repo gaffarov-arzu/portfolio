@@ -1282,3 +1282,9 @@ kubectl describe pod pod-adi
 ```bash
 kubectl get all -A
 ```
+# Gun 50
+## terminatingde ilisib qalan podu silmek
+```bash
+kubectl delete pod init-demo --force
+```
+## init container - podun icindeki esas container baslamadan yarananan containerdir
