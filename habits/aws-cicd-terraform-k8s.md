@@ -1287,6 +1287,10 @@ kubectl get all -A
 ```bash
 kubectl delete pod init-demo --force
 ```
+## podun icindeki containerlerin siyahisi
+```bash
+kubectl describe pod init-demo | grep -A5 "Containers:"
+```
 ## podun icindeki containerin loguna baxmaq
 ```bash
 kubectl logs init-demo -c faylin-icine-mesaj
