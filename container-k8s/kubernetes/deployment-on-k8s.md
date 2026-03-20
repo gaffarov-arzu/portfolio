@@ -88,3 +88,7 @@ kubectl get ingress -n musluck
 ```bash
 curl -s ifconfig.me
 ```
+# dns olmadan ingress test etmek ucun
+```bash
+curl -H "Host: dev.musluck.com" http://74.225.249.187
+```
