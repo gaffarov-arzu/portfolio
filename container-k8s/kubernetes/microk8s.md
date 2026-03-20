@@ -12,3 +12,7 @@ echo "alias kubectl='microk8s kubectl'" >> ~/.bashrc
 ```bash
 microk8s enable hostpath-storage
 ```
+# microk8sde ingress enable etmek
+```bash
+microk8s enable ingress
+```
