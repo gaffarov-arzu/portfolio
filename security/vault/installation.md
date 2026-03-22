@@ -167,3 +167,8 @@ kubectl describe externalsecret api-gateway-secret -n musluck
 ```bash
 kubectl get secret api-gateway-secret -n musluck
 ```
+#vault secretini cli ile test etmek
+```bash
+kubectl exec -n vault vault-0 -- vault login hvs.pxxxxxxxxxxxxxx
+kubectl exec -n vault vault-0 -- vault kv get musluck.com/auth-service
+```
