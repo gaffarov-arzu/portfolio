@@ -15,3 +15,7 @@ helm install vault hashicorp/vault \
   --create-namespace \
   --set server.dev.enabled=false
 ```
+# problem cixa biler helm kubeconfigi gormeye biler ona gore
+```bash
+microk8s config > ~/.kube/config
+```
