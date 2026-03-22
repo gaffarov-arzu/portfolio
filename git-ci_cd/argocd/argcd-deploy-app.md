@@ -9,7 +9,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/gaffarov-arzu/nextjs-app
+    repoURL: https://github.com/musluck-com/musluck.com-front-nextjs
     targetRevision: main
     path: k8s
   destination:
@@ -20,4 +20,5 @@ spec:
       prune: true
       selfHeal: true
 ```
-## sync olmaya biler ona gore argo uid de settings repository connect repo edib repo url ni veririk
+## sync olmaya biler ona gore argo uid de settings repository connect repo edib repo url ni veririk, orada https secirik github user ve password veririk sonra sync
+##
