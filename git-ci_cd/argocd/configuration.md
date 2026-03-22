@@ -69,3 +69,31 @@ spec:
           ingress:
             ingressClassName: public
 ```
+## daha sonra ingresi yenileyirik
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd
+  namespace: argocd
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  ingressClassName: public
+  tls:
+    - hosts:
+        - argocd.musluck.com
+      secretName: argocd-tls
+  rules:
+    - host: argocd.musluck.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: argocd-server
+                port:
+                  number: 443
+```
