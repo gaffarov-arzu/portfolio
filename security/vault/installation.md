@@ -39,3 +39,26 @@ kubectl exec -n vault vault-0 -- vault operator unseal wBEekVcVnRYxBSTrvfh+tqji8
 ```bash
 kubectl get pods -n vault
 ```
+# vault ucun ingress quraq
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vault
+  namespace: vault
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+spec:
+  ingressClassName: public
+  rules:
+    - host: vault.musluck.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: vault
+                port:
+                  number: 8200
+```
