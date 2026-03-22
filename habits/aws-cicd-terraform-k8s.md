@@ -1328,7 +1328,11 @@ spec:
       emptyDir: {}
 ```
 ## dockerde volumelar /var/lib/docker/volumes da yerlesir
+## 
 ## containerde bele birsey var meselen esas imageden formalasir dockerfiledan o read onlydir os base falan binary falan amma onun ustune yazila bilen tebeqede de olur meselen fayl yaratmaq falan, bu ise qalici deyil ona gore docker volume istifade olunur
 
 # Gun 51
 ## IAM da least privilege prinsipi her istifadeci ve ya rola yalniz neye icazeye ehtiyaci varsa o verilmesi lazimdir
+# Gun 52
+## Helm eyni manifest faylari template cevirerek values vasitesile ferqli konfiqurasyalarda deploy etmeye imkan verir
+
