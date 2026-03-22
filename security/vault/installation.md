@@ -155,3 +155,11 @@ spec:
         key: api-gateway
         property: CORS_ORIGINS
 ```
+## yaradilib  yaradilmadigina baxiriq
+```bash
+kubectl get externalsecret -n musluck
+```
+## error varsa baxiriq
+```bash
+kubectl describe externalsecret api-gateway-secret -n musluck
+```
