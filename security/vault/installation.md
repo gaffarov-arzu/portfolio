@@ -88,3 +88,28 @@ helm install external-secrets external-secrets/external-secrets \
   --namespace external-secrets \
   --create-namespace
 ```
+## cluster secret store qurasdirilmasi
+```yaml
+
+apiVersion: external-secrets.io/v1
+kind: ClusterSecretStore
+metadata:
+  name: vault-backend
+spec:
+  provider:
+    vault:
+      server: "http://vault.vault.svc:8200"
+      path: "musluck"
+      version: "v2"
+      auth:
+        kubernetes:
+          mountPath: "kubernetes"
+          role: "api-gateway"
+          serviceAccountRef:
+            name: "api-gateway"
+            namespace: "musluck"
+```
+## appy edenden sonra yoxlayiriq
+```bash
+kubectl get clustersecretstore vault-backend
+```
