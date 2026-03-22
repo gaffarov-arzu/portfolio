@@ -20,3 +20,4 @@ spec:
       prune: true
       selfHeal: true
 ```
+## sync olmaya biler ona gore argo uid de settings repository connect repo edib repo url ni veririk
