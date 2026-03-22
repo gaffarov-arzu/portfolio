@@ -167,8 +167,47 @@ kubectl describe externalsecret api-gateway-secret -n musluck
 ```bash
 kubectl get secret api-gateway-secret -n musluck
 ```
-#vault secretini cli ile test etmek
+# vault secretini cli ile test etmek
 ```bash
 kubectl exec -n vault vault-0 -- vault login hvs.pxxxxxxxxxxxxxx
 kubectl exec -n vault vault-0 -- vault kv get musluck.com/auth-service
 ```
+# burada secretref externalsecret.target.name hisesindeki adla eyni olmalidir
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: actions-app
+  namespace: musluck
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: actions-app
+  template:
+    metadata:
+      labels:
+        app: actions-app
+    spec:
+      imagePullSecrets:
+        - name: ghcr-secret
+      containers:
+        - name: actions-app
+          image: ghcr.io/musluck-com/backend-actions-service-gradle:latest
+          ports:
+            - containerPort: 4003
+          envFrom:
+            - secretRef:
+                name: actions-service-secret
+```
+## actions-external-secret.yaml buradaki key hisseleri ise path la eyni dir
+```yaml
+remoteRef:
+  key: actions  # eskisi: actions-service
+  property: PORT
+```
+## adlar
+- vault path - vaultdaki secretin adi - bu ise remoteref de istifade olunur key olaraq yani path key kimi verilir
+- external secret adi - bu resursdur kubectl get externalsecret yazanda cixan
+- target adi - kubernetesde yaradilan secret kubectl get secret ile goruruk
+- deployment secret ref - bu ise podun oxudugu secretdir targetin yaratdigi
