@@ -63,3 +63,10 @@ spec:
                   number: 8200
 ```
 # uidan login oluruq root token istifade ederek
+# kubernetesin vaultdan nese oxuya bilmesi ucun kubernetes auth method elave edirik bunu authentication method hissesine girib kubernetesi elave ederek ede bilerik uidan
+# sonra hansi application oxusun deye policy yaradiriq
+```json
+path "musluck/data/api-gateway" {
+  capabilities = ["read"]
+}
+```
