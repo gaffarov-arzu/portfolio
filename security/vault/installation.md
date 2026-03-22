@@ -114,3 +114,44 @@ spec:
 kubectl get clustersecretstore vault-backend
 ```
 ## ClusterSecretStore vaultun addresi - tek vautl yox bir nece store yerlese biler, External Secret (storeun aid verilir) vaultdaki hansi pathdan secreti alacagi, sonra ise secret avtomatik yaradilir
+
+## external-secret.yaml yaradilir
+```yaml
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: api-gateway-secret
+  namespace: musluck
+spec:
+  refreshInterval: "15s"
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  target:
+    name: api-gateway-secret
+  data:
+    - secretKey: JWT_SECRET
+      remoteRef:
+        key: api-gateway
+        property: JWT_SECRET
+    - secretKey: AUTH_SERVICE_URL
+      remoteRef:
+        key: api-gateway
+        property: AUTH_SERVICE_URL
+    - secretKey: AREAS_SERVICE_URL
+      remoteRef:
+        key: api-gateway
+        property: AREAS_SERVICE_URL
+    - secretKey: ACTIONS_SERVICE_URL
+      remoteRef:
+        key: api-gateway
+        property: ACTIONS_SERVICE_URL
+    - secretKey: HISTORY_SERVICE_URL
+      remoteRef:
+        key: api-gateway
+        property: HISTORY_SERVICE_URL
+    - secretKey: CORS_ORIGINS
+      remoteRef:
+        key: api-gateway
+        property: CORS_ORIGINS
+```
