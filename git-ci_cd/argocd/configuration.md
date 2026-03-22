@@ -79,3 +79,11 @@ kubectl get svc argocd-server -n argocd
 kubectl describe ingress argocd -n argocd
 kubectl logs -n ingress nginx-ingress-microk8s-controller-vcvx5 | tail -20
 ```
+## eger redirect problemi olsa 307 o zaman asagidakini edirik bu herdefe https e yonlendiri baglayir bu tehlukesiszir cunki evveline cloudflare ve ingress nginxin sertifikati qoyulub
+```bash
+kubectl patch configmap argocd-cmd-params-cm -n argocd \
+  --type merge \
+  -p '{"data":{"server.insecure":"true"}}'
+kubectl rollout restart deployment argocd-server -n argocd
+```
+```
