@@ -70,3 +70,8 @@ path "musluck/data/api-gateway" {
   capabilities = ["read"]
 }
 ```
+# sonra uidan role yaradiriq
+- adi
+- service account name
+- namespace
+- generated token policy
