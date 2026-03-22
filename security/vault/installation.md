@@ -23,3 +23,9 @@ microk8s config > ~/.kube/config
 ```bash
 kubectl get pods -n vault
 ```
+# initialize etmek
+```bash
+kubectl exec -n vault vault-0 -- vault operator init \
+  -key-shares=5 \
+  -key-threshold=3
+```
