@@ -40,3 +40,7 @@ spec:
                 port:
                   number: 443
 ```
+## oz sertifikatimizi qoymaq ucun cert manager yoxlanilir
+```bash
+kubectl get pods -n cert-manager
+```
