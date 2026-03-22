@@ -44,3 +44,28 @@ spec:
 ```bash
 kubectl get pods -n cert-manager
 ```
+## yoxdursa qurasdirilir
+```bash
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/latest/download/cert-manager.yaml
+```
+## qurasdirildigi yoxlanilir
+```bash
+ kubectl get pods -n cert-manager -w
+```
+## cluster issuer yaradiriq
+```yaml
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: your@email.com
+    privateKeySecretRef:
+      name: letsencrypt-prod
+    solvers:
+      - http01:
+          ingress:
+            ingressClassName: public
+```
