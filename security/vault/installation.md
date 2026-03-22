@@ -79,3 +79,12 @@ path "musluck/data/api-gateway" {
 ```bash
 kubectl create serviceaccount api-gateway -n musluck
 ```
+# podun vaultu oxumasi ucun external-secret istifde deceyik
+## qurulmasi
+```bash
+helm repo add external-secrets https://charts.external-secrets.io
+helm repo update
+helm install external-secrets external-secrets/external-secrets \
+  --namespace external-secrets \
+  --create-namespace
+```
