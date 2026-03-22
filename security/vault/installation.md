@@ -66,7 +66,7 @@ spec:
 # kubernetesin vaultdan nese oxuya bilmesi ucun kubernetes auth method elave edirik bunu authentication method hissesine girib kubernetesi elave ederek ede bilerik uidan
 # sonra hansi application oxusun deye policy yaradiriq
 ```json
-path "musluck/data/api-gateway" {
+path "musluck.com/data/api-gateway" {
   capabilities = ["read"]
 }
 ```
@@ -99,7 +99,7 @@ spec:
   provider:
     vault:
       server: "http://vault.vault.svc:8200"
-      path: "musluck"
+      path: "musluck.com"
       version: "v2"
       auth:
         kubernetes:
@@ -162,4 +162,8 @@ kubectl get externalsecret -n musluck
 ## error varsa baxiriq
 ```bash
 kubectl describe externalsecret api-gateway-secret -n musluck
+```
+## secretin yaradildigini yoxlamaq ucuun
+```bash
+kubectl get secret api-gateway-secret -n musluck
 ```
