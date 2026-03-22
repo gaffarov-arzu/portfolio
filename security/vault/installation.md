@@ -113,4 +113,4 @@ spec:
 ```bash
 kubectl get clustersecretstore vault-backend
 ```
-## ClusterSecretStore vaultun addresi, External Secret (storeun aid verilir) vaultdaki hansi pathdan secreti alacagi, sonra ise secret avtomatik yaradilir
+## ClusterSecretStore vaultun addresi - tek vautl yox bir nece store yerlese biler, External Secret (storeun aid verilir) vaultdaki hansi pathdan secreti alacagi, sonra ise secret avtomatik yaradilir
