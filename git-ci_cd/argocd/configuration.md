@@ -73,3 +73,9 @@ spec:
                 port:
                   number: 80
 ```
+## errorlar cixarsa svc ve ingressi logl ve describe edirik
+```bash
+kubectl get svc argocd-server -n argocd
+kubectl describe ingress argocd -n argocd
+kubectl logs -n ingress nginx-ingress-microk8s-controller-vcvx5 | tail -20
+```
