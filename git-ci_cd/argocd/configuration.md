@@ -103,7 +103,7 @@ spec:
 ```bash
  kubectl create secret tls argocd-tls --cert=tls.crt --key=tls.key -n argocd
 ```
-## ingressden ise letsencrypti qaldirirq
+## ingressden ise letsencrypti qaldirirq portu 80 edirik backend protocolu ise http edirik
 ```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -111,9 +111,8 @@ metadata:
   name: argocd
   namespace: argocd
   annotations:
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-
 spec:
   ingressClassName: public
   tls:
@@ -130,5 +129,5 @@ spec:
               service:
                 name: argocd-server
                 port:
-                  number: 443
+                  number: 80
 ```
