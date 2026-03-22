@@ -35,3 +35,7 @@ kubectl exec -n vault vault-0 -- vault operator unseal LOeh+A7Tj+VZejRGBEl15oIYf
 kubectl exec -n vault vault-0 -- vault operator unseal AKzTUOqt29IJq7WFvs/aDg21VZc5Qht11LGWW8dXgDJY
 kubectl exec -n vault vault-0 -- vault operator unseal wBEekVcVnRYxBSTrvfh+tqji8elfDRFKAxmpUWBMgbNQ
 ```
+# podlar running olmalidi
+```bash
+kubectl get pods -n vault
+```
