@@ -75,3 +75,7 @@ path "musluck/data/api-gateway" {
 - service account name
 - namespace
 - generated token policy
+# sonra kuberneteste service account yaradiriq
+```bash
+kubectl create serviceaccount api-gateway -n musluck
+```
