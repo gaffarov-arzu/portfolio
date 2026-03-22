@@ -19,3 +19,7 @@ helm install vault hashicorp/vault \
 ```bash
 microk8s config > ~/.kube/config
 ```
+# podlara baxaq
+```bash
+kubectl get pods -n vault
+```
