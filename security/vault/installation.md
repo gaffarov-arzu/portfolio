@@ -62,3 +62,4 @@ spec:
                 port:
                   number: 8200
 ```
+# uidan login oluruq root token istifade ederek
