@@ -29,3 +29,9 @@ kubectl exec -n vault vault-0 -- vault operator init \
   -key-shares=5 \
   -key-threshold=3
 ```
+# initialize edende bize unseal ve root token verir 3 denesini istfade edeceyik
+```bash
+kubectl exec -n vault vault-0 -- vault operator unseal LOeh+A7Tj+VZejRGBEl15oIYfG/i6OJiXeteGugIL+6I
+kubectl exec -n vault vault-0 -- vault operator unseal AKzTUOqt29IJq7WFvs/aDg21VZc5Qht11LGWW8dXgDJY
+kubectl exec -n vault vault-0 -- vault operator unseal wBEekVcVnRYxBSTrvfh+tqji8elfDRFKAxmpUWBMgbNQ
+```
