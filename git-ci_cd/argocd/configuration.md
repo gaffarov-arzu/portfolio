@@ -99,3 +99,36 @@ spec:
                 port:
                   number: 443
 ```
+## ve ya oz crt ve keyimizi istifade edirik
+```bash
+ kubectl create secret tls argocd-tls --cert=tls.crt --key=tls.key -n argocd
+```
+## ingressden ise letsencrypti qaldirirq
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd
+  namespace: argocd
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+
+spec:
+  ingressClassName: public
+  tls:
+    - hosts:
+        - argocd.musluck.com
+      secretName: argocd-tls
+  rules:
+    - host: argocd.musluck.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: argocd-server
+                port:
+                  number: 443
+```
