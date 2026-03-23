@@ -39,3 +39,7 @@ spec:
 ```bash
 helm upgrade monitoring prometheus-community/kube-prometheus-stack -n monitoring   --set grafana.sidecar.skipTlsVerify=true
 ```
+### grafana passwordunu almaq ucun
+```bash
+kubectl --namespace monitoring get secrets monitoring-grafana -o jsonpath="{.data.admin-password}" | base64 -d ; echo
+```
