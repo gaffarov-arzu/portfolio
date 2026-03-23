@@ -1336,3 +1336,17 @@ spec:
 # Gun 52
 ## Helm eyni manifest faylari template cevirerek values vasitesile ferqli konfiqurasyalarda deploy etmeye imkan verir
 
+# Gun 53
+## microk8sde metric server enable etmek
+```bash
+microk8s enable metrics-server
+```
+## podlarin hazir oldugunu yoxlamaq
+```bash
+kubectl get pods -n kube-system | grep metrics
+```
+## pod ve nodelari metricini yoxlamaq
+```bash
+kubectl top nodes
+kubectl top pods
+```
