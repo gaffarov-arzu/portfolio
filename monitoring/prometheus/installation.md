@@ -35,7 +35,7 @@ spec:
             port:
               number: 80
 ```
-### eger microk8s de problem olsa
+### eger microk8s de problem olsa - sidecarlar problem yarada biler
 ```bash
 helm upgrade monitoring prometheus-community/kube-prometheus-stack -n monitoring   --set grafana.sidecar.skipTlsVerify=true
 ```
