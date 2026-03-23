@@ -57,3 +57,7 @@ helm upgrade my-nginx bitnami/nginx -f my-values.yaml
 ```bash
  helm upgrade redis bitnami/redis -n mm-dev -f redis-values.yaml
 ```
+# helm hazirda isleyen releaseden helm chart cekmek ucun
+```bash
+helm show values prometheus-community/kube-prometheus-stack > values-default.yaml
+```
