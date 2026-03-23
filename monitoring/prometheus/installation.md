@@ -12,7 +12,7 @@ kubectl create ns monitoring
 ```bash
 helm install monitoring prometheus-community/kube-prometheus-stack -n monitoring
 ```
-## ingresle kenara cixaririq
+## ingresle kenara cixaririq hem prometheusu hem de grafanani
 ```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
