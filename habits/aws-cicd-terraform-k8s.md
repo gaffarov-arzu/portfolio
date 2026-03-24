@@ -1350,3 +1350,8 @@ kubectl get pods -n kube-system | grep metrics
 kubectl top nodes
 kubectl top pods
 ```
+# Gun 54
+## clustertda xetalara baxmaq
+```bash
+kubectl get events --field-selector type=warning
+```
