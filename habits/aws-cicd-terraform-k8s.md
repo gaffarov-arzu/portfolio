@@ -1355,3 +1355,16 @@ kubectl top pods
 ```bash
 kubectl get events --field-selector type=warning
 ```
+# Gun 55
+## biz podun icine basqa container islederek daxil olub onun fayllarina proseslerine baxa bilerik ,networdk ortaq prosesler ortaq fayl sistemi ayri idi, asagidaki commandada target containerin adidir girmek istediyimiz
+```bash
+kubectl debug -it nginx --image=busybox --target=nginx
+```
+## crashloopbackoff containerin copy sini yaradib icine girmek
+```bash
+kubectl debug api-app-5cff6959f6-pqhsw -n musluck -it --copy-to=debug-pod --image=busybox -- sh
+```
+## containerin icine qosulmaq
+```bash
+kubectl attach debug-pod -c debugger-t2x47 -n musluck -i -t
+```
