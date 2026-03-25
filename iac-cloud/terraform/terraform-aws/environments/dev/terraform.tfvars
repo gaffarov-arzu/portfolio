@@ -11,3 +11,4 @@ db_instance_class    = "db.t3.micro"
 db_allocated_storage = 20
 db_name              = "ieltsfly_db"
 db_username          = "admin"
+db_password = "DevPassword123!"
