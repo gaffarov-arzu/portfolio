@@ -1,15 +1,3 @@
-resource "aws_instance" "main" {
-  ami                    = var.ami_id
-  instance_type          = var.instance_type
-  subnet_id              = var.subnet_id
-  vpc_security_group_ids = [aws_security_group.ec2.id]
-  key_name               = var.key_name
-
-  tags = {
-    Name        = "${var.project_name}-ec2"
-    Environment = var.environment
-  }
-}
 
 resource "aws_security_group" "ec2" {
   name   = "${var.project_name}-ec2-sg"
@@ -34,5 +22,18 @@ resource "aws_security_group" "ec2" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+resource "aws_instance" "main" {
+  ami                    = var.ami_id
+  instance_type          = var.instance_type
+  subnet_id              = var.subnet_id
+  vpc_security_group_ids = [aws_security_group.ec2.id]
+  key_name               = var.key_name
+  iam_instance_profile   = var.iam_instance_profile  # bunu ekle
+
+  tags = {
+    Name        = "${var.project_name}-ec2"
+    Environment = var.environment
   }
 }
