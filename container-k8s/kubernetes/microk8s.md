@@ -26,3 +26,7 @@ kubectl get pods -n kube-system | grep metrics
 kubectl top nodes
 kubectl top pods
 ```
+## microk8s de rbaci aktivlesdirmek lazimdir
+```bash
+microk8s enable rbac
+```
