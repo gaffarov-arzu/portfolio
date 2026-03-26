@@ -1414,3 +1414,4 @@ roleRef:
 ```bash
  kubectl auth can-i delete pods --as=system:serviceaccount:default:read-sa
 ```
+
