@@ -1368,3 +1368,49 @@ kubectl debug api-app-5cff6959f6-pqhsw -n musluck -it --copy-to=debug-pod --imag
 ```bash
 kubectl attach debug-pod -c debugger-t2x47 -n musluck -i -t
 ```
+# Gun 57
+## RBAC
+- role - namespace daxilinde icazeler
+- clusterrole butun cluster ucun icazeler
+- rolebinding - rolu service accounta baglamaq ucun istifade olunur
+- clusterrolebindign - clusterrolu baglayir
+### evvelce service account yaradilir
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: read-sa
+  namespace: default
+```
+### sonra role yaradilir
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: oxumaq-rolu
+  namespace: default
+rules:
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["get", "list", "watch"]
+```
+### sonre bind edilir bu role service accounta
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: read-bind
+  namespace: default
+subjects:
+  - kind: ServiceAccount
+    name: read-sa
+    namespace: default
+roleRef:
+  kind: Role
+  name: oxumaq-rolu
+  apiGroup: rbac.authorization.k8s.io
+```
+### test etmek ucun
+```bash
+ kubectl auth can-i delete pods --as=system:serviceaccount:default:read-sa
+```
