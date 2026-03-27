@@ -1414,4 +1414,5 @@ roleRef:
 ```bash
  kubectl auth can-i delete pods --as=system:serviceaccount:default:read-sa
 ```
-
+# Gun 58
+## network policy ona imkan verirki podlar arasinda elaqeni limitleyek -- pod ucun firewall
