@@ -30,3 +30,8 @@ kubectl top pods
 ```bash
 microk8s enable rbac
 ```
+## microk8s de network policy isletmek ucun cilium aktivlesdirilmesi
+```bash
+microk8s enable community
+microk8s enable cilium
+```
