@@ -22,3 +22,7 @@ spec:
 ```
 ## sync olmaya biler ona gore argo uid de settings repository connect repo edib repo url ni veririk, orada https secirik github user ve password veririk sonra sync
 ##
+## argocd de applicationlarin statusuna baxmaq
+```bash
+kubectl -n argocd get applications
+```
