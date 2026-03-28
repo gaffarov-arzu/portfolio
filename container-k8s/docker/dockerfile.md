@@ -15,3 +15,7 @@ docker build -t qafarzu/my-app:latest .
 *
 !paraschute.html
 ```
+# push edirik 
+```bash
+ docker push qafarzu/paraschute:latest
+```
