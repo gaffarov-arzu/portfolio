@@ -1416,3 +1416,10 @@ roleRef:
 ```
 # Gun 58
 ## network policy ona imkan verirki podlar arasinda elaqeni limitleyek -- pod ucun firewall
+# Gun 59
+## node yeni podlarin schedule edilmesini dayandimraq ucun cordon istifade edilir amma bu kohne podlari silmir
+## drain ise hem kohne podlari silir hem de cordon edir(oncordon)
+- drain edende --ignore-daemonsets edirik cunki daemon setler diger node kocurulmemelidir
+## Helmdeki terminler
+- chartlar - sablon helm fayllari manifest sablonlari
+- release bu chartlardan istifade edib yaradilen deploymentler ve diger seyler servis ingress secret confimap
