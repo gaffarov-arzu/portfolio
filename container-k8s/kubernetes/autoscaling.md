@@ -21,3 +21,7 @@ spec:
           type: Utilization
           averageUtilization: 70
 ```
+# varligi test edilir
+```bash
+kubectl get hpa -n musluck
+```
