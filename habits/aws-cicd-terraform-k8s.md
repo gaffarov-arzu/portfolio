@@ -1423,3 +1423,6 @@ roleRef:
 ## Helmdeki terminler
 - chartlar - sablon helm fayllari manifest sablonlari
 - release bu chartlardan istifade edib yaradilen deploymentler ve diger seyler servis ingress secret confimap
+# Gun 60
+## Terraform import - o demekdir ki meselen aws de el ile nese yaratmisiqsa bunu terraform gormeye biler ona gore import edirik ki terraform manage etsin onu bundna sonra 
+
