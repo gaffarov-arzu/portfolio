@@ -11,4 +11,3 @@ Personal documentation covering production DevOps topics.
 - Kafka — KRaft cluster, architecture
 - Linux — administration, networking
 - Security — PKI, Trivy, SonarQube
-```
