@@ -1432,4 +1432,8 @@ roleRef:
 terraform plan -out=tfplan
 terraform apply tfplan
 ```
-
+## github actionsda secret istifadesi
+- name: aws e qosul
+  env:
+    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
