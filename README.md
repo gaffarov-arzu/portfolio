@@ -12,10 +12,3 @@ Personal documentation covering production DevOps topics.
 - Linux — administration, networking
 - Security — PKI, Trivy, SonarQube
 ```
-
-**3. Featured'a ekle:**
-```
-Title: DevOps Knowledge Base — Personal Documentation
-Description: Hands-on documentation covering Kubernetes, 
-ArgoCD, Vault, Terraform, Kafka, Prometheus and more. 
-Written from real production and personal project experience.
