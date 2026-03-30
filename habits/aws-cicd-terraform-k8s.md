@@ -1425,4 +1425,11 @@ roleRef:
 - release bu chartlardan istifade edib yaradilen deploymentler ve diger seyler servis ingress secret confimap
 # Gun 60
 ## Terraform import - o demekdir ki meselen aws de el ile nese yaratmisiqsa bunu terraform gormeye biler ona gore import edirik ki terraform manage etsin onu bundna sonra 
+# Gun 61
+## tfplan
+## Biz plan etsek amma hemin zaman apply etmesek aradaki zamanda fayl deyise biler amma plan out etsek fayla yazilacaq plan eger main.tf da falan deyisiklik olsa apply sadece out tfplan fayldakina tesir edecek 
+```bash
+terraform plan -out=tfplan
+terraform apply tfplan
+```
 
