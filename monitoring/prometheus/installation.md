@@ -65,3 +65,7 @@ kubectl --namespace monitoring get secrets monitoring-grafana -o jsonpath="{.dat
 - node-exporter
 - grafana
 - kube-state-metric
+### kube-state-metricin aldigi metricler
+- deployment
+- pod
+- service
