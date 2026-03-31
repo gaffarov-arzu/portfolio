@@ -1437,3 +1437,9 @@ terraform apply tfplan
   env:
     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+# Gun 62
+## asagidaki komanda terraform fayllarini duzgun formatlasdirir kodu oxunaqli edir bosluqlar girintiler ve s
+```bash
+terraform fmt
+```
