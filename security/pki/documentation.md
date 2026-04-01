@@ -31,3 +31,8 @@ openssl x509 -req -days 365 -in server.csr -CA ca.crt -CAkey ca.key -CAcreateser
 ```bash
 openssl x509 -req -days 365 -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt
 ```
+# yoxlamaq ucun
+```bash
+curl --cacert /home/azureuser/ca.crt https://test.musluck.com:8443
+```
+# 
