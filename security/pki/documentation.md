@@ -35,4 +35,11 @@ openssl x509 -req -days 365 -in server.csr -CA ca.crt -CAkey ca.key -CAcreateser
 ```bash
 curl --cacert /home/azureuser/ca.crt https://test.musluck.com:8443
 ```
-# 
+#  sertifikati yoxlamagin diger usulu curl -vk dir 
+```bash
+curl -vk https://10.0.0.4:8443
+```
+## - k o demekdir ki 
+- self signed sertifikat olsa da qebul edir
+- vaxti kecse de isleyir
+- domain sehf olsa da isleyir
