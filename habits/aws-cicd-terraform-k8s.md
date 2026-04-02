@@ -1444,3 +1444,9 @@ terraform apply tfplan
 terraform fmt
 ```
 ##
+# Gun 63
+## asagidaki komanda kodun mentigi olaraq duzgun olub olmadigini yoxlayir 
+```bash
+terraform validate
+```
+
