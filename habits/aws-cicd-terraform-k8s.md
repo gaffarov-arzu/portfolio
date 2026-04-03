@@ -1450,3 +1450,8 @@ terraform fmt
 terraform validate
 ```
 
+# Gun 64
+## asagidaki komanda podun hansi nodeda islediyini ve nodun ipsini gosterir
+```bash
+kubectl get pod -o wide
+```
