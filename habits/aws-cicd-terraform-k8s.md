@@ -1455,3 +1455,13 @@ terraform validate
 ```bash
 kubectl get pod -o wide
 ```
+# Gun 65
+## terraform output asagidaki kimi istifade olunur
+```tf
+output "vpc_id" {
+value = aws_vpc.my_portfolio.id
+}
+
+output "subnet_id" {
+value = aws_subnet.subnet-via-tf.id
+}
