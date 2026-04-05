@@ -1546,3 +1546,50 @@ resource "kubernetes_deployment" "app" {
 terraform init
 terraform apply
 ```
+## terraformda bu linkde https://registry.terraform.io/providers/hashicorp/aws/latest/docs  asagidakilari axtararaq istifade ede bilerik
+### compute
+- aws_instance
+### Network
+- aws_vpc
+- aws_subnet
+- aws_internet_gateway
+- aws_nat_gateway
+- aws_route_table
+- aws_route_table_association
+- aws_security_group
+### storage
+- aws_s3_bucke
+### Iam
+- aws_iam_user
+- aws_iam_role
+- aws_iam_policy
+### asagidakilar argument referencedir yeni biz yazdigimiz
+```tf
+resource "aws_vpc" "my_vpc" {
+cidr_block = "10.0.0.0/16" 
+}
+
+```
+### attribute reference ise bize terraformun qaytardigidir
+```tf
+resource "aws_subnet" "my_subnet" {
+vpc_id = aws_vpc.my_vpc.id #vpcdan id gotururuk
+cidr_block = "10.0.1.0/24"
+}
+```
+### yuxarida aws_subnet resurs tipidir my_subnet ise resursa verdiyimiz ad
+### ec2 yaradanda ise subnetin id sini istifade edirik
+```tf
+resource "aws_instance" "web" {
+ami = "ami-0699c78c4486e5f1e"
+instance_type = "t2.micro"
+subnet_id = aws_subnet.my_subnet.id #subnetden id goturduk
+}
+```
+### output da ec2 nin ipsini gormek
+```tf
+output "public_ip" {
+value = aws_instance.web.public_ip # ec2-dan ip goturduk
+}
+```
+### 
