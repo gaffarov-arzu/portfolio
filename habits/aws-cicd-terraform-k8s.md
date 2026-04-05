@@ -1465,3 +1465,84 @@ value = aws_vpc.my_portfolio.id
 output "subnet_id" {
 value = aws_subnet.subnet-via-tf.id
 }
+```
+# Gun 66
+## Terraform variables ucun vairables.tf adinda fayl yaradiriq.
+```tf
+#variables.tf
+variable "region" {
+  default = "eu-central-1"
+}
+variable "instance_type" {
+default = "t2.micro"
+}
+```
+## main.tf adinda faylda ise o variablelari istifade edirik
+```tf
+#main.tf
+provider "aws" {
+regions = var.region
+}
+resource "aws_instance" "web" {
+ami = "ami-0699c78c4486e5f1e"
+instance_type = var.instance_type
+}
+```
+## kubernetes ucun terraform istifadesi
+```tf
+#variables.tf
+variable "replica_count" {
+  default = 2
+}
+
+variable "app_name" {
+  default = "my-app"
+}
+```
+```tf
+#main.tf
+terraform {
+  required_providers {
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = "~> 2.0"
+    }
+  }
+}
+
+provider "kubernetes" {
+  config_path = "~/.kube/config"
+}
+
+resource "kubernetes_deployment" "app" {
+  metadata {
+    name = var.app_name
+  }
+  spec {
+    replicas = var.replica_count
+    selector {
+      match_labels = {
+        app = var.app_name
+      }
+    }
+    template {
+      metadata {
+        labels = {
+          app = var.app_name
+        }
+      }
+      spec {
+        container {
+          name  = "nginx"
+          image = "nginx:latest"
+        }
+      }
+    }
+  }
+}
+```
+## daha sonra 
+```bash
+terraform init
+terraform apply
+```
