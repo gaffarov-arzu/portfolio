@@ -5,3 +5,11 @@
 ## SONAR_TOKEN = <kopyaladığın token>
 ## SONAR_HOST_URL = https://sonar.musluck.com
 # uida proyektin dilini secirik
+# docker buildden once asagidaki stepi elave edirik
+```yaml
+- name: SonarQube Analysis
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+```
