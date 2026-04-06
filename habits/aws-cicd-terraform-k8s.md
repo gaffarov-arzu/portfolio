@@ -1592,4 +1592,9 @@ output "public_ip" {
 value = aws_instance.web.public_ip # ec2-dan ip goturduk
 }
 ```
-### 
+# Gun 67
+## github actionsda trigger novleri asagidakilardir
+- push
+- pull_request
+- schedule(cron)
+- workfow_dispatch(manual)
