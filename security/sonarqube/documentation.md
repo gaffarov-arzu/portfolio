@@ -5,6 +5,10 @@
 ## SONAR_TOKEN = <kopyaladığın token>
 ## SONAR_HOST_URL = https://sonar.musluck.com
 # uida proyektin dilini secirik
+# repoda asagidaki fayli yaradiriq
+sonar-project.properties
+## icince asagidakini elave edirik
+sonar.projectKey=api-gateway
 # docker buildden once asagidaki stepi elave edirik
 ```yaml
 - name: SonarQube Analysis
