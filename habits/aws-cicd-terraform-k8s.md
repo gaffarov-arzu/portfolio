@@ -1598,3 +1598,35 @@ value = aws_instance.web.public_ip # ec2-dan ip goturduk
 - pull_request
 - schedule(cron)
 - workfow_dispatch(manual)
+
+# Gun 68
+```tf
+# variables.tf
+variable "instance_type" {}
+variable "region" {}
+```
+```tf
+# terraform.tfvars
+instance_type = "t2.micro"
+region = "eu=central-1"
+```
+```tf
+# main.tf
+provider "aws" {
+region = var.region
+}
+
+resource "aws_instance" "web" {
+ami = "ami-069c78448"
+instance_type = var.instance_type
+}
+```
+## bizim her iki fayli isletmek sebebimiz odur ki meselen variables.tf sabit qalir yeni deyisilmir amma dev ve prod ucun meselen dev ucun #dev.tfvars -->  instance_type = "t2.micro"  prod ucun # prod.tfvar --> instance_type = "t2.large" 
+### dev ucun 
+```bash
+terraform apply -var-file="dev.tfvars"
+```
+### prod ucun
+```bash
+terraform apply -var-file="prod.tfvars"
+```
