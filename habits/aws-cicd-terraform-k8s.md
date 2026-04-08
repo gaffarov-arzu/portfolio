@@ -1630,3 +1630,5 @@ terraform apply -var-file="dev.tfvars"
 ```bash
 terraform apply -var-file="prod.tfvars"
 ```
+# Gun 69 
+## github actionsda needs keyword joblar arasinda asililiq yaradir bir job bitmese digeri baslamir
