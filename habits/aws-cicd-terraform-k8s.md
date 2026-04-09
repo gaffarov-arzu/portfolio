@@ -1632,3 +1632,17 @@ terraform apply -var-file="prod.tfvars"
 ```
 # Gun 69 
 ## github actionsda needs keyword joblar arasinda asililiq yaradir bir job bitmese digeri baslamir
+# Gun 70
+## github actionsda need
+### asagidaki izahda need nece istifade olunur gosterilir
+```yaml
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: npm test
+  build:
+     needs: test   # bu o demekdir ki build addimi sadece test addimi ugurlu olarsa ise dussundur
+     runs-on: ubuntu-latest
+     steps:
+        -run : npm run build
