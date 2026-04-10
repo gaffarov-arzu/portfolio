@@ -1646,3 +1646,79 @@ jobs:
      runs-on: ubuntu-latest
      steps:
         -run : npm run build
+```
+# Gun 71
+## if serti 
+```yaml
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' #yalniz main branchinda islesin
+    steps:
+       - run: echo "deploy olunur"
+```
+## artifact upload/download
+```yaml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: npm run build # runner masininda /dist qovlugu yaradir
+      - uses: actions/upload-artifact@v4
+        with:
+           name: build-output
+           path: dist/  # dist/ qovlugunu zipleyib github serverine yukleyir
+   deploy:
+     needs: build
+     runs-on: ubuntu-latest
+     steps:
+       - uses: actions/download-artifact@v4
+         with:
+             name: build-output # yeni runnerda dist/ directorisini getirir
+   ```
+## github actionsda env 
+```yaml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      PORT: 3000
+    steps:
+      - run: echo $PORT
+```
+### github matrix burada 2 node versiyasi ile isleyir
+```yaml
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+       matrix:
+         node: [16, 18]
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm test
+```
+### eger matrix istifade etmesek
+```yaml
+- uses: actions/setup-node@v4
+  with:
+    node-version: 16
+- run: npm test
+
+- uses: actions/setup-node@v4
+  with:
+    node-version: 18
+- run: npm test
+```
+### burada mentiq budur ki biz node 18 ile yaziriq amma istifadeciler node 16 isletmis ola bilerler.
+## timeout ( job 10 deqiqeden cox cekse github avtomatik dayanir)
+```yaml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - run: npm run build
+```
