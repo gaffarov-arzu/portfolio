@@ -1722,3 +1722,78 @@ jobs:
     steps:
       - run: npm run build
 ```
+# Gun 72 
+## Reusable Workflows
+### eyni ci cd addimlarini ferqli repo workflow larda tekrarlamadan istifade etmek ucundur
+#### meselen asagidaki fayli yaradiriq
+```yaml
+#.github/workflows/reusable-deploy.yml
+on:
+  workflow_call:
+    inputs:
+      env_name:
+        required: true
+        type: string
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Deploy: ${{ inputs.env_name }}"
+```
+### bu fayli ise main.yml da cagiririq
+```yaml
+on:
+  push:
+    branches: [main]
+
+jobs:
+  my-job:
+    uses: ./.github/workflows/reusable-deploy.yml
+    with:
+      env_name: "production"
+```
+## real numune 
+### reusable-deploy.yml
+```yaml
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kodu çək
+        uses: actions/checkout@v4
+
+      - name: Node quraşdır
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Asılılıqları yüklə
+        run: npm install
+
+      - name: Test et
+        run: npm test
+
+      - name: Deploy et
+        run: echo "→ ${{ inputs.environment }} mühitinə deploy edildi"
+```
+### main.yml
+```yaml
+on:
+  push:
+    branches: [main]
+
+jobs:
+  production:
+    uses: ./.github/workflows/reusable-deploy.yml
+    with:
+      environment: "production"
+```
+ 
