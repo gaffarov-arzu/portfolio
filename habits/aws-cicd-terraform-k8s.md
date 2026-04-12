@@ -1796,5 +1796,5 @@ jobs:
     with:
       environment: "production"
 ```
-##
- 
+# Gun 73
+ ## continue-on-error step xeta verse bee workflow davam edir
