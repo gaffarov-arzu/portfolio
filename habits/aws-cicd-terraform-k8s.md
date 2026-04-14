@@ -1797,6 +1797,6 @@ jobs:
       environment: "production"
 ```
 # Gun 73
- ## continue-on-error step xeta verse bee workflow davam edir
+## continue-on-error step xeta verse de workflow davam edir
 # Gun 74 
 ## secrets yalniz workflow icinde gorunur logda avtomatik *** seklinde maskalanir
