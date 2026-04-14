@@ -1800,3 +1800,8 @@ jobs:
 ## continue-on-error step xeta verse de workflow davam edir
 # Gun 74 
 ## secrets yalniz workflow icinde gorunur logda avtomatik *** seklinde maskalanir
+# Gun 75
+## asagidaki komanda isleyen podun tam yaml konfiqurasyasini gosterir
+```yaml
+kubectl get pod -o yaml
+```
