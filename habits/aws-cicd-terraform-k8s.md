@@ -1805,3 +1805,8 @@ jobs:
 ```yaml
 kubectl get pod -o yaml
 ```
+# Gun 76
+## asagidaki komanda deploymentin tarixcesini gosterir
+```bash
+kubectl rollout history deployment/web-app
+```
