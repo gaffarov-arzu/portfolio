@@ -1810,3 +1810,8 @@ kubectl get pod -o yaml
 ```bash
 kubectl rollout history deployment/web-app
 ```
+# Gun 77
+## asagidaki komanda, apply edilse ne deyisiklik edilecek onu gosterir
+```bash
+kubectl diff -f depoyment.yaml
+```
