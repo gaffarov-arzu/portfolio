@@ -1815,3 +1815,8 @@ kubectl rollout history deployment/web-app
 ```bash
 kubectl diff -f depoyment.yaml
 ```
+# Gun 78
+## prosesin hansi fayli acdigini gormek ucun
+```bash
+lsof -p <pid>
+```
