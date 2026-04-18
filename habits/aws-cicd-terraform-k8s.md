@@ -1820,3 +1820,8 @@ kubectl diff -f depoyment.yaml
 ```bash
 lsof -p <pid>
 ```
+# Gun 79
+## asagidaki komanda prosesin arxa fonda hansi emeliyyatlari etdiyini gosterir
+```bash
+strace -p <pid>
+```
