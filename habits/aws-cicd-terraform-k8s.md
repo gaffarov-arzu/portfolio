@@ -1825,3 +1825,15 @@ lsof -p <pid>
 ```bash
 strace -p <pid>
 ```
+# Gun 80
+## inode - linuxda faylin iki hissesi var 
+- inode (metadata, fayl olcusu, owner, diskdeki blok adresi gosterilir)
+- faylin adi
+### faylin inode nomresini gormek ucun
+```bash
+ls -i fayl.txt
+```
+### faylin inode melumatlarini gormek ucun
+```bash
+stat fayl.txt
+```
