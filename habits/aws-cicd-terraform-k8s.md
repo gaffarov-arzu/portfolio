@@ -1859,4 +1859,24 @@ awk '{print $1}' /var/log/nginx/access.log | sort | uniq -c | sort -rn
 ```bash
 3  192.168.1.10
 1  10.0.0.5
-``1`
+```
+## awk bosluga gore bolur amma biz qosa noqteye gore bolmek ucun asagigidaki option isledirik
+```bash
+awk -F: '{print $1}' /etc/passwd
+```
+### meselen fayl asagidaki kimidirse burada awk butun setri ayira bilmeyecek cunki normalda bosluq ile ayirir
+```bash
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+arzu:x:1000:1000::/home/arzu:/bin/bash
+```
+### asagidaki komandanin neticesi 
+```bash
+awk -F: '{print $1, $7}' /etc/passwd
+```
+### netice bele olacaq
+```bash
+root /bin/bash
+daemon /usr/sbin/nologin
+arzu /bin/bash
+```
