@@ -1837,3 +1837,26 @@ ls -i fayl.txt
 ```bash
 stat fayl.txt
 ```
+# Gun 81
+## awk
+### meselen textden birinci sutunu gormek ucun
+```bash
+ awk '{print $1}' test.txt
+```
+### icinde sadece bash olan setrlerden 2-ci ve 11-ci sutunlari goturmek
+```bash
+ps aux | awk '/bash/ {print $2, $11}'
+```
+### ilk setri skip etmek
+```bash
+ps aux | awk 'NR>1 {print $2}'
+```
+### asagidaki komanda evvelce ipleri alir(print), sonra eyni ipleri yan yana getirir(sort), sonra(eyni olanlari sayir), sonra coxdan aza verir( sort -rn)
+```bash
+awk '{print $1}' /var/log/nginx/access.log | sort | uniq -c | sort -rn
+```
+#### netice ise asagidaki kimi ola biler
+```bash
+3  192.168.1.10
+1  10.0.0.5
+``1`
