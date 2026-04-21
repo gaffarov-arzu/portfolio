@@ -1880,3 +1880,8 @@ root /bin/bash
 daemon /usr/sbin/nologin
 arzu /bin/bash
 ```
+# Gun 82
+## journalctl de son bir saatin logu
+```bash
+journalctl --since "1 hour ago"
+```
