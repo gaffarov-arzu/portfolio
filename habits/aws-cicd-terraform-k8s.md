@@ -1885,3 +1885,9 @@ arzu /bin/bash
 ```bash
 journalctl --since "1 hour ago"
 ```
+# Gun 83
+## sed
+### asagidaki komanda fayldaki bir texti deyisdirmek ucun istifade olunur, yani locahlost deyisdirilir butun fayl icinde 0.0.0.0 edilir
+```bash
+sed -i 's/localhost/0.0.0.0/g'
+```
