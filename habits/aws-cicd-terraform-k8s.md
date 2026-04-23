@@ -1891,3 +1891,8 @@ journalctl --since "1 hour ago"
 ```bash
 sed -i 's/localhost/0.0.0.0/g'
 ```
+# Gun 84
+## grep -E ile bir nece metni axtarmaq olur, amma -E istifade etmesek | islemir
+```bash
+journalctl -u nginx | grep -E "error|crit|emerg"
+```
