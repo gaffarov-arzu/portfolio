@@ -1896,3 +1896,11 @@ sed -i 's/localhost/0.0.0.0/g'
 ```bash
 journalctl -u nginx | grep -E "error|crit|emerg"
 ```
+# Gun 85
+## rsync
+```bash
+rsync -av /source /destination
+```
+### yuxarida optionlarin menasi
+- -a arxiv modu yani icazeler tarix saxlanir
+- -v verbose
