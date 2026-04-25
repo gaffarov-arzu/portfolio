@@ -1904,3 +1904,15 @@ rsync -av /source /destination
 ### yuxarida optionlarin menasi
 - -a arxiv modu yani icazeler tarix saxlanir
 - -v verbose
+# Gun 86
+## ss komandasi
+```bash
+ss -tulpan | grep -i listen
+```
+### optionlar
+- -t tcp elaqesi
+- -u udp elaqesi
+- -l yalniz listening
+- -p hansi proses istifade edir
+- -a butun elaqeler(established + listening)
+- -n servisin adini yox portunu yazir (meselen 0.0.0.0:ssh yox 0.0.0.0:22 yazilir)
