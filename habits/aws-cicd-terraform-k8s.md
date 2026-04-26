@@ -1916,3 +1916,9 @@ ss -tulpan | grep -i listen
 - -p hansi proses istifade edir
 - -a butun elaqeler(established + listening)
 - -n servisin adini yox portunu yazir (meselen 0.0.0.0:ssh yox 0.0.0.0:22 yazilir)
+
+# Gun 87
+## Crontab asagidaki komanda her 5 deqiqeden bir yoxlayir
+```bash
+*/5 * * * * /home/arzu/check.sh
+```
