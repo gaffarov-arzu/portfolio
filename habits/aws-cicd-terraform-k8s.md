@@ -1922,3 +1922,13 @@ ss -tulpan | grep -i listen
 ```bash
 */5 * * * * /home/arzu/check.sh
 ```
+# Gun 88
+-
+# Gun 89
+-
+# Gun 90
+-
+# Gun 91
+-
+# Gun 92
+## NAT Gateway saatda pul alir EC2 dayandirilsa bele
